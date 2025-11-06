@@ -1,0 +1,34 @@
+.stats-panel {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  background: var(--tile-default);
+  border-radius: 6px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-item label {
+  font-weight: bold;
+}
+
+.warning {
+  color: var(--warning);
+}
+
+.error {
+  color: var(--error);
+}
+
+.good {
+  color: var(--good);
+}
+
+.status {
+  font-weight: bold;
+}

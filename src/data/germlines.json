@@ -1,0 +1,165 @@
+{
+  "germlines": [
+    {
+      "name": "Starjack",
+      "genes": [
+        "cold_super_tolerant",
+        "vacuum_resistant",
+        "low_gravity_adapted",
+        "awful_melee",
+        "great_construction"
+      ]
+    },
+    {
+      "name": "Yttakin",
+      "genes": [
+        "animal_warcall",
+        "psychically_dull",
+        "naked_speed",
+        "sleepy",
+        "furskin",
+        "furry_tail",
+        "awful_mining",
+        "great_animals"
+      ]
+    },
+    {
+      "name": "Hussars",
+      "genes": [
+        "superfast_wound_healing",
+        "psychically_deaf",
+        "cold_tolerant",
+        "heat_tolerant",
+        "partial_antitoxic_lungs",
+        "hyper_aggressive",
+        "reduced_pain",
+        "unstoppable",
+        "awful_animals",
+        "awful_artistic",
+        "awful_plants",
+        "great_melee",
+        "great_shooting",
+        "go_juice_dependency"
+      ]
+    },
+    {
+      "name": "Sanguophages",
+      "genes": [
+        "scarless",
+        "gene_implanter",
+        "perfect_immunity",
+        "non_senescent",
+        "ageless",
+        "deathless",
+        "archite_metabolism",
+        "hemogenic",
+        "hemogen_drain",
+        "coagulate",
+        "bloodfeeder",
+        "longjump_legs",
+        "piercing_spine",
+        "deathrest",
+        "fast_runner",
+        "tox_immunity",
+        "mild_uv_sensitivity",
+        "tinderskin",
+        "pyrophobia",
+        "low_sleep",
+        "attractive",
+        "strong_melee",
+        "strong_intellectual",
+        "strong_social"
+      ]
+    },
+    {
+      "name": "Wasters",
+      "genes": [
+        "super_immunity",
+        "total_antitoxic_lungs",
+        "unattractive",
+        "pollution_stimulus",
+        "poor_artistic",
+        "wake_up_impervious",
+        "psychite_dependency"
+      ]
+    },
+    {
+      "name": "Impids",
+      "genes": [
+        "fire_spew",
+        "weak_immunity",
+        "slow_wound_healing",
+        "very_fast_runner",
+        "unhappy",
+        "cold_weakness",
+        "heat_super_tolerant",
+        "fire_resistant",
+        "weak_melee_damage"
+      ]
+    },
+    {
+      "name": "Pigskins",
+      "genes": [
+        "strong_stomach",
+        "robust_digestion",
+        "trotter_hands",
+        "pig_nose",
+        "poor_cooking"
+      ]
+    },
+    {
+      "name": "Neanderthals",
+      "genes": [
+        "strong_immunity",
+        "aggressive",
+        "robust",
+        "slow_study",
+        "poor_intellectual",
+        "poor_shooting",
+        "poor_social"
+      ]
+    },
+    {
+      "name": "Dirtmoles",
+      "genes": [
+        "fast_wound_healing",
+        "slow_runner",
+        "intense_uv_sensitivity",
+        "strong_melee_damage",
+        "nearsighted",
+        "dark_vision",
+        "indoor_dweller",
+        "great_mining"
+      ]
+    },
+    {
+      "name": "Highmates",
+      "genes": [
+        "psy_sensitive",
+        "psychic_bonding",
+        "very_happy",
+        "heat_weakness",
+        "violence_disabled",
+        "kind_instinct",
+        "high_libido",
+        "very_attractive",
+        "grayless_hair",
+        "great_social"
+      ]
+    },
+    {
+      "name": "Genies",
+      "genes": [
+        "dead_calm",
+        "delicate",
+        "extra_pain",
+        "elongated_fingers",
+        "awful_social",
+        "poor_animals",
+        "poor_plants",
+        "great_crafting",
+        "great_intellectual"
+      ]
+    }
+  ]
+}

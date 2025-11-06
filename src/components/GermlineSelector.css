@@ -1,0 +1,32 @@
+.germline-selector {
+  background: var(--bg-app);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.gene-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+
+.gene-chip {
+  background: var(--tile-default);
+  border: 1px solid transparent;
+  border-radius: 16px;
+  padding: 0.5rem 1rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gene-chip:hover {
+  border-color: var(--accent-outline);
+}
+
+.gene-chip.selected {
+  background: var(--germline-selected);
+  border-color: var(--accent-outline);
+}

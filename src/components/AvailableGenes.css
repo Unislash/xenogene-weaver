@@ -1,0 +1,82 @@
+.available-genes {
+  background: var(--bg-app);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.gene-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.gene-card {
+  background: var(--tile-default);
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 1rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.gene-card:hover:not(.germline):not(.selected):not(.conflicted) {
+  border-color: var(--accent-outline);
+}
+
+.gene-card.germline {
+  background: var(--germline-selected);
+  cursor: default;
+}
+
+.gene-card.germline-member {
+  background: #1c2d32;
+  cursor: default;
+}
+
+.gene-card.warning {
+  animation: flash-warning 1.2s ease-in-out;
+  border-color: var(--warning);
+  box-shadow: 0 0 8px rgba(255,176,46,0.15);
+}
+
+@keyframes flash-warning {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-3px); }
+  60% { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+.gene-card.selected {
+  background: var(--accent-outline);
+  cursor: default;
+}
+
+.gene-card.conflicted {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.gene-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.gene-card .stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.status-label {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+  opacity: 0.8;
+}

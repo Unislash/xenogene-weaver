@@ -1,0 +1,42 @@
+:root {
+  --bg-app: #0B0E12;
+  --bg-grid: #121417;
+  --tile-default: #1E2227;
+  --germline-selected: #2F2A66;
+  --suppressed-overlay: rgba(70,61,122,0.6);
+  --accent-outline: #6C63FF;
+  --text: #E6E8EB;
+  --warning: #FFB02E;
+  --error: #FF5D5D;
+  --good: #42D392;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+main {
+  background-color: var(--bg-grid);
+  border-radius: 8px;
+  padding: 2rem;
+}

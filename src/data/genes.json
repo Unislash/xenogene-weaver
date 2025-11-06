@@ -1,0 +1,1665 @@
+{
+  "genes": [
+    {
+      "id": "scarless",
+      "name": "Scarless",
+      "description": "Carriers of this gene have a special type of regenerator cell which can heal old wounds and chronic illnesses like bad back.\n\nPrevents scars on all non-destroyed body parts.\nHeals 1 scar, permanent injury, or chronic condition (Alzheimer's, asthma, bad back, cataracts, carcinoma, dementia, frail, hearing loss, blindness, and organ decay) every 15-30 days, akin to (and alongside) luciferium including scars from a scarification ritual.",
+      "efficiency": 0,
+      "complexity": 4,
+      "capsules": "1",
+      "sourceXeno": "Sanguophages",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_TotalHealing.png"
+    },
+    {
+      "id": "gene_implanter",
+      "name": "Gene implanter",
+      "description": "Carriers of this gene can implant a copy of their xenogerm into another person through a somewhat gross-looking injector organ. Their own genetic material will then regrow very slowly. If they implant while their genes are regrowing, they will die. \n\nAdds ability:  Implant Genes\nImplant this person's xenogenes into a willing subject using a special injector organ. If this person's genes are currently regrowing, they will implant their xenogerm and die in the process. When implanted, a xenogerm will overwrite the target's xenogenes. Germline genes will be unaffected.\nPasses on a copy of all xenogenes to a target. Causes genes to regrow for 2 years afterwards.\nUsing this ability while genes are regrowing kills the casting pawn.\nIf using this ability is lethal, then the caster will lose all of their xenogenes upon death.",
+      "efficiency": 0,
+      "complexity": 3,
+      "capsules": "1",
+      "sourceXeno": "Sanguophages",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_XenogermReimplanter.png"
+    },
+    {
+      "id": "perfect_immunity",
+      "name": "Perfect immunity",
+      "description": "Carriers of this gene have archite-enhanced immune systems which intelligently destroy invaders. They are totally immune to most normal illnesses.\n\nImmune to flu, malaria, sleeping sickness, plague, infection, lung rot, gut worms, muscle parasites, and organ decay. This includes all the diseases that are fatal and that adult colonists can acquire.\nDoes not affect pre-existing conditions. Only prevents new illnesses.",
+      "efficiency": 0,
+      "complexity": 3,
+      "capsules": "1",
+      "sourceXeno": "Sanguophages",
+      "conflicts": [
+        "Immunity"
+      ],
+      "imgSrc": "64px-Gene_PerfectImmunity.png"
+    },
+    {
+      "id": "non_senescent",
+      "name": "Non-senescent",
+      "description": "Carriers of this gene do not go through senescence in the normal way. They never get chronic age-related diseases like cancer, bad back, cataracts, or dementia.\n\nTotal immunity to carcinoma, heart attack, and chronic conditions (Alzheimer's, Asthma, Artery blockage, Bad back, Cataracts, Dementia, Frail, but not Hearing Loss).\nPrevents these conditions from any source, not just aging. (e.g. nuclear stomach, toxic buildup)\nDoes not affect pre-existing conditions.",
+      "efficiency": 0,
+      "complexity": 3,
+      "capsules": "1",
+      "sourceXeno": "Sanguophages",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_NonSenescent.png"
+    },
+    {
+      "id": "ageless",
+      "name": "Ageless",
+      "description": "Carriers of this gene have archites in the bloodstream which continuously reverse the process of aging. Starting at the age of 13, carriers begin to biologically age slower. By 18, the aging process stops completely.\n\nAging ×1 at age 13. Rate linearly slows as the pawn gets older.\nAging ×0 at age 18.5.",
+      "efficiency": 0,
+      "complexity": 3,
+      "capsules": "1",
+      "sourceXeno": "Sanguophages",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_Ageless.png"
+    },
+    {
+      "id": "deathless",
+      "name": "Deathless",
+      "description": "Carriers of this gene have archites in the blood which will sustain their life processes no matter what. As long as the brain remains intact, a carrier of this gene will never die.\n\nIf a pawn would've died, but the brain, head, or neck is not directly destroyed, they enter into either a regenerative coma or involuntary deathrest.\nPawns without the Deathrest gene enter a regenerative coma. After all fatal conditions are removed, the regenerative coma lasts for 7 more days. Hemogen is unaffected.\nPawns with the Deathrest gene enter involuntary deathrest and lose all Hemogen. After fatal conditions are removed, the usual deathrest mechanics take place.\nDoes not regenerate limbs or organs, except for the torso.\nEntering the regeneration coma or involuntary deathrest will cause the pawn to lose 3% to 6% of total skill XP in a random skill.\nMarket value of genepacks containing this gene: ×200% (also multiplied by the usual ×400% for 1 Archite capsule)",
+      "efficiency": 0,
+      "complexity": 7,
+      "capsules": "1",
+      "sourceXeno": "Sanguophages",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_Deathless.png"
+    },
+    {
+      "id": "archite_metabolism",
+      "name": "Archite metabolism",
+      "description": "Carriers of this gene have special archites in their cells that facilitate and optimize metabolism. This improves overall genetic and metabolic quality.\n\nIncreases metabolic efficiency. No other effect.\nMarket value of genepacks containing this gene: ×150% (also multiplied by ×700% for 2 Archite capsules)",
+      "efficiency": 6,
+      "complexity": 6,
+      "capsules": "2",
+      "sourceXeno": "Sanguophages",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_ArchiteMetabolism.png"
+    },
+    {
+      "id": "breathless",
+      "name": "Breathless",
+      "description": "Carriers of this gene can store concentrated oxygen in their bodies. Their cells consume much less oxygen, meaning they rarely need to breathe. These adaptations make them immune to the harmful effects of space, as well as environmental toxins, tox gas, acidic smog, and rot stink.\n\nImmune to vacuum\nImmune to toxic enviornments, including toxic gas, acidic smog, and rot stink.\nMinimum Comfortable Temperature: −5 °C (9 °F)",
+      "efficiency": 0,
+      "complexity": 3,
+      "capsules": "1",
+      "conflicts": [
+        "ToxicEnvironmentResistance\n<p>VacuumResistance\n</p>"
+      ],
+      "imgSrc": "64px-OdysseyIcon.png"
+    },
+    {
+      "id": "fire_spew",
+      "name": "Fire spew",
+      "description": "Carriers are able to spew flammable bile generated by a special organ in their neck. The bile sticks to anything in a small area and can ignite people, objects, and the ground.\n\nAdds ability:  Fire spew\nSpit a stream of sticky, flammable bile from the mouth. The bile can ignite anything or anyone it hits, and also form flaming pools on the ground. The bile is generated and stored by an organ in the neck, along with a separate pouch of hypergolic reactant for ignition.\nSpits flammable liquid in a 7.9 tile triangle with a 3 tile wide end.[Detail Needed]\nTarget: Pawn or Location\nWarmup Time: 60 ticks (1 sec)\nCooldown: 300,000 ticks (5 in-game days)\nCharges: 1\nAI Can Use: True. Note: AI will still target fire-immune targets.\nMarket value of genepacks containing this gene: ×150%",
+      "efficiency": -2,
+      "complexity": 1,
+      "sourceXeno": "Impids",
+      "imgSrc": "64px-Gene_Firespew.png"
+    },
+    {
+      "id": "foam_spray",
+      "name": "Foam spray",
+      "description": "Carriers grow glands in the neck that generate and store a fire-retardant foam. They can spew this foam over an area to extinguish fires.\n\nAdds ability:  Foam spray\nSpray thick fire-retardant foam from glands in the neck up through the mouth. The foam will cover a small area and extinguish any fire it touches.\nSpits firefoam in a 3x3 area around the target, up to 4 tiles away. This leaves firefoam filth on the ground, extinguishing fires and preventing new ones from igniting.\nTarget: Pawn or Location\nWarmup Time: 60 ticks (1 sec)\nCooldown: 30,000 ticks (12 in-game hours) for all 3 charges. Cooldown will not begin until all charges have been expended.\nCharges: 3\nAI Can Use: False.",
+      "efficiency": -2,
+      "complexity": 1,
+      "imgSrc": "64px-Gene_FoamSpray.png"
+    },
+    {
+      "id": "animal_warcall",
+      "name": "Animal warcall",
+      "description": "Carriers of this gene can perform an animal warcall, using a powerful bellow and psychic connection to call an animal to fight for them.\n\nAdds ability:  Animal warcall\nWith a powerful bellow and psychic connection, call an animal to fight your enemies for a few hours.\nTurns the target berserk against all factions hostile to the caster for 12 in-game hours/30,000 ticks (8.33 mins). -75 base goodwill when used on a friendly faction's animal.\nTarget: Any single animal or wildman. Does not require LoS [Detail]\nRange: 49.9 tiles\nWarmup Time: 120 ticks (2 secs)\nCooldown: 900,000 ticks (15 in-game days) per charge.\nCharges: 2\nAI Can Use: True",
+      "efficiency": -3,
+      "complexity": 1,
+      "sourceXeno": "Yttakin",
+      "imgSrc": "64px-Gene_AnimalWarcall.png"
+    },
+    {
+      "id": "acid_spray",
+      "name": "Acid spray",
+      "description": "Carriers grow glands in the neck that generate and store a sticky acid substance, along with acid-tolerant tissues in the mouth. They can spew this acid over an area, where it will stick to enemies and burn them.\n\nAdds ability:  Acid spray\nSpray a sticky acid substance from glands in the neck up through the mouth and all over the target area. The acid will stick to targets and burn them.\nSpits a fast-moving acid projectile in a 3x3 area around the target. This does 30 damage to buildings and items, and creates a harmless \"spent acid\" filth on each affected tile. Creatures in the affected area suffer a 30 damage burn (possibly spread over multiple body parts), but suffer no persistent damage over time. The attack has an AP of 80%[Armor type?] and a stopping power of 1.\nTarget: Pawn or Location\nRange: 8.9 tiles\nWarmup Time: 30 ticks (0.5 secs)\nCooldown: 30,000 ticks (12 in-game hours)\nCharges: 1\nAI Can Use: True.\nMarket value of genepacks containing this gene: ×150%",
+      "efficiency": -2,
+      "complexity": 1,
+      "imgSrc": "64px-Gene_AcidSpray.png"
+    },
+    {
+      "id": "hemogenic",
+      "name": "Hemogenic",
+      "description": "Carriers of this gene have a reserve of biological strength powered by a resource called hemogen. The resource can be gained and spent in various ways, all of which are unlocked by other genes.  Carriers lose 2 hemogen per day from biological entropy.\n\nCreates a Hemogen need, which decreases by −2 per day.\nIncreases by +20 per hemogen pack or Bloodfeed.\nReceive Hemogen Craving ailment when Hemogen hits 0. Craving severity increases by 5% / hour with 0 hemogen. Severity decreases by 10% / hour with it.\nHemogen Craving (minor, 0%): −10 mood, Consciousness max 90%, +5% Pain\nHemogen Craving (moderate, 35%): −15 mood, Consciousness max 80%, +10% Pain\nHemogen Craving (major, 70%): −20 mood, Consciousness max 50%, +15% Pain",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Sanguophages",
+      "imgSrc": "64px-Gene_Hemogenic.png"
+    },
+    {
+      "id": "hemogen_drain",
+      "name": "Hemogen drain",
+      "description": "Carriers lose an additional 8 hemogen per day from biological entropy.\n\n−8 Hemogen per day.",
+      "efficiency": 6,
+      "complexity": 1,
+      "sourceXeno": "Sanguophages",
+      "imgSrc": "64px-Gene_HemogenDrain.png"
+    },
+    {
+      "id": "coagulate",
+      "name": "Coagulate",
+      "description": "Carriers of this gene have special glands on their hands and wrists, as well as a unique salivary compound that they can use to rapidly tend wounds.\n\nAdds ability:  Coagulate\nUse special glands in the wrists to quickly tend someone's wounds.\nTends wounds. At 40-80% tend quality\nTarget: Single target in LoS\nRange: 3.9 tiles\nWarmup Time: 60 ticks (1 sec)\nHemogen Cost: 20\nAI Can Use: ?",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Sanguophages",
+      "imgSrc": "64px-Gene_Coagulate.png"
+    },
+    {
+      "id": "bloodfeeder",
+      "name": "Bloodfeeder",
+      "description": "Carriers of this gene have small retractable fangs and an organ on the roof of the mouth which can extract hemogen from fresh warm blood. They can bite an unresisting person, suck the blood, and gain hemogen directly.\n\nAdds ability:  Bloodfeed\nBite the target and extract hemogen directly from their blood. The target will lose blood and will be horrified by the interaction, but will be otherwise unharmed. A fast-acting coagulant will seal the wound to prevent bleeding. Can only target non-hemogenic humans. Hemogen gain is affected by the target’s body size.\nFeed on a pawn to gain up to +20 Hemogen, which scales with target body size, but not the user's.\nTarget will gain +45% blood loss and the −5 Fed on moodlet (5 days, doesn't stack, negated by masochist trait and Bloodfeeders precept.). Also gains a bloodfeeder mark on the neck (+1% pain).\nIf the target does not have enough blood, hemogen gain will be reduced accordingly.[Detail]\nBloodfeeder must have a non-0% Eating capacity.\nTarget: Single human target. Target must not have the Bloodfeeder gene. Must be downed or a colonist, slave, or prisoner not on a mental break.\nA warning will be given if it would kill the target or render them unconscious, but it will not account for continuing blood loss.\n+2 mood when near a blood torch.\n\nInteraction with Bloodfeeders precept.\nBloodfeeders: Revered - Believers have a higher opinion towards bloodfeeders,  negates moodlet for being fed on, mood bonus when bloodfeeders are in the colony or are the Leader, and mood penalty when they die.\nBloodfeeders: Reviled. - Believers have a lower opinion towards bloodfeeders, mood penalty when bloodfeeders are in the colony or when they are bloodfeeder, and mood bonus when they die.",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Sanguophages",
+      "imgSrc": "64px-Gene_Bloodfeeder.png"
+    },
+    {
+      "id": "longjump_legs",
+      "name": "Longjump legs",
+      "description": "Carriers have special hemogen-powered muscle fibers in their legs which allow them to jump great distances.\n\nAdds ability:  Longjump\nJump to a distant location using super-strong hemogen-powered legs.\nJump to the selected location, over non-LoS blocking objects, quickly but not instantly. Immune to all damage during the jump.\nTarget: Location in LoS\nRange: 19.9 tiles\nWarmup Time: 30 ticks (0.5 secs)\nHemogen Cost: 5\nAI Can Use: False",
+      "efficiency": -2,
+      "complexity": 1,
+      "sourceXeno": "Sanguophages",
+      "imgSrc": "64px-Gene_LongJumpLegs.png"
+    },
+    {
+      "id": "piercing_spine",
+      "name": "Piercing spine",
+      "description": "Carriers grow an opening in their upper chest along with a quiver of keratin spines. Using a hemogen-powered chemical reaction, they can fire these spines at high speed at nearby targets with surprising accuracy.\n\nAdds ability:  Piercing spine\nUse a hemogenic chemical reaction to launch a bony spine at the target. The spine exits through the skin from an opening between the collarbones. Given the method of launch, it is surprisingly easy to aim.\nLaunches an unerring spine at the target, dealing 30 RangedStab damage, with an AP of 100% and a stopping power of 1.\nTarget: Single target in LoS\nRange: 3.9 tiles\nWarmup Time: 30 ticks (0.5 secs)\nCooldown Time: 60 ticks (1 sec)\nHemogen Cost: 20\nAI Can Use: True\nMarket value of genepacks containing this gene: ×150%",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Sanguophages",
+      "imgSrc": "64px-Gene_PiercingSpine.png"
+    },
+    {
+      "id": "deathrest",
+      "name": "Deathrest",
+      "description": "Carriers of this gene must periodically regenerate themselves in a special coma called deathrest. Deathrest takes days, but can confer substantial bonuses. Deathrest can be accelerated and its effects enhanced by the use of a variety of special buildings and technologies. Those who put off deathresting will suffer from deathrest exhaustion.\n\nCreates a need for deathrest roughly every 30 days.\nDeathrest is initiated at a bed or deathrest casket and prevents action. It lasts for 4 days by default (3.6 days in casket), which can be interrupted for a stat penalty.\nIf need hits 0, maximum Consciousness set to 50% and Psychic Sensitivity -100%.\nSee the deathrest article for more details.\nImplanting new xenogerm, even with deathrest gene will reset pawn's deathrest capacity.",
+      "efficiency": 6,
+      "complexity": 1,
+      "sourceXeno": "Sanguophages",
+      "imgSrc": "64px-Gene_Deathrest.png"
+    },
+    {
+      "id": "weak_immunity",
+      "name": "Weak immunity",
+      "description": "Carriers of this gene gain immunity to diseases more slowly than normal. They may die from infections that others would survive.\n\nImmunity Gain Speed ×90%",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Impids",
+      "conflicts": [
+        "Immunity"
+      ],
+      "imgSrc": "64px-Gene_WeakImmunity.png"
+    },
+    {
+      "id": "strong_immunity",
+      "name": "Strong immunity",
+      "description": "Carriers of this gene gain immunity to diseases faster than normal.\n\nImmunity Gain Speed ×110%",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Neanderthals",
+      "conflicts": [
+        "Immunity"
+      ],
+      "imgSrc": "64px-Gene_StrongImmunity.png"
+    },
+    {
+      "id": "super_immunity",
+      "name": "Super immunity",
+      "description": "Carriers of this gene gain immunity to diseases considerably faster than normal.\n\nImmunity Gain Speed ×150%\nMarket value of genepacks containing this gene: ×125%",
+      "efficiency": -2,
+      "complexity": 2,
+      "sourceXeno": "Wasters",
+      "conflicts": [
+        "Immunity"
+      ],
+      "imgSrc": "64px-Gene_SuperStrongImmunity.png"
+    },
+    {
+      "id": "slow_wound_healing",
+      "name": "Slow wound healing",
+      "description": "Carriers of this gene heal from wounds half as fast as normal.\n\nInjury healing factor ×50%",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Impids",
+      "conflicts": [
+        "WoundHealingRate"
+      ],
+      "imgSrc": "64px-Gene_WoundHealingRateSlow.png"
+    },
+    {
+      "id": "fast_wound_healing",
+      "name": "Fast wound healing",
+      "description": "Carriers of this gene heal from wounds twice as fast as normal.\n\nInjury healing factor ×200%",
+      "efficiency": -2,
+      "complexity": 1,
+      "sourceXeno": "Dirtmoles",
+      "conflicts": [
+        "WoundHealingRate"
+      ],
+      "imgSrc": "64px-Gene_WoundHealingRateFast.png"
+    },
+    {
+      "id": "superfast_wound_healing",
+      "name": "Superfast wound healing",
+      "description": "Carriers of this gene heal from wounds four times as fast as normal.\n\nInjury healing factor ×400%\nMarket value of genepacks containing this gene: ×125%",
+      "efficiency": -3,
+      "complexity": 1,
+      "sourceXeno": "Hussars",
+      "conflicts": [
+        "WoundHealingRate"
+      ],
+      "imgSrc": "64px-Gene_WoundHealingRateSuperfast.png"
+    },
+    {
+      "id": "superclotting",
+      "name": "Superclotting",
+      "description": "Carriers of this gene have extra-power coagulating factors in their blood, and will stop bleeding very quickly when wounded.\n\nEvery 6 seconds, all bleeding wounds are automatically tended at 20-70% tend quality. The exact tend quality is fully random within this range.\nThis renders it functionally impossible for the pawn to bleed out, at the minor downside of the wound being somewhat more susceptible to infection than being treated by a doctor under better conditions (e.g. by a skilled doctor, with industrial+ medicine, in a clean hospital).\nDoes not affect non-bleeding wounds.",
+      "efficiency": -1,
+      "complexity": 1,
+      "conflicts": [],
+      "imgSrc": "64px-Gene_Superclotting.png"
+    },
+    {
+      "id": "psychically_deaf",
+      "name": "Psychically deaf",
+      "description": "Carriers of this gene are deaf to all psychic energy and influence outside their own minds. They cannot be affected by psychic influence, nor can they ever wield psychic power.\n\nForced trait: Psychically deaf",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Hussars",
+      "conflicts": [
+        "PsychicAbility"
+      ],
+      "imgSrc": "64px-Gene_PsychicallyDeaf.png"
+    },
+    {
+      "id": "psychically_dull",
+      "name": "Psychically dull",
+      "description": "Carriers of this gene are less psychically-sensitive than others.\n\nForced trait: Psychically dull",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Yttakin",
+      "conflicts": [
+        "PsychicAbility"
+      ],
+      "imgSrc": "64px-Gene_PsychicallyDull.png"
+    },
+    {
+      "id": "psy_sensitive",
+      "name": "Psy-sensitive",
+      "description": "Carriers of this gene are more psychically-sensitive than average.\n\nPsychic Sensitivity +20%\nMeditation psyfocus gain +10% / day [Verify]\n+0.1 Neural Heat Recovery per second base. Effectively 0.163 Heat/s recovery at Level 6 psylink.",
+      "efficiency": -2,
+      "complexity": 1,
+      "sourceXeno": "Highmates",
+      "conflicts": [
+        "PsychicAbility"
+      ],
+      "imgSrc": "64px-Gene_EnhancedPsychicAbility.png"
+    },
+    {
+      "id": "super_psy_sensitive",
+      "name": "Super psy-sensitive",
+      "description": "Carriers of this gene are much more psychically-sensitive than most.\n\nPsychic Sensitivity +40%\nMeditation psyfocus gain +20% / day [Verify]\n+0.2 Neural Heat Recovery per second base. Effectively 0.325 Heat/s recovery at Level 6 psylink.",
+      "efficiency": -5,
+      "complexity": 2,
+      "conflicts": [
+        "PsychicAbility"
+      ],
+      "imgSrc": "64px-Gene_ExtremePsychicAbility.png"
+    },
+    {
+      "id": "psychic_bonding",
+      "name": "Psychic bonding",
+      "description": "Carriers of this gene have a special neural organ that makes them psychically bond with a lover for life. As long as the lovers are together, they will be happy. If they are physically separated, they will be disturbed by the distance. If one dies, the other's mind will be badly disrupted.\n\nRomance attempts always succeed\nGains psychic bond with first attempted romance or lovin'\nThis person has a psychic bond with another person based on the psychic bonding gene. The bond itself grants some limited psychic awareness, allowing it to connect even with the psychically deaf.\nBonded pawns receive gain ×50% pain multiplier, +15% consciousness, +12 mood and +10% psychic sensitivity when on same map or in the same caravan.\nBonded pawns receive −10 mood, +5% psychic sensitivity, and −25% consciousness when not on same map or when one pawn is in a biosculpter pod. \nBonded pawns have +50 opinion of each other.\nWhen one bonded pawn dies, the other will receive a −30 mood penalty that linearly decays over the course of 21 days.[Confirm duration] Note: if counseled, the counsel bonus will not decay, but will stay at the value it was applied with.",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Highmates",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_PsychicBonding.png"
+    },
+    {
+      "id": "slow_runner",
+      "name": "Slow runner",
+      "description": "Carriers of this gene move more slowly than normal.\n\nMove Speed: −0.2 c/s",
+      "efficiency": 3,
+      "complexity": 1,
+      "sourceXeno": "Dirtmoles",
+      "conflicts": [
+        "MoveSpeed"
+      ],
+      "imgSrc": "64px-Gene_SlowMovespeed.png"
+    },
+    {
+      "id": "fast_runner",
+      "name": "Fast runner",
+      "description": "Carriers of this gene move more quickly than normal.\n\nMove Speed: +0.2 c/s",
+      "efficiency": -3,
+      "complexity": 1,
+      "sourceXeno": "Sanguophages",
+      "conflicts": [
+        "MoveSpeed"
+      ],
+      "imgSrc": "64px-Gene_QuickMovespeed.png"
+    },
+    {
+      "id": "very_fast_runner",
+      "name": "Very fast runner",
+      "description": "Carriers of this gene move much more quickly than normal.\n\nMove Speed: +0.4 c/s",
+      "efficiency": -5,
+      "complexity": 1,
+      "sourceXeno": "Impids",
+      "conflicts": [
+        "MoveSpeed"
+      ],
+      "imgSrc": "64px-Gene_VeryQuickMovespeed.png"
+    },
+    {
+      "id": "naked_speed",
+      "name": "Naked speed",
+      "description": "Carriers of this gene move slower while clothed, and faster while naked.\n\nMove speed: −0.20 c/s (clothed)\nMove speed: +0.10 c/s (unclothed)",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Yttakin",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_NakedSpeed.png"
+    },
+    {
+      "id": "webbed_phalanges",
+      "name": "Webbed phalanges",
+      "description": "Carriers of this gene have webbed fingers and toes, allowing them to move faster in water. Webbed fingers slightly reduce fine motor control.\n\nManipulation −5%\nWater tiles no longer hinder movement for this pawn.\nMechanically, any terrain with the water tag will be treated as having a movement speed of 100% for pawns with this gene.",
+      "efficiency": -1,
+      "complexity": 1,
+      "conflicts": [],
+      "imgSrc": "64px-Gene_WebbedPhalanges.png"
+    },
+    {
+      "id": "very_unhappy",
+      "name": "Very unhappy",
+      "description": "Carriers of this gene are highly predisposed to negative emotion. They'll see the bad in every situation and have a much lower mood than others.\n\nPermanent −10 Genetic depression mood",
+      "efficiency": 5,
+      "complexity": 1,
+      "conflicts": [
+        "Mood"
+      ],
+      "imgSrc": "64px-Gene_Depressive.png"
+    },
+    {
+      "id": "unhappy",
+      "name": "Unhappy",
+      "description": "Carriers of this gene are predisposed to pessimistic perceptions. They'll tend to interpret things negatively and have lower mood than others.\n\nPermanent −5 Genetic pessimism mood",
+      "efficiency": 3,
+      "complexity": 1,
+      "sourceXeno": "Impids",
+      "conflicts": [
+        "Mood"
+      ],
+      "imgSrc": "64px-Gene_Pessimist.png"
+    },
+    {
+      "id": "happy",
+      "name": "Happy",
+      "description": "Carriers of this gene are predisposed to optimistic feelings. They'll have higher mood than others.\n\nPermanent +5 Genetic optimism mood",
+      "efficiency": -1,
+      "complexity": 2,
+      "conflicts": [
+        "Mood"
+      ],
+      "imgSrc": "64px-Gene_Optimist.png"
+    },
+    {
+      "id": "very_happy",
+      "name": "Very happy",
+      "description": "Carriers of this gene are highly predisposed to optimism and not at all inclined to think negatively. They'll have much higher mood than others.\n\nPermanent +10 Genetic joy mood",
+      "efficiency": -2,
+      "complexity": 3,
+      "sourceXeno": "Highmates",
+      "conflicts": [
+        "Mood"
+      ],
+      "imgSrc": "64px-Gene_Sanguine.png"
+    },
+    {
+      "id": "cold_weakness",
+      "name": "Cold weakness",
+      "description": "Carriers of this gene are slightly less comfortable in cold temperatures.\n\nMinimum Comfortable Temperature: +5 °C (9 °F)",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Impids",
+      "conflicts": [
+        "MinTemperature"
+      ],
+      "imgSrc": "64px-Gene_MinTemperatureSmallIncrease.png"
+    },
+    {
+      "id": "cold_tolerant",
+      "name": "Cold tolerant",
+      "description": "Carriers of this gene are slightly more comfortable in cold temperatures.\n\nMinimum Comfortable Temperature: −10 °C (18 °F)",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Hussars",
+      "conflicts": [
+        "MinTemperature"
+      ],
+      "imgSrc": "64px-Gene_MinTemperatureSmallDecrease.png"
+    },
+    {
+      "id": "cold_super_tolerant",
+      "name": "Cold super-tolerant",
+      "description": "Carriers of this gene are much more comfortable in cold temperatures.\n\nMinimum Comfortable Temperature: −20 °C (36 °F)",
+      "efficiency": -2,
+      "complexity": 1,
+      "sourceXeno": "Starjack",
+      "conflicts": [
+        "MinTemperature"
+      ],
+      "imgSrc": "64px-Gene_MinTemperatureLargeDecrease.png"
+    },
+    {
+      "id": "heat_weakness",
+      "name": "Heat weakness",
+      "description": "Carriers of this gene are slightly less comfortable in warm temperatures.\n\nMaximum Comfortable Temperature: −5 °C (9 °F)",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Highmates",
+      "conflicts": [
+        "MaxTemperature"
+      ],
+      "imgSrc": "64px-Gene_MaxTemperatureSmallDecrease.png"
+    },
+    {
+      "id": "heat_tolerant",
+      "name": "Heat tolerant",
+      "description": "Carriers of this gene are slightly more comfortable in warm temperatures.\n\nMaximum Comfortable Temperature: +10 °C (18 °F)",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Hussars",
+      "conflicts": [
+        "MaxTemperature"
+      ],
+      "imgSrc": "64px-Gene_MaxTemperatureSmallIncrease.png"
+    },
+    {
+      "id": "heat_super_tolerant",
+      "name": "Heat super-tolerant",
+      "description": "Carriers of this gene are much more comfortable in warm temperatures.\n\nMaximum Comfortable Temperature: +20 °C (36 °F)",
+      "efficiency": -2,
+      "complexity": 1,
+      "sourceXeno": "Impids",
+      "conflicts": [
+        "MaxTemperature"
+      ],
+      "imgSrc": "64px-Gene_MaxTemperatureLargeIncrease.png"
+    },
+    {
+      "id": "tox_resistance",
+      "name": "Tox resistance",
+      "description": "Carriers of this gene are resistant to toxic buildup from any source. This includes pollution, toxic fallout, tox gas, and direct attacks with venom or injected poison. They'll gain half the amount of toxic buildup compared to others.  Cellular filters in the lung and skin reduce the dose of toxins entering the bloodstream.\n\nToxic Resistance: +50%",
+      "efficiency": -2,
+      "complexity": 1,
+      "conflicts": [
+        "ToxResistance"
+      ],
+      "imgSrc": "64px-Gene_PartialToxicityResistance.png"
+    },
+    {
+      "id": "tox_immunity",
+      "name": "Tox immunity",
+      "description": "Carriers of this gene are totally immune to toxic buildup from all sources including polluted terrain, toxic fallout, tox gas, and direct attacks with venom or injected poison. They are also not bothered by acidic smog.  The carrier's biochemical pathways are modified to route around interference from nearly all known toxins. Along with enhancements to the kidneys and liver, this keeps carriers comfortable in even the most toxic of environments.\n\nToxic Resistance: +100%\nTox gas immunity\nRemoves mood: Toxic fallout: -5\nRemoves mood: Acidic smog: -5",
+      "efficiency": -4,
+      "complexity": 2,
+      "sourceXeno": "Sanguophages",
+      "conflicts": [
+        "ToxResistance"
+      ],
+      "imgSrc": "64px-Gene_TotalToxicityResistance.png"
+    },
+    {
+      "id": "partial_antitoxic_lungs",
+      "name": "Partial antitoxic lungs",
+      "description": "Carriers of this gene are resistant to environmental toxins. They get less toxic buildup from tox gas, polluted terrain, and toxic fallout, but are still vulnerable to direct attacks with venom or injected poison. Additionally, they build up rot stink exposure slower.\n\nToxic Environment Resistance: +50%",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Hussars",
+      "conflicts": [
+        "ToxicEnvironmentResistance"
+      ],
+      "imgSrc": "64px-Gene_PartialPollutionResistance.png"
+    },
+    {
+      "id": "total_antitoxic_lungs",
+      "name": "Total antitoxic lungs",
+      "description": "Carriers of this gene are immune to environmental toxins, but not from direct toxic attacks. They get no toxic buildup from tox gas, polluted terrain, or toxic fallout, and they are not bothered by acidic smog. They are still vulnerable to direct attacks like venom and injected poison. Additionally, they are immune to rot stink exposure.\n\nToxic Environment Resistance: +100%\nTox gas immunity\nRemoves mood: Toxic fallout: -5\nRemoves mood: Acidic smog: -5",
+      "efficiency": -3,
+      "complexity": 2,
+      "sourceXeno": "Wasters",
+      "conflicts": [
+        "ToxicEnvironmentResistance"
+      ],
+      "imgSrc": "64px-Gene_TotalPollutionResistance.png"
+    },
+    {
+      "id": "mild_uv_sensitivity",
+      "name": "Mild UV sensitivity",
+      "description": "Carriers of this gene have biological compounds in their skin that react painfully to UV radiation. They are unusually sensitive to sunlight.\n\nWhen in sunlight (when on an unroofed tile while light levels from natural sunlight are 11% or more):\nMove Speed ×90%\nMood: Sunlight Sensitivity: −6\nDoes not cause pain, despite the description.",
+      "efficiency": 3,
+      "complexity": 1,
+      "sourceXeno": "Sanguophages",
+      "conflicts": [
+        "UVSensitivity"
+      ],
+      "imgSrc": "64px-Gene_MildUVSensitivity.png"
+    },
+    {
+      "id": "intense_uv_sensitivity",
+      "name": "Intense UV sensitivity",
+      "description": "Carriers of this gene have biological compounds in their skin that react dangerously to UV radiation. They are intensely sensitive to sunlight.\n\nWhen in sunlight (when on an unroofed tile while light levels from natural sunlight are 11% or more):\nMove Speed ×80%\nMood: Sunlight Sensitivity: −12\nDoes not cause pain.",
+      "efficiency": 4,
+      "complexity": 2,
+      "sourceXeno": "Dirtmoles",
+      "conflicts": [
+        "UVSensitivity"
+      ],
+      "imgSrc": "64px-Gene_IntenseUVSensitivity.png"
+    },
+    {
+      "id": "fire_resistant",
+      "name": "Fire resistant",
+      "description": "Carriers of this gene have special fast-acting sweat glands and heat-resistant skin. They only take 25% of the normal damage from fire. The chance of them catching on fire is also drastically reduced.\n\nFlammability ×10%\nFlame damage ×25%\nNote that this does not affect Heat or Vaporize damage",
+      "efficiency": -2,
+      "complexity": 1,
+      "sourceXeno": "Impids",
+      "conflicts": [
+        "FireDamage"
+      ],
+      "imgSrc": "64px-Gene_FireResistant.png"
+    },
+    {
+      "id": "tinderskin",
+      "name": "Tinderskin",
+      "description": "Carriers have dry, thin skin which burns easily from fire, and their immune systems react very poorly to this kind of threat. Damage from fire is multiplied by 4.\n\nFlame damage ×400%\nNote that this does not affect Heat or Vaporize damage",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Sanguophages",
+      "conflicts": [
+        "FireDamage"
+      ],
+      "imgSrc": "64px-Gene_FireWeakness.png"
+    },
+    {
+      "id": "pyrophobia",
+      "name": "Pyrophobia",
+      "description": "Carriers of this gene have an intense fear of fire. When fires are close, there is a chance they will have a mental breakdown at any moment.\n\nIf the pawn has line of sight of a fire within 19.9 tiles, it is considered \"near fire\" and the following happens:\n−10 Afraid of fire moodlet\n0.1 day mtb chance of \"Fire terror\" mental break that cause \"panic-fleeing fire\" mental state, ends when not \"near fire\" for 500 ticks (8.33 secs)\nSuppresses Pyromaniac trait\nNote that blind pawns are still affected by pyrophobia, and will still flee",
+      "efficiency": 4,
+      "complexity": 1,
+      "sourceXeno": "Sanguophages",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_FireTerror.png"
+    },
+    {
+      "id": "vacuum_resistant",
+      "name": "Vacuum resistant",
+      "description": "Carriers of this gene have skin that releases a waxy substance when air pressure is low, preventing vacuum burns and allowing them to survive longer when exposed to vacuum.\n\nImmune to vacuum burns\nVacuum resistance: +45%\nMinimum Comfortable Temperature: −5 °C (9 °F)",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Starjack",
+      "conflicts": [
+        "VacuumResistance"
+      ],
+      "imgSrc": "64px-OdysseyIcon.png"
+    },
+    {
+      "id": "dead_calm",
+      "name": "Dead calm",
+      "description": "Carriers of this gene feel calm in every situation and have a very placid demeanor. They will never start social fights or have aggressive mental breaks.\n\nEffects:\nWill never do social fights\nMental breaks are never violent (Tantrum, Berserk, Slaughterer, Murderous Rage)\nWill never prison break\nArresting never fails, and will never berserk on arrest.",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Genies",
+      "conflicts": [
+        "Aggression"
+      ],
+      "imgSrc": "64px-Gene_DeadCalm.png"
+    },
+    {
+      "id": "aggressive",
+      "name": "Aggressive",
+      "description": "Carriers of this gene are quick to anger. They are twice as likely to start social fights. When they have mental breaks, they are twice as likely to choose an aggressive kind of break.\n\nEffects:\nSocial fight chance factor ×200%\nChance mental break is violent ×200% (Tantrum, Berserk, Slaughterer, Murderous Rage) [Wb minor breaks?]\nPrison break interval factor ×60%",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Neanderthals",
+      "conflicts": [
+        "Aggression",
+        "Aggressive"
+      ],
+      "imgSrc": "64px-Gene_Aggressive.png"
+    },
+    {
+      "id": "hyper_aggressive",
+      "name": "Hyper-aggressive",
+      "description": "Carriers of this gene are hormonally high-strung and very aggressive. They are three times as likely to start social fights. Any mental break they have will be of an aggressive type.\n\nEffects:\nSocial fight chance factor ×300%\nMental breaks are always[Verify] violent where possible.(Tantrum, Berserk, Slaughterer, Murderous Rage) Tiers without violent options, i.e. Minor breaks, non-violent breaks are chosen instead.[All types?]\nPrison break interval factor ×40%",
+      "efficiency": 3,
+      "complexity": 1,
+      "sourceXeno": "Hussars",
+      "conflicts": [
+        "Aggression",
+        "Aggressive"
+      ],
+      "imgSrc": "64px-Gene_HyperAggressive.png"
+    },
+    {
+      "id": "weak_melee_damage",
+      "name": "Weak melee damage",
+      "description": "Carriers of this gene do less damage in close-quarters combat. Weak fast-twitch muscle fibers make their strikes shaky and weak.\n\nMelee damage factor ×50%\nThis also affects melee AP when calculated from damage. It does not affect the AP of weapons that are set independently of damage, such as: Spears, Monoswords, Persona monoswords, Hand talon, Knee spikes, and flesh whips.",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Impids",
+      "conflicts": [
+        "MeleeDamage"
+      ],
+      "imgSrc": "64px-Gene_WeakMeleeDamage.png"
+    },
+    {
+      "id": "strong_melee_damage",
+      "name": "Strong melee damage",
+      "description": "Carriers of this gene do more damage in close-quarters combat. Extra-strong fast-twitch muscle fibers make their strikes accurate and powerful.\n\nMelee damage factor ×150%\nThis also affects melee AP when calculated from damage. It does not affect the AP of weapons that are set independently of damage, such as: Spears, Monoswords, Persona monoswords, Hand talon, Knee spikes, and flesh whips.",
+      "efficiency": -2,
+      "complexity": 1,
+      "sourceXeno": "Dirtmoles",
+      "conflicts": [
+        "MeleeDamage"
+      ],
+      "imgSrc": "64px-Gene_StrongMeleeDamage.png"
+    },
+    {
+      "id": "violence_disabled",
+      "name": "Violence disabled",
+      "description": "Carriers of this gene are emotionally and mentally incapable of engaging in violence. They are overwhelmingly resistant to and horrified by the idea of hurting another.\n\nDisables work:\nHunt\nViolent",
+      "efficiency": 3,
+      "complexity": 1,
+      "sourceXeno": "Highmates",
+      "conflicts": [
+        "MeleeDamage",
+        "ShootingAccuracy",
+        "Aggressive",
+        "KillThirst"
+      ],
+      "imgSrc": "64px-Gene_ViolenceDisabled.png"
+    },
+    {
+      "id": "kind_instinct",
+      "name": "Kind instinct",
+      "description": "Carriers of this gene are high in trait agreeableness and are very conscientious. They rarely insult others and will sometimes offer kind words to brighten the moods of those around them. They also never judge people by their appearance.\n\nForced trait: Kind\nSuppresses Abrasive and Psychopath traits",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Highmates",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_KindInstinct.png"
+    },
+    {
+      "id": "kill_thirst",
+      "name": "Kill thirst",
+      "description": "Carriers of this gene lust for the feeling of ending another's life. They will become irritated if they go for too long without killing someone in close combat.\n \nCauses need: Kill satiety. Inflicts an increasing mood penalty during long periods between melee kills. See the Kill satiety page for details.",
+      "efficiency": 4,
+      "complexity": 1,
+      "conflicts": [
+        "KillThirst"
+      ],
+      "imgSrc": "64px-Gene_Killthirst.png"
+    },
+    {
+      "id": "very_sleepy",
+      "name": "Very sleepy",
+      "description": "Carriers of this gene get tired much faster than others.\n\nSleep Fall Rate: ×180%",
+      "efficiency": 4,
+      "complexity": 1,
+      "conflicts": [
+        "Sleep"
+      ],
+      "imgSrc": "64px-Gene_VerySleepy.png"
+    },
+    {
+      "id": "sleepy",
+      "name": "Sleepy",
+      "description": "Carriers of this gene get tired somewhat faster than others.\n\nSleep Fall Rate: ×140%",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Yttakin",
+      "conflicts": [
+        "Sleep"
+      ],
+      "imgSrc": "64px-Gene_Sleepy.png"
+    },
+    {
+      "id": "low_sleep",
+      "name": "Low sleep",
+      "description": "Carriers of this gene get tired less quickly than others.\n\nSleep Fall Rate: ×40%",
+      "efficiency": -4,
+      "complexity": 2,
+      "sourceXeno": "Sanguophages",
+      "conflicts": [
+        "Sleep"
+      ],
+      "imgSrc": "64px-Gene_QuickSleeper.png"
+    },
+    {
+      "id": "never_sleep",
+      "name": "Never sleep",
+      "description": "Carriers of this gene have a unique metabolic process which allows clusters of neurons to sleep while the rest of the brain stays awake. They never need to sleep.\n\nEffects:\nDisables need: Sleep\nIf all pawns in caravan have this gene and they travel without animals, they don't need to stop at night.\nMarket value of genepacks containing this gene: ×125%",
+      "efficiency": -6,
+      "complexity": 3,
+      "conflicts": [
+        "Sleep"
+      ],
+      "imgSrc": "64px-Gene_Neversleep.png"
+    },
+    {
+      "id": "delicate",
+      "name": "Delicate",
+      "description": "Carriers of this gene take greater injuries than others from the same damage. They have thin, brittle bones and less binding molecules in joints and flesh.\n\nForced trait: Delicate\nSuppresses Tough trait",
+      "efficiency": 3,
+      "complexity": 1,
+      "sourceXeno": "Genies",
+      "conflicts": [
+        "Toughness"
+      ],
+      "imgSrc": "64px-Gene_Delicate.png"
+    },
+    {
+      "id": "robust",
+      "name": "Robust",
+      "description": "Carriers of this gene take less injuries than others from the same damage. They have thickened, densified bones, nearly-solid ribcages, and strengthened binding factors in joints and flesh.\n\n×75% Incoming Damage Multiplier\nNote that despite being incompatible with the Delicate gene, it stacks multiplicatively with other Incoming Damage Multiplier factors, including the Delicate trait. See for Incoming Damage Multiplier further details on stacking.",
+      "efficiency": -2,
+      "complexity": 1,
+      "sourceXeno": "Neanderthals",
+      "conflicts": [
+        "Toughness"
+      ],
+      "imgSrc": "64px-Gene_Tough.png"
+    },
+    {
+      "id": "extra_pain",
+      "name": "Extra pain",
+      "description": "Carriers of this gene feel more pain than others given the same injuries. Neuron activity in the brain's nociception center is amplified, so pain feels extra-intense and fiery. This can be protective, but overall it's considered a negative and makes it hard to push through difficult situations.\n\nForced trait: Wimp\nSuppresses Masochist and Brawler traits",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Genies",
+      "conflicts": [
+        "Pain"
+      ],
+      "imgSrc": "64px-Gene_ExtraPain.png"
+    },
+    {
+      "id": "reduced_pain",
+      "name": "Reduced pain",
+      "description": "Carriers of this gene feel half as much pain compared to a baseliner. Reduced neuron activity in the brain's nociception centers makes pain dull and faint. This can be advantageous sometimes, and dangerous other times.\n\nPain ×50%",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Hussars",
+      "conflicts": [
+        "Pain"
+      ],
+      "imgSrc": "64px-Gene_PainReduced.png"
+    },
+    {
+      "id": "low_libido",
+      "name": "Low libido",
+      "description": "Carriers of this gene are less likely to engage in lovin' with their partner.\n\nMTB Lovin' Factor: ×2",
+      "efficiency": 0,
+      "complexity": 1,
+      "conflicts": [
+        "Libido"
+      ],
+      "imgSrc": "64px-Gene_LowLibido.png"
+    },
+    {
+      "id": "high_libido",
+      "name": "High libido",
+      "description": "Carriers of this gene are more likely to engage in lovin' with their partner.\n\nMTB Lovin' Factor: ×0.5",
+      "efficiency": 0,
+      "complexity": 1,
+      "sourceXeno": "Highmates",
+      "conflicts": [
+        "Libido"
+      ],
+      "imgSrc": "64px-Gene_HighLibido.png"
+    },
+    {
+      "id": "sterile",
+      "name": "Sterile",
+      "description": "Carriers of this gene cannot reproduce by natural means.\n\nFertility ×0%",
+      "efficiency": 1,
+      "complexity": 1,
+      "conflicts": [
+        "Fertility"
+      ],
+      "imgSrc": "64px-Gene_Sterile.png"
+    },
+    {
+      "id": "fertile",
+      "name": "Fertile",
+      "description": "Carriers of this gene have a higher chance of becoming pregnant or impregnating others.\n\nFertility ×200%",
+      "efficiency": 0,
+      "complexity": 1,
+      "conflicts": [
+        "Fertility"
+      ],
+      "imgSrc": "64px-Gene_Fertile.png"
+    },
+    {
+      "id": "very_unattractive",
+      "name": "Very unattractive",
+      "description": "Carriers of this gene have misshapen, asymmetrical facial structures and blotchy skin. They're hard to look at.\n\nBeauty (Pawn): −2\nMarket Value: −700",
+      "efficiency": 2,
+      "complexity": 1,
+      "conflicts": [
+        "Beauty"
+      ],
+      "imgSrc": "64px-Gene_StaggeringlyUgly.png"
+    },
+    {
+      "id": "unattractive",
+      "name": "Unattractive",
+      "description": "Carriers of this gene have exaggerated facial features and poor skin that are generally considered ugly.\n\nBeauty (Pawn): −1\nMarket Value: −350",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Wasters",
+      "conflicts": [
+        "Beauty"
+      ],
+      "imgSrc": "64px-Gene_Ugly.png"
+    },
+    {
+      "id": "attractive",
+      "name": "Attractive",
+      "description": "Carriers of this gene have unusually symmetrical, balanced facial features and extra-clear skin which gives them a pleasing appearance.\n\nBeauty (Pawn): +1\nMarket Value: +350",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Sanguophages",
+      "conflicts": [
+        "Beauty"
+      ],
+      "imgSrc": "64px-Gene_Pretty.png"
+    },
+    {
+      "id": "very_attractive",
+      "name": "Very attractive",
+      "description": "Carriers of this gene have remarkably precise and symmetrical faces. Their features are distinctive and strong without being exaggerated, and their skin is nearly perfect. They are generally seen as beautiful.\n\nBeauty (Pawn): +2\nMarket Value: +700",
+      "efficiency": -2,
+      "complexity": 1,
+      "sourceXeno": "Highmates",
+      "conflicts": [
+        "Beauty"
+      ],
+      "imgSrc": "64px-Gene_Beautiful.png"
+    },
+    {
+      "id": "strong_stomach",
+      "name": "Strong stomach",
+      "description": "Carriers of this gene have an extra toxin-filtering organ in their stomach and will never suffer from food poisoning even after eating rotten food.\n\nImmune to food poisoning. [Existing conditions?]",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Pigskins",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_StrongStomach.png"
+    },
+    {
+      "id": "robust_digestion",
+      "name": "Robust digestion",
+      "description": "Carriers of this gene grow a multi-fold stomach, allowing them to digest raw foods more efficiently than baseline humans. In general, they get the same nutrition from raw food as from if it is cooked. They also don't mind the taste of raw food at all.\n\nRaw Nutrition Multiplier ×180%\nNote: Does not apply to insect jelly or fertilized eggs. Does apply to unfertilized eggs.\nRemoves mood: Ate raw food: -7\nNote: Does not prevent food poisoning.",
+      "efficiency": -2,
+      "complexity": 2,
+      "sourceXeno": "Pigskins",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_RobustDigestion.png"
+    },
+    {
+      "id": "slow_study",
+      "name": "Slow study",
+      "description": "Carriers of this gene have deficient long-term memories and don't understand new ideas quickly. They are slow at learning new skills and knowledge.\n\nGlobal Learning Factor ×50%",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Neanderthals",
+      "conflicts": [
+        "Learning"
+      ],
+      "imgSrc": "64px-Gene_SlowLearning.png"
+    },
+    {
+      "id": "quick_study",
+      "name": "Quick study",
+      "description": "Carriers of this gene have excellent memories and grasp new ideas quickly. They learn faster than others.\n\nGlobal Learning Factor +50%",
+      "efficiency": -3,
+      "complexity": 2,
+      "conflicts": [
+        "Learning"
+      ],
+      "imgSrc": "64px-Gene_FastLearning.png"
+    },
+    {
+      "id": "nearsighted",
+      "name": "Nearsighted",
+      "description": "Carriers of this gene have difficulty seeing at a distance. Their shooting accuracy at long ranges is reduced.\n\nAccuracy factor (long) ×25%\nAccuracy factor (medium) ×50%",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Dirtmoles",
+      "conflicts": [
+        "ShootingAccuracy"
+      ],
+      "imgSrc": "64px-Gene_Nearsighted.png"
+    },
+    {
+      "id": "dark_vision",
+      "name": "Dark vision",
+      "description": "Carriers of this gene see well in low light and are unaffected by mood penalties related to darkness. They have a reflective layer behind the retina that amplifies their ability to see in the dark.\n\nNegates the Global Work Speed penalty from darkness.\nNegates the Move Speed penalty from darkness. Note: This effect is not mentioned by the in-game description\nRemoves mood: Darkness: −5",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Dirtmoles",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_Darkvision.png"
+    },
+    {
+      "id": "inbred",
+      "name": "Inbred",
+      "description": "This genetic condition affects a person's fertility, immunity, and mental capacity.\n\nForced trait: Slow learner\nFertility ×50%\nImmunity gain speed ×85%\nNote: Despite being harmful, this gene also lowers metabolic efficiency.",
+      "efficiency": -2,
+      "complexity": 1,
+      "conflicts": [],
+      "imgSrc": "64px-Gene_Inbred.png"
+    },
+    {
+      "id": "mild_cell_instability",
+      "name": "Mild cell instability",
+      "description": "Carriers of this gene need less metabolic energy to stay alive, at the cost of reduced stability in their cell-replication machinery.\n\nLifespan Factor ×80%\nNote this means age-related diseases come earlier, e.g. Frail can happen at 40 instead of 50\nCancer Rate Factor ×300%\nImmunity gain speed ×96%",
+      "efficiency": 2,
+      "complexity": 1,
+      "conflicts": [
+        "CellInstability"
+      ],
+      "imgSrc": "64px-Gene_MildCellInstability.png"
+    },
+    {
+      "id": "major_cell_instability",
+      "name": "Major cell instability",
+      "description": "Carriers of this gene need much less metabolic energy to stay alive, at the cost of greatly-reduced stability in their cell-replication machinery.\n\nLifespan Factor ×60%\nNote this means age-related diseases come earlier, e.g. Frail can happen at 30 instead of 50\nCancer Rate Factor ×500%\nImmunity gain speed ×92%",
+      "efficiency": 4,
+      "complexity": 1,
+      "conflicts": [
+        "CellInstability"
+      ],
+      "imgSrc": "64px-Gene_MajorCellInstability.png"
+    },
+    {
+      "id": "grayless_hair",
+      "name": "Grayless hair",
+      "description": "Carriers of this gene keep their natural hair color as they age.\n\nNo age-related gray hair.",
+      "efficiency": 0,
+      "complexity": 1,
+      "sourceXeno": "Highmates",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_GreylessHair.png"
+    },
+    {
+      "id": "human_hands",
+      "name": "Human hands",
+      "description": "Carriers of this gene have regular human hands.",
+      "efficiency": 0,
+      "complexity": 0,
+      "conflicts": [
+        "Hands"
+      ],
+      "imgSrc": "64px-Gene_HandsHuman.png"
+    },
+    {
+      "id": "trotter_hands",
+      "name": "Trotter hands",
+      "description": "Carriers of this gene have hands that partially resemble pig trotters. This reduces their ability to manipulate objects.\n\nManipulation ×85%",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Pigskins",
+      "conflicts": [
+        "Hands"
+      ],
+      "imgSrc": "64px-Gene_HandsTrotter.png"
+    },
+    {
+      "id": "elongated_fingers",
+      "name": "Elongated fingers",
+      "description": "Long, delicate fingers improve the carrier's manipulation capacity. This aids with many tasks, especially crafting and construction.\n\nManipulation ×110%",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Genies",
+      "conflicts": [
+        "Hands"
+      ],
+      "imgSrc": "64px-Gene_ElongatedFingers.png"
+    },
+    {
+      "id": "furskin",
+      "name": "Furskin",
+      "description": "Carriers of this gene grow thick fur all over their body, which protects them from cold temperatures.\n\nMinimum Comfortable Temperature: −10 °C (18 °F)\nNon-furskin romance chance ×20%\nRemoves mood: Naked: -6\nRemoves mood: Uncovered (body part): -4\nRemoves opinion: Uncovered (body part): -10 of any other pawns",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Yttakin",
+      "conflicts": [
+        "HairStyle",
+        "Fur",
+        "BeardStyle"
+      ],
+      "imgSrc": "64px-Gene_Furskin.png"
+    },
+    {
+      "id": "pig_nose",
+      "name": "Pig nose",
+      "description": "Carriers of this gene have pig-like snouts.\n\nNon-pig nose romance chance ×20%",
+      "efficiency": 0,
+      "complexity": 0,
+      "sourceXeno": "Pigskins",
+      "conflicts": [
+        "Nose"
+      ],
+      "imgSrc": "64px-Gene_NosePig.png"
+    },
+    {
+      "id": "pollution_stimulus",
+      "name": "Pollution stimulus",
+      "description": "Carriers of this gene get a chemical rush from being exposed to pollution. This makes them move faster and helps them think clearer. A similar gene is found in combat-engineered mega-insects.\n\nGain stat bonuses when exposed to pollution.\nIncreases move speed and consciousness. See Pollution stimulus for full details.",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Wasters",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_PollutionRush.png"
+    },
+    {
+      "id": "unstoppable",
+      "name": "Unstoppable",
+      "description": "Carriers of this gene are not slowed down when taking damage.\n\nStagger Time Multiplier ×0%",
+      "efficiency": -2,
+      "complexity": 1,
+      "sourceXeno": "Hussars",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_Unstoppable.png"
+    },
+    {
+      "id": "furry_tail",
+      "name": "Furry tail",
+      "description": "Carriers of this gene grow a fluffy tail which partially protects them from cold temperatures.\n\nMinimum Comfortable Temperature: −10 °C (−18 °F)\nAdds an aesthetic only tail to the pawn's sprite\nNote: Does not add a targetable or damageable body part",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Yttakin",
+      "conflicts": [
+        "Tail"
+      ],
+      "imgSrc": "64px-Gene_TailFurry.png"
+    },
+    {
+      "id": "smooth_tail",
+      "name": "Smooth tail",
+      "description": "Carriers of this gene grow a slender tail that can act as a dexterous fifth limb.\n\nManipulation: +5%\nAdds an aesthetic only tail to the pawn's sprite\nNote: Does not add a targetable or damageable body part",
+      "efficiency": -1,
+      "complexity": 1,
+      "conflicts": [
+        "Tail"
+      ],
+      "imgSrc": "64px-Gene_TailSmooth.png"
+    },
+    {
+      "id": "indoor_dweller",
+      "name": "Indoor dweller",
+      "description": "Carriers of this gene have no need for the outdoors and will never feel cooped up no matter how long they stay inside.\n\nDisables need: Outdoors",
+      "efficiency": -1,
+      "complexity": 1,
+      "sourceXeno": "Dirtmoles",
+      "conflicts": [],
+      "imgSrc": "64px-Gene_CaveDweller.png"
+    },
+    {
+      "id": "low_gravity_adapted",
+      "name": "Low gravity adapted",
+      "description": "Carriers of this gene move and work more easily in low-gravity environments. However They're slower and less efficient when planetside.\n\nMove Speed: −0.2 c/s (planetside)\nGlobal work speed −10% (planetside)\nMove Speed: +0.4 c/s (in space)\nGlobal work speed +10% (in space)",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Starjack",
+      "conflicts": [],
+      "imgSrc": "64px-OdysseyIcon.png"
+    },
+    {
+      "id": "awful_animals",
+      "name": "Awful Animals",
+      "description": "The carrier's aptitude in Animals is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Animals.\n\nAnimals: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Animals",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Hussars",
+      "imgSrc": "64px-Gene_AwfulAnimals.png"
+    },
+    {
+      "id": "awful_artistic",
+      "name": "Awful Artistic",
+      "description": "The carrier's aptitude in Artistic is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Artistic.\n\nArtistic: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Artistic",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Hussars",
+      "imgSrc": "64px-Gene_AwfulArtistic.png"
+    },
+    {
+      "id": "awful_construction",
+      "name": "Awful Construction",
+      "description": "The carrier's aptitude in Construction is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Construction.\n\nConstruction: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Construction",
+      "efficiency": 2,
+      "complexity": 1,
+      "imgSrc": "64px-Gene_AwfulConstruction.png"
+    },
+    {
+      "id": "awful_cooking",
+      "name": "Awful Cooking",
+      "description": "The carrier's aptitude in Cooking is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Cooking.\n\nCooking: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Cooking",
+      "efficiency": 2,
+      "complexity": 1,
+      "imgSrc": "64px-Gene_AwfulCooking.png"
+    },
+    {
+      "id": "awful_crafting",
+      "name": "Awful Crafting",
+      "description": "The carrier's aptitude in Crafting is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Crafting.\n\nCrafting: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Crafting",
+      "efficiency": 2,
+      "complexity": 1,
+      "imgSrc": "64px-Gene_AwfulCrafting.png"
+    },
+    {
+      "id": "awful_medical",
+      "name": "Awful Medical",
+      "description": "The carrier's aptitude in Medical is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Medical.\n\nMedical: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Medical",
+      "efficiency": 2,
+      "complexity": 1,
+      "imgSrc": "64px-Gene_AwfulMedical.png"
+    },
+    {
+      "id": "awful_melee",
+      "name": "Awful Melee",
+      "description": "The carrier's aptitude in Melee is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Melee.\n\nMelee: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Melee",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Starjack",
+      "imgSrc": "64px-Gene_AwfulMelee.png"
+    },
+    {
+      "id": "awful_mining",
+      "name": "Awful Mining",
+      "description": "The carrier's aptitude in Mining is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Mining.\n\nMining: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Mining",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Yttakin",
+      "imgSrc": "64px-Gene_AwfulMining.png"
+    },
+    {
+      "id": "awful_intellectual",
+      "name": "Awful Intellectual",
+      "description": "The carrier's aptitude in Intellectual is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Intellectual.\n\nIntellectual: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Intellectual",
+      "efficiency": 2,
+      "complexity": 1,
+      "imgSrc": "64px-Gene_AwfulIntellectual.png"
+    },
+    {
+      "id": "awful_plants",
+      "name": "Awful Plants",
+      "description": "The carrier's aptitude in Plants is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Plants.\n\nPlants: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Plants",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Hussars",
+      "imgSrc": "64px-Gene_AwfulPlants.png"
+    },
+    {
+      "id": "awful_shooting",
+      "name": "Awful Shooting",
+      "description": "The carrier's aptitude in Shooting is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Shooting.\n\nShooting: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Shooting",
+      "efficiency": 2,
+      "complexity": 1,
+      "imgSrc": "64px-Gene_AwfulShooting.png"
+    },
+    {
+      "id": "awful_social",
+      "name": "Awful Social",
+      "description": "The carrier's aptitude in Social is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Social.\n\nSocial: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Social",
+      "efficiency": 2,
+      "complexity": 1,
+      "sourceXeno": "Genies",
+      "imgSrc": "64px-Gene_AwfulSocial.png"
+    },
+    {
+      "id": "poor_animals",
+      "name": "Poor Animals",
+      "description": "The carrier's aptitude in Animals is reduced by 4. Aptitude acts like an offset on skill level.\n\nAnimals: −4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Genies",
+      "imgSrc": "64px-Gene_PoorAnimals.png"
+    },
+    {
+      "id": "poor_artistic",
+      "name": "Poor Artistic",
+      "description": "The carrier's aptitude in Artistic is reduced by 4. Aptitude acts like an offset on skill level.\n\nArtistic: −4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Wasters",
+      "imgSrc": "64px-Gene_PoorArtistic.png"
+    },
+    {
+      "id": "poor_construction",
+      "name": "Poor Construction",
+      "description": "The carrier's aptitude in Construction is reduced by 4. Aptitude acts like an offset on skill level.\n\nConstruction: −4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": 1,
+      "complexity": 1,
+      "imgSrc": "64px-Gene_PoorConstruction.png"
+    },
+    {
+      "id": "poor_cooking",
+      "name": "Poor Cooking",
+      "description": "The carrier's aptitude in Cooking is reduced by 4. Aptitude acts like an offset on skill level.\n\nCooking: −4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Pigskins",
+      "imgSrc": "64px-Gene_PoorCooking.png"
+    },
+    {
+      "id": "poor_crafting",
+      "name": "Poor Crafting",
+      "description": "The carrier's aptitude in Crafting is reduced by 4. Aptitude acts like an offset on skill level.\n\nCrafting: −4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": 1,
+      "complexity": 1,
+      "imgSrc": "64px-Gene_PoorCrafting.png"
+    },
+    {
+      "id": "poor_medical",
+      "name": "Poor Medical",
+      "description": "The carrier's aptitude in Medical is reduced by 4. Aptitude acts like an offset on skill level.\n\nMedical: −4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": 1,
+      "complexity": 1,
+      "imgSrc": "64px-Gene_PoorMedical.png"
+    },
+    {
+      "id": "poor_melee",
+      "name": "Poor Melee",
+      "description": "The carrier's aptitude in Melee is reduced by 4. Aptitude acts like an offset on skill level.\n\nMelee: −4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": 1,
+      "complexity": 1,
+      "imgSrc": "64px-Gene_PoorMelee.png"
+    },
+    {
+      "id": "poor_mining",
+      "name": "Poor Mining",
+      "description": "The carrier's aptitude in Mining is reduced by 4. Aptitude acts like an offset on skill level.\n\nMining: −4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": 1,
+      "complexity": 1,
+      "imgSrc": "64px-Gene_PoorMining.png"
+    },
+    {
+      "id": "poor_intellectual",
+      "name": "Poor Intellectual",
+      "description": "The carrier's aptitude in Intellectual is reduced by 4. Aptitude acts like an offset on skill level.\n\nIntellectual: −4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Neanderthals",
+      "imgSrc": "64px-Gene_PoorIntellectual.png"
+    },
+    {
+      "id": "poor_plants",
+      "name": "Poor Plants",
+      "description": "The carrier's aptitude in Plants is reduced by 4. Aptitude acts like an offset on skill level.\n\nPlants: −4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Genies",
+      "imgSrc": "64px-Gene_PoorPlants.png"
+    },
+    {
+      "id": "poor_shooting",
+      "name": "Poor Shooting",
+      "description": "The carrier's aptitude in Shooting is reduced by 4. Aptitude acts like an offset on skill level.\n\nShooting: −4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Neanderthals",
+      "imgSrc": "64px-Gene_PoorShooting.png"
+    },
+    {
+      "id": "poor_social",
+      "name": "Poor Social",
+      "description": "The carrier's aptitude in Social is reduced by 4. Aptitude acts like an offset on skill level.\n\nSocial: −4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": 1,
+      "complexity": 1,
+      "sourceXeno": "Neanderthals",
+      "imgSrc": "64px-Gene_PoorSocial.png"
+    },
+    {
+      "id": "strong_animals",
+      "name": "Strong Animals",
+      "description": "The carrier's aptitude in Animals is increased by 4. Aptitude acts like an offset on skill level.\n\nAnimals: +4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": -1,
+      "complexity": 2,
+      "imgSrc": "64px-Gene_StrongAnimals.png"
+    },
+    {
+      "id": "strong_artistic",
+      "name": "Strong Artistic",
+      "description": "The carrier's aptitude in Artistic is increased by 4. Aptitude acts like an offset on skill level.\n\nArtistic: +4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": -1,
+      "complexity": 2,
+      "imgSrc": "64px-Gene_StrongArtistic.png"
+    },
+    {
+      "id": "strong_construction",
+      "name": "Strong Construction",
+      "description": "The carrier's aptitude in Construction is increased by 4. Aptitude acts like an offset on skill level.\n\nConstruction: +4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": -1,
+      "complexity": 2,
+      "imgSrc": "64px-Gene_StrongConstruction.png"
+    },
+    {
+      "id": "strong_cooking",
+      "name": "Strong Cooking",
+      "description": "The carrier's aptitude in Cooking is increased by 4. Aptitude acts like an offset on skill level.\n\nCooking: +4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": -1,
+      "complexity": 2,
+      "imgSrc": "64px-Gene_StrongCooking.png"
+    },
+    {
+      "id": "strong_crafting",
+      "name": "Strong Crafting",
+      "description": "The carrier's aptitude in Crafting is increased by 4. Aptitude acts like an offset on skill level.\n\nCrafting: +4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": -1,
+      "complexity": 2,
+      "imgSrc": "64px-Gene_StrongCrafting.png"
+    },
+    {
+      "id": "strong_medical",
+      "name": "Strong Medical",
+      "description": "The carrier's aptitude in Medical is increased by 4. Aptitude acts like an offset on skill level.\n\nMedical: +4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": -1,
+      "complexity": 2,
+      "imgSrc": "64px-Gene_StrongMedical.png"
+    },
+    {
+      "id": "strong_melee",
+      "name": "Strong Melee",
+      "description": "The carrier's aptitude in Melee is increased by 4. Aptitude acts like an offset on skill level.\n\nMelee: +4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": -1,
+      "complexity": 2,
+      "sourceXeno": "Sanguophages",
+      "imgSrc": "64px-Gene_StrongMelee.png"
+    },
+    {
+      "id": "strong_mining",
+      "name": "Strong Mining",
+      "description": "The carrier's aptitude in Mining is increased by 4. Aptitude acts like an offset on skill level.\n\nMining: +4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": -1,
+      "complexity": 2,
+      "imgSrc": "64px-Gene_StrongMining.png"
+    },
+    {
+      "id": "strong_intellectual",
+      "name": "Strong Intellectual",
+      "description": "The carrier's aptitude in Intellectual is increased by 4. Aptitude acts like an offset on skill level.\n\nIntellectual: +4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": -1,
+      "complexity": 2,
+      "sourceXeno": "Sanguophages",
+      "imgSrc": "64px-Gene_StrongIntellectual.png"
+    },
+    {
+      "id": "strong_plants",
+      "name": "Strong Plants",
+      "description": "The carrier's aptitude in Plants is increased by 4. Aptitude acts like an offset on skill level.\n\nPlants: +4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": -1,
+      "complexity": 2,
+      "imgSrc": "64px-Gene_StrongPlants.png"
+    },
+    {
+      "id": "strong_shooting",
+      "name": "Strong Shooting",
+      "description": "The carrier's aptitude in Shooting is increased by 4. Aptitude acts like an offset on skill level.\n\nShooting: +4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": -1,
+      "complexity": 2,
+      "imgSrc": "64px-Gene_StrongShooting.png"
+    },
+    {
+      "id": "strong_social",
+      "name": "Strong Social",
+      "description": "The carrier's aptitude in Social is increased by 4. Aptitude acts like an offset on skill level.\n\nSocial: +4. Note: Experience gain and decay applies as if this offset did not exist.",
+      "efficiency": -1,
+      "complexity": 2,
+      "sourceXeno": "Sanguophages",
+      "imgSrc": "64px-Gene_StrongSocial.png"
+    },
+    {
+      "id": "great_animals",
+      "name": "Great Animals",
+      "description": "The carrier's aptitude in Animals is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Animals.\n\nAnimals: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Animals",
+      "efficiency": -3,
+      "complexity": 2,
+      "sourceXeno": "Yttakin",
+      "imgSrc": "64px-Gene_GreatAnimals.png"
+    },
+    {
+      "id": "great_artistic",
+      "name": "Great Artistic",
+      "description": "The carrier's aptitude in Artistic is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Artistic.\n\nArtistic: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Artistic",
+      "efficiency": -3,
+      "complexity": 2,
+      "imgSrc": "64px-Gene_GreatArtistic.png"
+    },
+    {
+      "id": "great_construction",
+      "name": "Great Construction",
+      "description": "The carrier's aptitude in Construction is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Construction.\n\nConstruction: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Construction",
+      "efficiency": -3,
+      "complexity": 2,
+      "sourceXeno": "Starjack",
+      "imgSrc": "64px-Gene_GreatConstruction.png"
+    },
+    {
+      "id": "great_cooking",
+      "name": "Great Cooking",
+      "description": "The carrier's aptitude in Cooking is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Cooking.\n\nCooking: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Cooking",
+      "efficiency": -3,
+      "complexity": 2,
+      "imgSrc": "64px-Gene_GreatCooking.png"
+    },
+    {
+      "id": "great_crafting",
+      "name": "Great Crafting",
+      "description": "The carrier's aptitude in Crafting is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Crafting.\n\nCrafting: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Crafting",
+      "efficiency": -3,
+      "complexity": 2,
+      "sourceXeno": "Genies",
+      "imgSrc": "64px-Gene_GreatCrafting.png"
+    },
+    {
+      "id": "great_medical",
+      "name": "Great Medical",
+      "description": "The carrier's aptitude in Medical is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Medical.\n\nMedical: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Medical",
+      "efficiency": -3,
+      "complexity": 2,
+      "imgSrc": "64px-Gene_GreatMedical.png"
+    },
+    {
+      "id": "great_melee",
+      "name": "Great Melee",
+      "description": "The carrier's aptitude in Melee is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Melee.\n\nMelee: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Melee",
+      "efficiency": -3,
+      "complexity": 2,
+      "sourceXeno": "Hussars",
+      "imgSrc": "64px-Gene_GreatMelee.png"
+    },
+    {
+      "id": "great_mining",
+      "name": "Great Mining",
+      "description": "The carrier's aptitude in Mining is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Mining.\n\nMining: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Mining",
+      "efficiency": -3,
+      "complexity": 2,
+      "sourceXeno": "Dirtmoles",
+      "imgSrc": "64px-Gene_GreatMining.png"
+    },
+    {
+      "id": "great_intellectual",
+      "name": "Great Intellectual",
+      "description": "The carrier's aptitude in Intellectual is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Intellectual.\n\nIntellectual: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Intellectual",
+      "efficiency": -3,
+      "complexity": 2,
+      "sourceXeno": "Genies",
+      "imgSrc": "64px-Gene_GreatIntellectual.png"
+    },
+    {
+      "id": "great_plants",
+      "name": "Great Plants",
+      "description": "The carrier's aptitude in Plants is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Plants.\n\nPlants: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Plants",
+      "efficiency": -3,
+      "complexity": 2,
+      "imgSrc": "64px-Gene_GreatPlants.png"
+    },
+    {
+      "id": "great_shooting",
+      "name": "Great Shooting",
+      "description": "The carrier's aptitude in Shooting is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Shooting.\n\nShooting: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Shooting",
+      "efficiency": -3,
+      "complexity": 2,
+      "sourceXeno": "Hussars",
+      "imgSrc": "64px-Gene_GreatShooting.png"
+    },
+    {
+      "id": "great_social",
+      "name": "Great Social",
+      "description": "The carrier's aptitude in Social is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Social.\n\nSocial: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Social",
+      "efficiency": -3,
+      "complexity": 2,
+      "sourceXeno": "Highmates",
+      "imgSrc": "64px-Gene_GreatSocial.png"
+    },
+    {
+      "id": "alcohol_resistant",
+      "name": "Alcohol resistant",
+      "description": "Carriers are only half as likely to become addicted to Alcohol.\n\nAlcohol addiction factor: ×50%\nAlcohol tolerance gain: ×50%",
+      "efficiency": -1,
+      "complexity": 1,
+      "imgSrc": "64px-AddictionResistant_Alcohol.png"
+    },
+    {
+      "id": "smokeleaf_resistant",
+      "name": "Smokeleaf resistant",
+      "description": "Carriers are only half as likely to become addicted to Smokeleaf.\n\nSmokeleaf addiction factor: ×50%\nSmokeleaf tolerance gain: ×50%",
+      "efficiency": -1,
+      "complexity": 1,
+      "imgSrc": "64px-AddictionResistant_Smokeleaf.png"
+    },
+    {
+      "id": "psychite_resistant",
+      "name": "Psychite resistant",
+      "description": "Carriers are only half as likely to become addicted to Psychite.\n\nPsychite addiction factor: ×50%\nPsychite tolerance gain: ×50%\nOverdose chance: ×50% [Random or All]",
+      "efficiency": -2,
+      "complexity": 1,
+      "imgSrc": "64px-AddictionResistant_Psychite.png"
+    },
+    {
+      "id": "go_juice_resistant",
+      "name": "Go-juice resistant",
+      "description": "Carriers are only half as likely to become addicted to Go-juice.\n\nGo-juice addiction factor: ×50%\nOverdose chance: ×50% [Random or All]",
+      "efficiency": -2,
+      "complexity": 1,
+      "imgSrc": "64px-AddictionResistant_Go_Juice.png"
+    },
+    {
+      "id": "wake_up_resistant",
+      "name": "Wake-up resistant",
+      "description": "Carriers are only half as likely to become addicted to Wake-up.\n\nWake-up addiction factor: ×50%\nOverdose chance: ×50% [Only this drug?] [Random or All?]",
+      "efficiency": -2,
+      "complexity": 1,
+      "imgSrc": "64px-AddictionResistant_Wake_Up.png"
+    },
+    {
+      "id": "alcohol_impervious",
+      "name": "Alcohol impervious",
+      "description": "Carriers of this gene never get addicted to Alcohol.\n\nAlcohol addiction factor: x0%\nTolerance build-up for Alcohol: -100%",
+      "efficiency": -3,
+      "complexity": 2,
+      "imgSrc": "64px-AddictionImmune_Alcohol.png"
+    },
+    {
+      "id": "smokeleaf_impervious",
+      "name": "Smokeleaf impervious",
+      "description": "Carriers of this gene never get addicted to Smokeleaf.\n\nSmokeleaf addiction factor: x0%\nTolerance build-up for Smokeleaf: -100%",
+      "efficiency": -3,
+      "complexity": 2,
+      "imgSrc": "64px-AddictionImmune_Smokeleaf.png"
+    },
+    {
+      "id": "psychite_impervious",
+      "name": "Psychite impervious",
+      "description": "Carriers of this gene never get addicted to Psychite.\n\nPsychite addiction factor: x0%\nTolerance build-up for Psychite: ×0%\nCumulative overdose severity and random, per-dose overdose chance from Psychite based drugs eliminated.",
+      "efficiency": -5,
+      "complexity": 2,
+      "imgSrc": "64px-AddictionImmune_Psychite.png"
+    },
+    {
+      "id": "go_juice_impervious",
+      "name": "Go-juice impervious",
+      "description": "Carriers of this gene never get addicted to Go-juice.\n\nGo-juice addiction factor: x0%\nCumulative overdose severity and random, per-dose overdose chance from Go-juice eliminated.",
+      "efficiency": -5,
+      "complexity": 2,
+      "imgSrc": "64px-AddictionImmune_Go_Juice.png"
+    },
+    {
+      "id": "wake_up_impervious",
+      "name": "Wake-up impervious",
+      "description": "Carriers of this gene never get addicted to Wake-up.\n\nWake-up addiction factor: x0%\nCumulative overdose severity and random, per-dose overdose chance from Wake-up eliminated.",
+      "efficiency": -5,
+      "complexity": 2,
+      "sourceXeno": "Wasters",
+      "imgSrc": "64px-AddictionImmune_Wake_Up.png"
+    },
+    {
+      "id": "alcohol_dependency",
+      "name": "Alcohol dependency",
+      "description": "Carriers of this gene need to ingest alcohol on a regular basis to survive. After 5 days without alcohol, carriers will suffer from drug deficiency. After 30 days, they will fall into a coma. After 60 days, they will die.\n\nTeetotalers will take the required drug without penalties, but ideoligion can still block taking them.\nChemical dependency severity increases by 0.2 per day. Reduced to 0% upon taking beer.\nMood debuff starting with -4 at Severity 1.0 gradually scaling up to -20 at severity 5.85\nSeverity 1 (5 days): Consciousness 70% max, Moving 80% max, Manipulation 50% max,\nSeverity 6 (30 days): Consciousness 10% max (Unconsciousness)\nSeverity 12 (60 days): Consciousness 0% max (Death)\nAlcohol addiction factor: x0%\nTeetotalers can take the required drug without penalties. However, ideoligions against drug use will apply the −15 Used drug moodlet.\nChildren under 13 do not get any of the ill effects from not using these drugs. The timer for penalties only starts on their 13th birthday.",
+      "efficiency": 3,
+      "complexity": 1,
+      "imgSrc": "64px-ChemicalDependency_Alcohol.png"
+    },
+    {
+      "id": "smokeleaf_dependency",
+      "name": "Smokeleaf dependency",
+      "description": "Carriers of this gene need to ingest Smokeleaf on a regular basis to survive. After 5 days without smokeleaf, carriers will suffer from smokeleaf deficiency. After 30 days, they will fall into a coma. After 60 days, they will die.\n\nTeetotalers will take the required drug without penalties, but ideoligion can still block taking them.\nChemical dependency severity increases by 0.2 per day. Reduced to 0% upon taking a smokeleaf joint.\nMood debuff starting with -4 at Severity 1.0 gradually scaling up to -20 at severity 5.85\nSeverity 1 (5 days): Consciousness 70% max, Moving 80% max, Manipulation 50% max,\nSeverity 6 (30 days): Consciousness 10% max (Unconsciousness)\nSeverity 12 (60 days): Consciousness 0% max (Death)\nSmokeleaf addiction factor: x0%\nTeetotalers can take the required drug without penalties. However, ideoligions against drug use will apply the −15 Used drug moodlet.\nChildren under 13 do not get any of the ill effects from not using these drugs. The timer for penalties only starts on their 13th birthday.",
+      "efficiency": 3,
+      "complexity": 1,
+      "imgSrc": "64px-ChemicalDependency_Smokeleaf.png"
+    },
+    {
+      "id": "psychite_dependency",
+      "name": "Psychite dependency",
+      "description": "Carriers of this gene need to ingest psychite on a regular basis to survive. After 5 days without Psychite, carriers will suffer from psychite deficiency. After 30 days, they will fall into a coma. After 60 days, they will die.\n\nChemical dependency severity increases by 0.2 per day. Reduced to 0 upon taking psychite tea, flake, or yayo.\nMood debuff starting with -4 at Severity 1.0 gradually scaling up to -20 at severity 5.85\nSeverity 1 (5 days): Consciousness 70% max, Moving 80% max, Manipulation 50% max,\nSeverity 6 (30 days): Consciousness 10% max (Unconsciousness)\nSeverity 12 (60 days): Consciousness 0% max (Death)\nPsychite addiction factor: x0%\nTeetotalers can take the required drug without penalties. However, ideoligions against drug use will apply the −15 Used drug moodlet.\nChildren under 13 do not get any of the ill effects from not using these drugs. The timer for penalties only starts on their 13th birthday.",
+      "efficiency": 4,
+      "complexity": 1,
+      "sourceXeno": "Wasters",
+      "imgSrc": "64px-ChemicalDependency_Psychite.png"
+    },
+    {
+      "id": "go_juice_dependency",
+      "name": "Go-juice dependency",
+      "description": "Carriers of this gene need to ingest Go-juice on a regular basis to survive. After 5 days without Go-juice, carriers will suffer from Go-juice deficiency. After 30 days, they will fall into a coma. After 60 days, they will die.\n\nChemical dependency severity increases by 0.2 per day. Reduced to 0 upon taking go-juice.\nMood debuff starting with -4 at Severity 1.0 gradually scaling up to -20 at severity 5.85\nSeverity 1 (5 days): Consciousness 70% max, Moving 80% max, Manipulation 50% max,\nSeverity 6 (30 days): Consciousness 10% max (Unconsciousness)\nSeverity 12 (60 days): Consciousness 0% max (Death)\nGo-juice addiction factor: x0%\nTeetotalers can take the required drug without penalties. However, ideoligions against drug use will apply the −15 Used drug moodlet.\nChildren under 13 do not get any of the ill effects from not using these drugs. The timer for penalties only starts on their 13th birthday.",
+      "efficiency": 4,
+      "complexity": 1,
+      "sourceXeno": "Hussars",
+      "imgSrc": "64px-ChemicalDependency_Go_Juice.png"
+    },
+    {
+      "id": "wake_up_dependency",
+      "name": "Wake-up dependency",
+      "description": "Carriers of this gene need to ingest wake-up on a regular basis to survive. After 5 days without wake-up, carriers will suffer from wake-up deficiency. After 30 days, they will fall into a coma. After 60 days, they will die.\n \nChemical dependency severity increases by 0.2 per day. Reduced to 0 upon taking wake-up.\nMood debuff starting with -4 at Severity 1.0 gradually scaling up to -20 at severity 5.85\nSeverity 1 (5 days): Consciousness 70% max, Moving 80% max, Manipulation 50% max.\nSeverity 6 (30 days): Consciousness 10% max (Unconsciousness)\nSeverity 12 (60 days): Consciousness 0% max (Death)\nWake-up addiction factor: x0%\nTeetotalers can take the required drug without penalties. However, ideoligions against drug use will apply the −15 Used drug moodlet.\nChildren under 13 do not get any of the ill effects from not using these drugs. The timer for penalties only starts on their 13th birthday.",
+      "efficiency": 4,
+      "complexity": 1,
+      "imgSrc": "64px-ChemicalDependency_Wake_Up.png"
+    }
+  ]
+}
