@@ -50,6 +50,33 @@ function slugify(name) {
         return filename || "";
     };
 
+    const parseSourceXenos = (cell) => {
+        const sourceNames = [];
+        const seen = new Set();
+
+        const addName = (raw) => {
+            if (!raw) return;
+            const name = raw.trim();
+            if (!name || name === "-" || seen.has(name)) return;
+            seen.add(name);
+            sourceNames.push(name);
+        };
+
+        cell.find("a[title]").each((_, el) => {
+            const title = $(el).attr("title");
+            addName(title);
+        });
+
+        if (sourceNames.length === 0) {
+            cell
+                .text()
+                .split(/[\n,\/]+/)
+                .forEach(addName);
+        }
+
+        return sourceNames;
+    };
+
     // Look for tables in the content area and collect rows that look like gene entries
     $(".mw-collapsible-content table").each((i, table) => {
         let skipTable = false;
@@ -119,15 +146,10 @@ function slugify(name) {
                     capsulesCol !== null
                         ? tds.eq(capsulesCol).text().trim()
                         : "";
-                const sourceXeno =
+                const sourceXenos =
                     sourceXenoCol !== null
-                        ? (() => {
-                            const cell = tds.eq(sourceXenoCol);
-                            const link = cell.find('a[title]').first();
-                            const title = link.attr('title')?.trim() ?? '';
-                            return title === '-' ? '' : title;
-                        })()
-                        : '';
+                        ? parseSourceXenos(tds.eq(sourceXenoCol))
+                        : [];
 
                 const conflicts =
                     conflictsCol !== null
@@ -160,7 +182,7 @@ function slugify(name) {
                     efficiency: metabolism === null ? undefined : metabolism,
                     complexity: complexity === null ? undefined : complexity,
                     capsules: capsules ? capsules : undefined,
-                    sourceXeno: sourceXeno ? sourceXeno : undefined,
+                    sourceXenos: sourceXenos.length ? sourceXenos : undefined,
                     conflicts: conflicts ? conflicts : undefined,
                     imgSrc: `64px-${parseImageSrc(imgSrc)}`,
                 });
@@ -203,9 +225,9 @@ function slugify(name) {
 
     // Generate germlines map from supported germlines array and finalGenes
     const germlines = supportedGermlines.map((germlineName) => {
-        const germlineGenes = finalGenes.filter(
-            (gene) => gene.sourceXeno === germlineName
-        ).map(g => g.id);
+        const germlineGenes = finalGenes
+            .filter((gene) => gene.sourceXenos?.includes(germlineName))
+            .map((g) => g.id);
 
         return {
             name: germlineName,

@@ -4,9 +4,14 @@
       "name": "Starjack",
       "genes": [
         "cold_super_tolerant",
+        "heat_tolerant",
         "vacuum_resistant",
+        "weak_melee_damage",
+        "indoor_dweller",
         "low_gravity_adapted",
+        "awful_animals",
         "awful_melee",
+        "awful_mining",
         "great_construction"
       ]
     },
@@ -14,9 +19,13 @@
       "name": "Yttakin",
       "genes": [
         "animal_warcall",
+        "slow_wound_healing",
         "psychically_dull",
         "naked_speed",
+        "aggressive",
+        "strong_melee_damage",
         "sleepy",
+        "robust",
         "furskin",
         "furry_tail",
         "awful_mining",
@@ -37,6 +46,7 @@
         "awful_animals",
         "awful_artistic",
         "awful_plants",
+        "awful_social",
         "great_melee",
         "great_shooting",
         "go_juice_dependency"
@@ -59,13 +69,19 @@
         "longjump_legs",
         "piercing_spine",
         "deathrest",
+        "superfast_wound_healing",
+        "psy_sensitive",
         "fast_runner",
         "tox_immunity",
         "mild_uv_sensitivity",
         "tinderskin",
         "pyrophobia",
+        "aggressive",
+        "strong_melee_damage",
         "low_sleep",
+        "robust",
         "attractive",
+        "dark_vision",
         "strong_melee",
         "strong_intellectual",
         "strong_social"
@@ -76,9 +92,12 @@
       "genes": [
         "super_immunity",
         "total_antitoxic_lungs",
+        "aggressive",
         "unattractive",
         "pollution_stimulus",
+        "awful_animals",
         "poor_artistic",
+        "poor_cooking",
         "wake_up_impervious",
         "psychite_dependency"
       ]
@@ -94,14 +113,19 @@
         "cold_weakness",
         "heat_super_tolerant",
         "fire_resistant",
-        "weak_melee_damage"
+        "weak_melee_damage",
+        "poor_animals",
+        "poor_plants"
       ]
     },
     {
       "name": "Pigskins",
       "genes": [
+        "strong_immunity",
+        "reduced_pain",
         "strong_stomach",
         "robust_digestion",
+        "nearsighted",
         "trotter_hands",
         "pig_nose",
         "poor_cooking"
@@ -111,8 +135,13 @@
       "name": "Neanderthals",
       "genes": [
         "strong_immunity",
+        "slow_runner",
+        "cold_tolerant",
+        "heat_tolerant",
         "aggressive",
+        "strong_melee_damage",
         "robust",
+        "reduced_pain",
         "slow_study",
         "poor_intellectual",
         "poor_shooting",
@@ -141,9 +170,12 @@
         "heat_weakness",
         "violence_disabled",
         "kind_instinct",
+        "delicate",
         "high_libido",
         "very_attractive",
         "grayless_hair",
+        "awful_mining",
+        "awful_plants",
         "great_social"
       ]
     },

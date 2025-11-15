@@ -6,7 +6,7 @@ export interface Gene {
   conflicts?: string[];
   imgSrc?: string;
   capsules?: string[];
-  sourceXeno?: string;
+  sourceXenos?: string[];
 }
 
 export interface Germline {
