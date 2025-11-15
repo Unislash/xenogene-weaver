@@ -33,7 +33,7 @@
       ]
     },
     {
-      "name": "Hussars",
+      "name": "Hussar",
       "genes": [
         "superfast_wound_healing",
         "psychically_deaf",
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "name": "Sanguophages",
+      "name": "Sanguophage",
       "genes": [
         "scarless",
         "gene_implanter",
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "name": "Wasters",
+      "name": "Waster",
       "genes": [
         "super_immunity",
         "total_antitoxic_lungs",
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "name": "Impids",
+      "name": "Impid",
       "genes": [
         "fire_spew",
         "weak_immunity",
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "name": "Pigskins",
+      "name": "Pigskin",
       "genes": [
         "strong_immunity",
         "reduced_pain",
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "name": "Neanderthals",
+      "name": "Neanderthal",
       "genes": [
         "strong_immunity",
         "slow_runner",
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "name": "Dirtmoles",
+      "name": "Dirtmole",
       "genes": [
         "fast_wound_healing",
         "slow_runner",
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "name": "Highmates",
+      "name": "Highmate",
       "genes": [
         "psy_sensitive",
         "psychic_bonding",
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "name": "Genies",
+      "name": "Genie",
       "genes": [
         "dead_calm",
         "delicate",

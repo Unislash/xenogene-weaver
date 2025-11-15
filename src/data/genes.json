@@ -8,7 +8,7 @@
       "complexity": 4,
       "capsules": "1",
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_TotalHealing.png"
@@ -21,7 +21,7 @@
       "complexity": 3,
       "capsules": "1",
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_XenogermReimplanter.png"
@@ -34,7 +34,7 @@
       "complexity": 3,
       "capsules": "1",
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [
         "Immunity"
@@ -49,7 +49,7 @@
       "complexity": 3,
       "capsules": "1",
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_NonSenescent.png"
@@ -62,7 +62,7 @@
       "complexity": 3,
       "capsules": "1",
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_Ageless.png"
@@ -75,7 +75,7 @@
       "complexity": 7,
       "capsules": "1",
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_Deathless.png"
@@ -88,7 +88,7 @@
       "complexity": 6,
       "capsules": "2",
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_ArchiteMetabolism.png"
@@ -112,7 +112,7 @@
       "efficiency": -2,
       "complexity": 1,
       "sourceXenos": [
-        "Impids"
+        "Impid"
       ],
       "imgSrc": "64px-Gene_Firespew.png"
     },
@@ -150,7 +150,7 @@
       "efficiency": 1,
       "complexity": 1,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "imgSrc": "64px-Gene_Hemogenic.png"
     },
@@ -161,7 +161,7 @@
       "efficiency": 6,
       "complexity": 1,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "imgSrc": "64px-Gene_HemogenDrain.png"
     },
@@ -172,7 +172,7 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "imgSrc": "64px-Gene_Coagulate.png"
     },
@@ -183,7 +183,7 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "imgSrc": "64px-Gene_Bloodfeeder.png"
     },
@@ -194,7 +194,7 @@
       "efficiency": -2,
       "complexity": 1,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "imgSrc": "64px-Gene_LongJumpLegs.png"
     },
@@ -205,7 +205,7 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "imgSrc": "64px-Gene_PiercingSpine.png"
     },
@@ -216,7 +216,7 @@
       "efficiency": 6,
       "complexity": 1,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "imgSrc": "64px-Gene_Deathrest.png"
     },
@@ -227,7 +227,7 @@
       "efficiency": 2,
       "complexity": 1,
       "sourceXenos": [
-        "Impids"
+        "Impid"
       ],
       "conflicts": [
         "Immunity"
@@ -241,8 +241,8 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Neanderthals",
-        "Pigskins"
+        "Neanderthal",
+        "Pigskin"
       ],
       "conflicts": [
         "Immunity"
@@ -256,7 +256,7 @@
       "efficiency": -2,
       "complexity": 2,
       "sourceXenos": [
-        "Wasters"
+        "Waster"
       ],
       "conflicts": [
         "Immunity"
@@ -270,7 +270,7 @@
       "efficiency": 2,
       "complexity": 1,
       "sourceXenos": [
-        "Impids",
+        "Impid",
         "Yttakin"
       ],
       "conflicts": [
@@ -285,7 +285,7 @@
       "efficiency": -2,
       "complexity": 1,
       "sourceXenos": [
-        "Dirtmoles"
+        "Dirtmole"
       ],
       "conflicts": [
         "WoundHealingRate"
@@ -299,8 +299,8 @@
       "efficiency": -3,
       "complexity": 1,
       "sourceXenos": [
-        "Hussars",
-        "Sanguophages"
+        "Hussar",
+        "Sanguophage"
       ],
       "conflicts": [
         "WoundHealingRate"
@@ -323,7 +323,7 @@
       "efficiency": 2,
       "complexity": 1,
       "sourceXenos": [
-        "Hussars"
+        "Hussar"
       ],
       "conflicts": [
         "PsychicAbility"
@@ -351,8 +351,8 @@
       "efficiency": -2,
       "complexity": 1,
       "sourceXenos": [
-        "Highmates",
-        "Sanguophages"
+        "Highmate",
+        "Sanguophage"
       ],
       "conflicts": [
         "PsychicAbility"
@@ -377,7 +377,7 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Highmates"
+        "Highmate"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_PsychicBonding.png"
@@ -389,8 +389,8 @@
       "efficiency": 3,
       "complexity": 1,
       "sourceXenos": [
-        "Dirtmoles",
-        "Neanderthals"
+        "Dirtmole",
+        "Neanderthal"
       ],
       "conflicts": [
         "MoveSpeed"
@@ -404,7 +404,7 @@
       "efficiency": -3,
       "complexity": 1,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [
         "MoveSpeed"
@@ -418,7 +418,7 @@
       "efficiency": -5,
       "complexity": 1,
       "sourceXenos": [
-        "Impids"
+        "Impid"
       ],
       "conflicts": [
         "MoveSpeed"
@@ -464,7 +464,7 @@
       "efficiency": 3,
       "complexity": 1,
       "sourceXenos": [
-        "Impids"
+        "Impid"
       ],
       "conflicts": [
         "Mood"
@@ -489,7 +489,7 @@
       "efficiency": -2,
       "complexity": 3,
       "sourceXenos": [
-        "Highmates"
+        "Highmate"
       ],
       "conflicts": [
         "Mood"
@@ -503,7 +503,7 @@
       "efficiency": 1,
       "complexity": 1,
       "sourceXenos": [
-        "Impids"
+        "Impid"
       ],
       "conflicts": [
         "MinTemperature"
@@ -517,8 +517,8 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Hussars",
-        "Neanderthals"
+        "Hussar",
+        "Neanderthal"
       ],
       "conflicts": [
         "MinTemperature"
@@ -546,7 +546,7 @@
       "efficiency": 1,
       "complexity": 1,
       "sourceXenos": [
-        "Highmates"
+        "Highmate"
       ],
       "conflicts": [
         "MaxTemperature"
@@ -560,8 +560,8 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Hussars",
-        "Neanderthals",
+        "Hussar",
+        "Neanderthal",
         "Starjack"
       ],
       "conflicts": [
@@ -576,7 +576,7 @@
       "efficiency": -2,
       "complexity": 1,
       "sourceXenos": [
-        "Impids"
+        "Impid"
       ],
       "conflicts": [
         "MaxTemperature"
@@ -601,7 +601,7 @@
       "efficiency": -4,
       "complexity": 2,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [
         "ToxResistance"
@@ -615,7 +615,7 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Hussars"
+        "Hussar"
       ],
       "conflicts": [
         "ToxicEnvironmentResistance"
@@ -629,7 +629,7 @@
       "efficiency": -3,
       "complexity": 2,
       "sourceXenos": [
-        "Wasters"
+        "Waster"
       ],
       "conflicts": [
         "ToxicEnvironmentResistance"
@@ -643,7 +643,7 @@
       "efficiency": 3,
       "complexity": 1,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [
         "UVSensitivity"
@@ -657,7 +657,7 @@
       "efficiency": 4,
       "complexity": 2,
       "sourceXenos": [
-        "Dirtmoles"
+        "Dirtmole"
       ],
       "conflicts": [
         "UVSensitivity"
@@ -671,7 +671,7 @@
       "efficiency": -2,
       "complexity": 1,
       "sourceXenos": [
-        "Impids"
+        "Impid"
       ],
       "conflicts": [
         "FireDamage"
@@ -685,7 +685,7 @@
       "efficiency": 2,
       "complexity": 1,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [
         "FireDamage"
@@ -699,7 +699,7 @@
       "efficiency": 4,
       "complexity": 1,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_FireTerror.png"
@@ -725,7 +725,7 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Genies"
+        "Genie"
       ],
       "conflicts": [
         "Aggression"
@@ -739,10 +739,10 @@
       "efficiency": 2,
       "complexity": 1,
       "sourceXenos": [
-        "Neanderthals",
-        "Wasters",
+        "Neanderthal",
+        "Waster",
         "Yttakin",
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [
         "Aggression",
@@ -757,7 +757,7 @@
       "efficiency": 3,
       "complexity": 1,
       "sourceXenos": [
-        "Hussars"
+        "Hussar"
       ],
       "conflicts": [
         "Aggression",
@@ -772,7 +772,7 @@
       "efficiency": 1,
       "complexity": 1,
       "sourceXenos": [
-        "Impids",
+        "Impid",
         "Starjack"
       ],
       "conflicts": [
@@ -787,10 +787,10 @@
       "efficiency": -2,
       "complexity": 1,
       "sourceXenos": [
-        "Dirtmoles",
-        "Neanderthals",
+        "Dirtmole",
+        "Neanderthal",
         "Yttakin",
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [
         "MeleeDamage"
@@ -804,7 +804,7 @@
       "efficiency": 3,
       "complexity": 1,
       "sourceXenos": [
-        "Highmates"
+        "Highmate"
       ],
       "conflicts": [
         "MeleeDamage",
@@ -821,7 +821,7 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Highmates"
+        "Highmate"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_KindInstinct.png"
@@ -869,7 +869,7 @@
       "efficiency": -4,
       "complexity": 2,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [
         "Sleep"
@@ -894,8 +894,8 @@
       "efficiency": 3,
       "complexity": 1,
       "sourceXenos": [
-        "Genies",
-        "Highmates"
+        "Genie",
+        "Highmate"
       ],
       "conflicts": [
         "Toughness"
@@ -909,9 +909,9 @@
       "efficiency": -2,
       "complexity": 1,
       "sourceXenos": [
-        "Neanderthals",
+        "Neanderthal",
         "Yttakin",
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [
         "Toughness"
@@ -925,7 +925,7 @@
       "efficiency": 2,
       "complexity": 1,
       "sourceXenos": [
-        "Genies"
+        "Genie"
       ],
       "conflicts": [
         "Pain"
@@ -939,9 +939,9 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Hussars",
-        "Neanderthals",
-        "Pigskins"
+        "Hussar",
+        "Neanderthal",
+        "Pigskin"
       ],
       "conflicts": [
         "Pain"
@@ -966,7 +966,7 @@
       "efficiency": 0,
       "complexity": 1,
       "sourceXenos": [
-        "Highmates"
+        "Highmate"
       ],
       "conflicts": [
         "Libido"
@@ -1013,7 +1013,7 @@
       "efficiency": 1,
       "complexity": 1,
       "sourceXenos": [
-        "Wasters"
+        "Waster"
       ],
       "conflicts": [
         "Beauty"
@@ -1027,7 +1027,7 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "conflicts": [
         "Beauty"
@@ -1041,7 +1041,7 @@
       "efficiency": -2,
       "complexity": 1,
       "sourceXenos": [
-        "Highmates"
+        "Highmate"
       ],
       "conflicts": [
         "Beauty"
@@ -1055,7 +1055,7 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Pigskins"
+        "Pigskin"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_StrongStomach.png"
@@ -1067,7 +1067,7 @@
       "efficiency": -2,
       "complexity": 2,
       "sourceXenos": [
-        "Pigskins"
+        "Pigskin"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_RobustDigestion.png"
@@ -1079,7 +1079,7 @@
       "efficiency": 2,
       "complexity": 1,
       "sourceXenos": [
-        "Neanderthals"
+        "Neanderthal"
       ],
       "conflicts": [
         "Learning"
@@ -1104,8 +1104,8 @@
       "efficiency": 2,
       "complexity": 1,
       "sourceXenos": [
-        "Dirtmoles",
-        "Pigskins"
+        "Dirtmole",
+        "Pigskin"
       ],
       "conflicts": [
         "ShootingAccuracy"
@@ -1119,8 +1119,8 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Dirtmoles",
-        "Sanguophages"
+        "Dirtmole",
+        "Sanguophage"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_Darkvision.png"
@@ -1163,7 +1163,7 @@
       "efficiency": 0,
       "complexity": 1,
       "sourceXenos": [
-        "Highmates"
+        "Highmate"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_GreylessHair.png"
@@ -1186,7 +1186,7 @@
       "efficiency": 1,
       "complexity": 1,
       "sourceXenos": [
-        "Pigskins"
+        "Pigskin"
       ],
       "conflicts": [
         "Hands"
@@ -1200,7 +1200,7 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Genies"
+        "Genie"
       ],
       "conflicts": [
         "Hands"
@@ -1230,7 +1230,7 @@
       "efficiency": 0,
       "complexity": 0,
       "sourceXenos": [
-        "Pigskins"
+        "Pigskin"
       ],
       "conflicts": [
         "Nose"
@@ -1244,7 +1244,7 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Wasters"
+        "Waster"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_PollutionRush.png"
@@ -1256,7 +1256,7 @@
       "efficiency": -2,
       "complexity": 1,
       "sourceXenos": [
-        "Hussars"
+        "Hussar"
       ],
       "conflicts": [],
       "imgSrc": "64px-Gene_Unstoppable.png"
@@ -1293,7 +1293,7 @@
       "efficiency": -1,
       "complexity": 1,
       "sourceXenos": [
-        "Dirtmoles",
+        "Dirtmole",
         "Starjack"
       ],
       "conflicts": [],
@@ -1318,8 +1318,8 @@
       "efficiency": 2,
       "complexity": 1,
       "sourceXenos": [
-        "Hussars",
-        "Wasters",
+        "Hussar",
+        "Waster",
         "Starjack"
       ],
       "imgSrc": "64px-Gene_AwfulAnimals.png"
@@ -1331,7 +1331,7 @@
       "efficiency": 2,
       "complexity": 1,
       "sourceXenos": [
-        "Hussars"
+        "Hussar"
       ],
       "imgSrc": "64px-Gene_AwfulArtistic.png"
     },
@@ -1386,7 +1386,7 @@
       "complexity": 1,
       "sourceXenos": [
         "Yttakin",
-        "Highmates",
+        "Highmate",
         "Starjack"
       ],
       "imgSrc": "64px-Gene_AwfulMining.png"
@@ -1406,8 +1406,8 @@
       "efficiency": 2,
       "complexity": 1,
       "sourceXenos": [
-        "Hussars",
-        "Highmates"
+        "Hussar",
+        "Highmate"
       ],
       "imgSrc": "64px-Gene_AwfulPlants.png"
     },
@@ -1426,8 +1426,8 @@
       "efficiency": 2,
       "complexity": 1,
       "sourceXenos": [
-        "Genies",
-        "Hussars"
+        "Genie",
+        "Hussar"
       ],
       "imgSrc": "64px-Gene_AwfulSocial.png"
     },
@@ -1438,8 +1438,8 @@
       "efficiency": 1,
       "complexity": 1,
       "sourceXenos": [
-        "Genies",
-        "Impids"
+        "Genie",
+        "Impid"
       ],
       "imgSrc": "64px-Gene_PoorAnimals.png"
     },
@@ -1450,7 +1450,7 @@
       "efficiency": 1,
       "complexity": 1,
       "sourceXenos": [
-        "Wasters"
+        "Waster"
       ],
       "imgSrc": "64px-Gene_PoorArtistic.png"
     },
@@ -1469,8 +1469,8 @@
       "efficiency": 1,
       "complexity": 1,
       "sourceXenos": [
-        "Pigskins",
-        "Wasters"
+        "Pigskin",
+        "Waster"
       ],
       "imgSrc": "64px-Gene_PoorCooking.png"
     },
@@ -1513,7 +1513,7 @@
       "efficiency": 1,
       "complexity": 1,
       "sourceXenos": [
-        "Neanderthals"
+        "Neanderthal"
       ],
       "imgSrc": "64px-Gene_PoorIntellectual.png"
     },
@@ -1524,8 +1524,8 @@
       "efficiency": 1,
       "complexity": 1,
       "sourceXenos": [
-        "Genies",
-        "Impids"
+        "Genie",
+        "Impid"
       ],
       "imgSrc": "64px-Gene_PoorPlants.png"
     },
@@ -1536,7 +1536,7 @@
       "efficiency": 1,
       "complexity": 1,
       "sourceXenos": [
-        "Neanderthals"
+        "Neanderthal"
       ],
       "imgSrc": "64px-Gene_PoorShooting.png"
     },
@@ -1547,7 +1547,7 @@
       "efficiency": 1,
       "complexity": 1,
       "sourceXenos": [
-        "Neanderthals"
+        "Neanderthal"
       ],
       "imgSrc": "64px-Gene_PoorSocial.png"
     },
@@ -1606,7 +1606,7 @@
       "efficiency": -1,
       "complexity": 2,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "imgSrc": "64px-Gene_StrongMelee.png"
     },
@@ -1625,7 +1625,7 @@
       "efficiency": -1,
       "complexity": 2,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "imgSrc": "64px-Gene_StrongIntellectual.png"
     },
@@ -1652,7 +1652,7 @@
       "efficiency": -1,
       "complexity": 2,
       "sourceXenos": [
-        "Sanguophages"
+        "Sanguophage"
       ],
       "imgSrc": "64px-Gene_StrongSocial.png"
     },
@@ -1701,7 +1701,7 @@
       "efficiency": -3,
       "complexity": 2,
       "sourceXenos": [
-        "Genies"
+        "Genie"
       ],
       "imgSrc": "64px-Gene_GreatCrafting.png"
     },
@@ -1720,7 +1720,7 @@
       "efficiency": -3,
       "complexity": 2,
       "sourceXenos": [
-        "Hussars"
+        "Hussar"
       ],
       "imgSrc": "64px-Gene_GreatMelee.png"
     },
@@ -1731,7 +1731,7 @@
       "efficiency": -3,
       "complexity": 2,
       "sourceXenos": [
-        "Dirtmoles"
+        "Dirtmole"
       ],
       "imgSrc": "64px-Gene_GreatMining.png"
     },
@@ -1742,7 +1742,7 @@
       "efficiency": -3,
       "complexity": 2,
       "sourceXenos": [
-        "Genies"
+        "Genie"
       ],
       "imgSrc": "64px-Gene_GreatIntellectual.png"
     },
@@ -1761,7 +1761,7 @@
       "efficiency": -3,
       "complexity": 2,
       "sourceXenos": [
-        "Hussars"
+        "Hussar"
       ],
       "imgSrc": "64px-Gene_GreatShooting.png"
     },
@@ -1772,7 +1772,7 @@
       "efficiency": -3,
       "complexity": 2,
       "sourceXenos": [
-        "Highmates"
+        "Highmate"
       ],
       "imgSrc": "64px-Gene_GreatSocial.png"
     },
@@ -1855,7 +1855,7 @@
       "efficiency": -5,
       "complexity": 2,
       "sourceXenos": [
-        "Wasters"
+        "Waster"
       ],
       "imgSrc": "64px-AddictionImmune_Wake_Up.png"
     },
@@ -1882,7 +1882,7 @@
       "efficiency": 4,
       "complexity": 1,
       "sourceXenos": [
-        "Wasters"
+        "Waster"
       ],
       "imgSrc": "64px-ChemicalDependency_Psychite.png"
     },
@@ -1893,7 +1893,7 @@
       "efficiency": 4,
       "complexity": 1,
       "sourceXenos": [
-        "Hussars"
+        "Hussar"
       ],
       "imgSrc": "64px-ChemicalDependency_Go_Juice.png"
     },

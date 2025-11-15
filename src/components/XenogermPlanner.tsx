@@ -25,8 +25,8 @@ export function XenogermPlanner() {
       <h1>RimWorld Xenogerm Planner</h1>
       <Stats />
       <GermlineSelector />
-      <AvailableGenes />
       <ResultingGenes />
+      <AvailableGenes />
     </div>
   );
 }

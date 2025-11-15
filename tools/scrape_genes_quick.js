@@ -3,6 +3,20 @@ const cheerio = require("cheerio");
 const fs = require("fs");
 
 const PAGE = "https://rimworldwiki.com/wiki/Genes";
+const supportedGermlines = [
+    "Starjack",
+    "Yttakin",
+    "Hussar",
+    "Sanguophage",
+    "Waster",
+    "Impid",
+    "Pigskin",
+    "Neanderthal",
+    "Dirtmole",
+    "Highmate",
+    "Genie",
+];
+const supportedGermlineSet = new Set(supportedGermlines);
 
 function slugify(name) {
     return name
@@ -50,14 +64,27 @@ function slugify(name) {
         return filename || "";
     };
 
+    const toSingular = (name) => {
+        if (!name) return "";
+        const normalized = name.endsWith("s") ? name.slice(0, -1) : name;
+        if (!supportedGermlineSet.has(normalized)) {
+            throw new Error(
+                `Found germline "${name}" (normalized "${normalized}" that does not exist in the supported germlines list)`,
+            );
+        }
+        return normalized;
+    };
+
     const parseSourceXenos = (cell) => {
         const sourceNames = [];
         const seen = new Set();
 
         const addName = (raw) => {
             if (!raw) return;
-            const name = raw.trim();
-            if (!name || name === "-" || seen.has(name)) return;
+            const trimmed = raw.trim();
+            if (!trimmed || trimmed === "-") return;
+            const name = toSingular(trimmed);
+            if (seen.has(name)) return;
             seen.add(name);
             sourceNames.push(name);
         };
@@ -201,6 +228,30 @@ function slugify(name) {
         }
     }
 
+    const germlinesWithAtLeastOneGene = new Set();
+    for (const gene of finalGenes) {
+        if (!Array.isArray(gene.sourceXenos)) continue;
+        for (const sourceName of gene.sourceXenos) {
+            if (!supportedGermlineSet.has(sourceName)) {
+                throw new Error(
+                    `Gene "${gene.name}" references unsupported germline "${sourceName}"`,
+                );
+            }
+            germlinesWithAtLeastOneGene.add(sourceName);
+        }
+    }
+
+    // Find any supported germlines that have no genes associated with them
+    const missingGermlines = supportedGermlines.filter(
+        (name) => !germlinesWithAtLeastOneGene.has(name),
+    );
+    if (missingGermlines.length > 0) {
+        throw new Error(
+            `No genes matched for germlines: ${missingGermlines.join(", ")}
+            This indicates an error in the scraping/parsing process, since all germlines should have at least one gene associated with them.`,
+        );
+    }
+
     console.log("Found", finalGenes.length, "candidate gene entries");
 
     // Write to src/data/genes.json
@@ -209,20 +260,6 @@ function slugify(name) {
     console.log("Wrote", outPath);
 
     // Now generate germlines.json
-    const supportedGermlines = [
-        "Starjack",
-        "Yttakin",
-        "Hussars",
-        "Sanguophages",
-        "Wasters",
-        "Impids",
-        "Pigskins",
-        "Neanderthals",
-        "Dirtmoles",
-        "Highmates",
-        "Genies",
-    ];
-
     // Generate germlines map from supported germlines array and finalGenes
     const germlines = supportedGermlines.map((germlineName) => {
         const germlineGenes = finalGenes
