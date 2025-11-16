@@ -64,9 +64,7 @@ export const SavedXenogerms = () => {
         <input
           type="text"
           value={nameInput}
-          placeholder={
-            selectedCount === 0 ? 'Name this xenogerm to save it' : ''
-          }
+          placeholder={'Name this xenogerm to save it'}
           onChange={e => handleNameChange(e.target.value)}
         />
         <span className="name-hint">

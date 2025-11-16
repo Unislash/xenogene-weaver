@@ -307,8 +307,8 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
     },
 
     startNewSavedXenogerm: () => {
-      applySelectionState(new Set());
       set({ currentSavedXenogermId: null });
+      applySelectionState(new Set());
     },
 
     reset: () => {
