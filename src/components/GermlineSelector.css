@@ -1,8 +1,6 @@
 .germline-selector {
   background: var(--bg-app);
   padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
 }
 
 .gene-chips {

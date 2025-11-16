@@ -3,11 +3,3 @@
   padding: 1.5rem;
   margin-bottom: 2rem;
 }
-
-.gene-grid {
-  padding: 1rem 0;
-}
-
-.gene-card.germline {
-  background: var(--germline-selected);
-}

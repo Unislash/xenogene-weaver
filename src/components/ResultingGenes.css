@@ -4,10 +4,6 @@
   margin-bottom: 2rem;
 }
 
-.gene-grid {
-  padding: 1rem 0;
-}
-
 .empty-state {
   grid-column: 1 / -1;
   text-align: center;
