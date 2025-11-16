@@ -1,0 +1,137 @@
+.saved-xenogerms {
+  background: var(--bg-app);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.saved-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.saved-header h2 {
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.saved-xenogerms button {
+  border: none;
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  background: var(--tile-default);
+  color: var(--text);
+  font-size: 0.85rem;
+  transition: background 0.2s ease;
+}
+
+.saved-xenogerms button.ghost {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.saved-xenogerms button.ghost:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.saved-xenogerms button.danger {
+  color: #ff8c82;
+}
+
+.name-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.name-row input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.65rem 0.75rem;
+  color: var(--text);
+}
+
+.name-row input:focus {
+  outline: none;
+  border-color: var(--accent-outline);
+}
+
+.name-row .name-hint {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.saved-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.saved-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--tile-default);
+  padding: 0.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+}
+
+.saved-chip.active {
+  border-color: var(--accent-outline);
+}
+
+.saved-chip .load {
+  flex: 1;
+  background: transparent;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+}
+
+.saved-chip .load:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.saved-chip .meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.saved-chip .name {
+  font-weight: 600;
+}
+
+.saved-chip .count {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.saved-chip .delete {
+  padding: 0.3rem 0.5rem;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.saved-chip .delete:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.saved-list .emptystate {
+  text-align: center;
+  opacity: 0.65;
+  font-size: 0.9rem;
+  padding: 1rem;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+}

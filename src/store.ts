@@ -1,188 +1,327 @@
 import { create } from 'zustand';
-import { BuildState, BuildActions, Gene, Germline } from './types';
+import {
+  BuildState,
+  BuildActions,
+  Gene,
+  Germline,
+  SavedXenogerm,
+} from './types';
 import { genesConflict } from './utils/geneConflicts';
 
-export const useBuildStore = create<BuildState & BuildActions>((set, get) => ({
-  genesById: {},
-  germlinesById: {},
-  selectedGermline: null,
-  selectedXeno: new Set<string>(),
-  suppressedGenes: new Set<string>(),
-  conflictedGenes: new Set<string>(),
-  overrideGenes: new Set<string>(),
-  totals: {
-    efficiency: 0,
-    complexity: 0,
-  },
-  compatibleXenogerm: true,
+const STORAGE_KEY = 'savedXenogerms';
 
-  loadGenes: (genes: Gene[]) => {
-    const genesById = Object.fromEntries(
-      genes.map(gene => [gene.id, gene])
-    );
-    set({ genesById });
-  },
+const canUseStorage = () =>
+  typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
 
-  loadGermlines: (germlines: Germline[]) => {
-    const germlinesById = Object.fromEntries(
-      germlines.map(germline => [germline.name, germline])
-    );
-    set({ germlinesById });
-  },
+const loadSavedXenogerms = (): Record<string, SavedXenogerm> => {
+  if (!canUseStorage()) return {};
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed === 'object') return parsed;
+  } catch {
+    // ignore storage errors
+  }
+  return {};
+};
 
-  selectGermline: (germlineId: string | null) => {
-    // update selected germline and recompute suppressed genes and totals
-    set({ selectedGermline: germlineId });
-    const newSuppressed = get().calculateSuppressedGenes();
-    set({ suppressedGenes: newSuppressed });
-    get().calculateTotals();
-  },
+const persistSavedXenogerms = (saved: Record<string, SavedXenogerm>) => {
+  if (!canUseStorage()) return;
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+  } catch {
+    // ignore write failures
+  }
+};
 
-  toggleXenoGene: (geneId: string) => {
-    const state = get();
-    const newSelected = new Set(state.selectedXeno);
-    const wasSelected = newSelected.has(geneId);
+const generateSavedId = (name: string) => {
+  const slug =
+    name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'xenogerm';
+  return `${slug}-${Date.now().toString(36)}`;
+};
 
-    if (wasSelected) {
-      newSelected.delete(geneId);
-    } else {
-      newSelected.add(geneId);
-    }
+const arraysEqual = (a: string[], b: string[]) =>
+  a.length === b.length && a.every((val, idx) => val === b[idx]);
 
-    const newSuppressed = get().calculateSuppressedGenes(newSelected);
-    const newConflicted = get().calculateConflictedGenes(newSelected);
-    if (!wasSelected) {
-      newConflicted.delete(geneId);
-    }
-    const newOverrides = (() => {
-      const overrides = new Set<string>();
-      const snapshot = get();
-      const suppressedGermline = newSuppressed;
+export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
+  const computeOverrides = (
+    selected: Set<string>,
+    suppressed: Set<string>,
+    conflicted: Set<string>,
+  ) => {
+    const { genesById } = get();
+    const overrides = new Set<string>();
 
-      const conflictsSuppressed = (geneId: string) => {
-        const gene = snapshot.genesById[geneId];
-        if (!gene?.conflicts?.length) return false;
-        for (const suppressedId of suppressedGermline) {
-          const suppressedGene = snapshot.genesById[suppressedId];
-          if (genesConflict(gene, suppressedGene)) return true;
-        }
-        return false;
-      };
+    const conflictsWithSuppressed = (geneId: string) => {
+      const gene = genesById[geneId];
+      if (!gene?.conflicts?.length) return false;
+      for (const suppressedId of suppressed) {
+        const suppressedGene = genesById[suppressedId];
+        if (genesConflict(gene, suppressedGene)) return true;
+      }
+      return false;
+    };
 
-      for (const id of newSelected) {
-        if (newConflicted.has(id)) continue;
-        const gene = snapshot.genesById[id];
-        if (!gene?.conflicts?.length) continue;
+    for (const id of selected) {
+      if (conflicted.has(id)) continue;
+      const gene = genesById[id];
+      if (!gene?.conflicts?.length) continue;
 
-        if (conflictsSuppressed(id)) {
+      if (conflictsWithSuppressed(id)) {
+        overrides.add(id);
+        continue;
+      }
+
+      for (const conflictedId of conflicted) {
+        const other = genesById[conflictedId];
+        if (genesConflict(gene, other)) {
           overrides.add(id);
-          continue;
+          break;
         }
+      }
+    }
 
-        for (const conflictedId of newConflicted) {
-          const other = snapshot.genesById[conflictedId];
-          if (genesConflict(gene, other)) {
-            overrides.add(id);
-            break;
+    return overrides;
+  };
+
+  const syncCurrentSavedXenogerm = (selected: Set<string>) => {
+    const state = get();
+    const currentId = state.currentSavedXenogermId;
+    if (!currentId) return;
+    const saved = state.savedXenogerms[currentId];
+    if (!saved) return;
+    const genes = Array.from(selected);
+    if (arraysEqual(saved.genes, genes)) return;
+    const updated = { ...saved, genes };
+    const savedXenogerms = { ...state.savedXenogerms, [currentId]: updated };
+    persistSavedXenogerms(savedXenogerms);
+    set({ savedXenogerms });
+  };
+
+  const applySelectionState = (
+    selected: Set<string>,
+    options?: { addedGeneId?: string },
+  ) => {
+    const suppressed = get().calculateSuppressedGenes(selected);
+    const conflicted = get().calculateConflictedGenes(selected);
+    if (options?.addedGeneId) conflicted.delete(options.addedGeneId);
+    const overrides = computeOverrides(selected, suppressed, conflicted);
+    set({
+      selectedXeno: selected,
+      suppressedGenes: suppressed,
+      conflictedGenes: conflicted,
+      overrideGenes: overrides,
+    });
+    syncCurrentSavedXenogerm(selected);
+    get().calculateTotals();
+  };
+
+  return {
+    genesById: {},
+    germlinesById: {},
+    selectedGermline: null,
+    selectedXeno: new Set<string>(),
+    suppressedGenes: new Set<string>(),
+    conflictedGenes: new Set<string>(),
+    overrideGenes: new Set<string>(),
+    savedXenogerms: loadSavedXenogerms(),
+    currentSavedXenogermId: null,
+    totals: {
+      efficiency: 0,
+      complexity: 0,
+    },
+    compatibleXenogerm: true,
+
+    loadGenes: (genes: Gene[]) => {
+      const genesById = Object.fromEntries(genes.map(gene => [gene.id, gene]));
+      set({ genesById });
+    },
+
+    loadGermlines: (germlines: Germline[]) => {
+      const germlinesById = Object.fromEntries(
+        germlines.map(germline => [germline.name, germline]),
+      );
+      set({ germlinesById });
+    },
+
+    selectGermline: (germlineId: string | null) => {
+      set({ selectedGermline: germlineId });
+      const suppressed = get().calculateSuppressedGenes();
+      const overrides = computeOverrides(
+        get().selectedXeno,
+        suppressed,
+        get().conflictedGenes,
+      );
+      set({ suppressedGenes: suppressed, overrideGenes: overrides });
+      get().calculateTotals();
+    },
+
+    toggleXenoGene: (geneId: string) => {
+      const state = get();
+      const newSelected = new Set(state.selectedXeno);
+      const wasSelected = newSelected.has(geneId);
+      if (wasSelected) newSelected.delete(geneId);
+      else newSelected.add(geneId);
+      applySelectionState(
+        newSelected,
+        wasSelected ? undefined : { addedGeneId: geneId },
+      );
+    },
+
+    calculateSuppressedGenes: (selectedOverride?: Set<string>) => {
+      const state = get();
+      const newSuppressed = new Set<string>();
+      const currentGermline = state.selectedGermline
+        ? state.germlinesById[state.selectedGermline]
+        : null;
+      const selected = selectedOverride ?? state.selectedXeno;
+
+      if (!currentGermline) return newSuppressed;
+
+      for (const xenoId of selected) {
+        const xenoGene = state.genesById[xenoId];
+        if (!xenoGene) continue;
+        for (const germlineGeneId of currentGermline.genes) {
+          const germlineGene = state.genesById[germlineGeneId];
+          if (genesConflict(xenoGene, germlineGene)) {
+            newSuppressed.add(germlineGeneId);
           }
         }
       }
 
-      return overrides;
-    })();
-    set({
-      selectedXeno: newSelected,
-      suppressedGenes: newSuppressed,
-      conflictedGenes: newConflicted,
-      overrideGenes: newOverrides,
-    });
-    get().calculateTotals();
-  },
+      return newSuppressed;
+    },
 
-  calculateSuppressedGenes: (selectedOverride?: Set<string>) => {
-    const state = get();
-    const newSuppressed = new Set<string>();
-    const currentGermline = state.selectedGermline
-      ? state.germlinesById[state.selectedGermline]
-      : null;
-    const selected = selectedOverride ?? state.selectedXeno;
-
-    if (!currentGermline) return newSuppressed;
-
-    for (const xenoId of selected) {
-      const xenoGene = state.genesById[xenoId];
-      if (!xenoGene) continue;
-      for (const germlineGeneId of currentGermline.genes) {
-        const germlineGene = state.genesById[germlineGeneId];
-        if (genesConflict(xenoGene, germlineGene)) newSuppressed.add(germlineGeneId);
-      }
-    }
-
-    return newSuppressed;
-  },
-
-  calculateConflictedGenes: (selectedOverride?: Set<string>) => {
-    const state = get();
-    const selected = Array.from(selectedOverride ?? state.selectedXeno);
-    const conflicted = new Set<string>();
-    for (let i = 0; i < selected.length; i++) {
-      const geneA = state.genesById[selected[i]];
-      if (!geneA?.conflicts?.length) continue;
-      for (let j = i + 1; j < selected.length; j++) {
-        const geneB = state.genesById[selected[j]];
-        if (!geneB?.conflicts?.length) continue;
-        if (genesConflict(geneA, geneB)) {
-          conflicted.add(selected[i]);
-          conflicted.add(selected[j]);
+    calculateConflictedGenes: (selectedOverride?: Set<string>) => {
+      const state = get();
+      const selected = Array.from(selectedOverride ?? state.selectedXeno);
+      const conflicted = new Set<string>();
+      for (let i = 0; i < selected.length; i++) {
+        const geneA = state.genesById[selected[i]];
+        if (!geneA?.conflicts?.length) continue;
+        for (let j = i + 1; j < selected.length; j++) {
+          const geneB = state.genesById[selected[j]];
+          if (!geneB?.conflicts?.length) continue;
+          if (genesConflict(geneA, geneB)) {
+            conflicted.add(selected[i]);
+            conflicted.add(selected[j]);
+          }
         }
       }
-    }
-    return conflicted;
-  },
+      return conflicted;
+    },
 
-  calculateTotals: () => {
-    const state = get();
-    const currentGermline = state.selectedGermline
-      ? state.germlinesById[state.selectedGermline]
-      : null;
+    calculateTotals: () => {
+      const state = get();
+      const currentGermline = state.selectedGermline
+        ? state.germlinesById[state.selectedGermline]
+        : null;
 
-    const activeGenes = new Set<string>();
+      const activeGenes = new Set<string>();
 
-    if (currentGermline) {
-      for (const geneId of currentGermline.genes) {
-        if (!state.suppressedGenes.has(geneId)) activeGenes.add(geneId);
+      if (currentGermline) {
+        for (const geneId of currentGermline.genes) {
+          if (!state.suppressedGenes.has(geneId)) activeGenes.add(geneId);
+        }
       }
-    }
 
-    for (const geneId of state.selectedXeno) {
-      if (state.conflictedGenes.has(geneId)) continue;
-      activeGenes.add(geneId);
-    }
+      for (const geneId of state.selectedXeno) {
+        if (state.conflictedGenes.has(geneId)) continue;
+        activeGenes.add(geneId);
+      }
 
-    const totals = [...activeGenes].reduce(
-      (acc, geneId) => {
-        const gene = state.genesById[geneId];
-        if (!gene) return acc;
-        return {
-          efficiency: acc.efficiency + gene.efficiency,
-          complexity: acc.complexity + gene.complexity,
+      const totals = [...activeGenes].reduce(
+        (acc, geneId) => {
+          const gene = state.genesById[geneId];
+          if (!gene) return acc;
+          return {
+            efficiency: acc.efficiency + gene.efficiency,
+            complexity: acc.complexity + gene.complexity,
+          };
+        },
+        { efficiency: 0, complexity: 0 },
+      );
+
+      set({ totals, compatibleXenogerm: totals.efficiency >= -5 });
+    },
+
+    setSavedXenogermName: (rawName: string) => {
+      const name = rawName.trim();
+      if (!name) return;
+      const state = get();
+      const existingId = state.currentSavedXenogermId;
+      if (existingId) {
+        const existing = state.savedXenogerms[existingId];
+        if (!existing) return;
+        if (existing.name === name) return;
+        const updated = { ...existing, name };
+        const savedXenogerms = { ...state.savedXenogerms, [existingId]: updated };
+        persistSavedXenogerms(savedXenogerms);
+        set({ savedXenogerms });
+      } else {
+        const id = generateSavedId(name);
+        const newEntry: SavedXenogerm = {
+          id,
+          name,
+          genes: Array.from(state.selectedXeno),
         };
-      },
-      { efficiency: 0, complexity: 0 }
-    );
+        const savedXenogerms = { ...state.savedXenogerms, [id]: newEntry };
+        persistSavedXenogerms(savedXenogerms);
+        set({ savedXenogerms, currentSavedXenogermId: id });
+      }
+    },
 
-    set({ totals, compatibleXenogerm: totals.efficiency >= -5 });
-  },
+    deleteSavedXenogerm: (id: string) => {
+      const state = get();
+      if (!state.savedXenogerms[id]) return;
+      const savedXenogerms = { ...state.savedXenogerms };
+      delete savedXenogerms[id];
+      persistSavedXenogerms(savedXenogerms);
+      set({
+        savedXenogerms,
+        currentSavedXenogermId:
+          state.currentSavedXenogermId === id ? null : state.currentSavedXenogermId,
+      });
+    },
 
-  reset: () => {
-    set({
-      selectedGermline: null,
-      selectedXeno: new Set(),
-      suppressedGenes: new Set(),
-      conflictedGenes: new Set(),
-      overrideGenes: new Set(),
-      totals: { efficiency: 0, complexity: 0 },
-      compatibleXenogerm: true,
-    });
-  },
-}));
+    loadSavedXenogerm: (id: string) => {
+      const state = get();
+      const saved = state.savedXenogerms[id];
+      if (!saved) return;
+      const newSelected = new Set(saved.genes);
+      const suppressed = state.calculateSuppressedGenes(newSelected);
+      const conflicted = state.calculateConflictedGenes(newSelected);
+      const overrides = computeOverrides(newSelected, suppressed, conflicted);
+      set({
+        selectedXeno: newSelected,
+        suppressedGenes: suppressed,
+        conflictedGenes: conflicted,
+        overrideGenes: overrides,
+        currentSavedXenogermId: id,
+      });
+      get().calculateTotals();
+    },
+
+    startNewSavedXenogerm: () => {
+      applySelectionState(new Set());
+      set({ currentSavedXenogermId: null });
+    },
+
+    reset: () => {
+      set({
+        selectedGermline: null,
+        selectedXeno: new Set(),
+        suppressedGenes: new Set(),
+        conflictedGenes: new Set(),
+        overrideGenes: new Set(),
+        currentSavedXenogermId: null,
+        totals: { efficiency: 0, complexity: 0 },
+        compatibleXenogerm: true,
+      });
+    },
+  };
+});

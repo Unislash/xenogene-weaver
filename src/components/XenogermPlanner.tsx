@@ -4,6 +4,7 @@ import { GermlineSelector } from './GermlineSelector';
 import { AvailableGenes } from './AvailableGenes';
 import { ResultingGenes } from './ResultingGenes';
 import { Stats } from './Stats';
+import { SavedXenogerms } from './SavedXenogerms';
 import './XenogermPlanner.css';
 
 export function XenogermPlanner() {
@@ -24,6 +25,7 @@ export function XenogermPlanner() {
     <div className="xenogerm-planner">
       <h1>RimWorld Xenogerm Planner</h1>
       <GermlineSelector />
+      <SavedXenogerms />
       <Stats />
       <ResultingGenes />
       <AvailableGenes />

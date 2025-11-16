@@ -14,6 +14,12 @@ export interface Germline {
   genes: string[];
 }
 
+export interface SavedXenogerm {
+  id: string;
+  name: string;
+  genes: string[];
+}
+
 export interface BuildState {
   genesById: Record<string, Gene>;
   germlinesById: Record<string, Germline>;
@@ -22,6 +28,8 @@ export interface BuildState {
   suppressedGenes: Set<string>;
   conflictedGenes: Set<string>;
   overrideGenes: Set<string>;
+  savedXenogerms: Record<string, SavedXenogerm>;
+  currentSavedXenogermId: string | null;
   totals: {
     efficiency: number;
     complexity: number;
@@ -37,5 +45,9 @@ export type BuildActions = {
   calculateTotals: () => void;
   calculateSuppressedGenes: (selectedOverride?: Set<string>) => Set<string>;
   calculateConflictedGenes: (selectedOverride?: Set<string>) => Set<string>;
+  setSavedXenogermName: (name: string) => void;
+  deleteSavedXenogerm: (id: string) => void;
+  loadSavedXenogerm: (id: string) => void;
+  startNewSavedXenogerm: () => void;
   reset: () => void;
 };
