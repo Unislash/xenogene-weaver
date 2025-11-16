@@ -1,7 +1,7 @@
 import { useBuildStore } from '../store';
 import './Stats.css';
 
-export function Stats() {
+export const Stats = () => {
   const totals = useBuildStore(state => state.totals);
   const compatibleXenogerm = useBuildStore(state => state.compatibleXenogerm);
 
@@ -9,7 +9,7 @@ export function Stats() {
     <div className="stats-panel">
       <div className="stat-item">
         <label>Efficiency:</label>
-        <span className={totals.efficiency < -4 ? 'warning' : ''}>{totals.efficiency}</span>
+        <span className={totals.efficiency <= -5 ? 'warning' : ''}>{totals.efficiency}</span>
       </div>
       <div className="stat-item">
         <label>Complexity:</label>
@@ -17,7 +17,7 @@ export function Stats() {
       </div>
       <div className="status">
         <span className={compatibleXenogerm ? 'good' : 'error'}>
-          {compatibleXenogerm ? 'Compatible' : 'Incompatible'}
+          {compatibleXenogerm ? 'Compatible' : 'Metabolic Efficiency too low'}
         </span>
       </div>
     </div>

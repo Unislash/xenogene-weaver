@@ -1,56 +1,15 @@
 .resulting-genes {
-  background: var(--bg-app);
+  background: var(--bg-grid);
   padding: 1.5rem;
-  border-radius: 8px;
+  margin-bottom: 2rem;
 }
 
 .gene-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
   padding: 1rem 0;
-}
-
-.gene-card {
-  background: var(--tile-default);
-  border: 2px solid transparent;
-  border-radius: 6px;
-  padding: 1rem;
-  position: relative;
-  cursor: default;
-}
-
-.gene-card.germline {
-  background: var(--germline-selected);
-}
-
-.gene-card.xeno {
-  background: var(--accent-outline);
-}
-
-.gene-card.clickable {
-  cursor: pointer;
-}
-
-.gene-card.clickable:hover {
-  filter: brightness(1.05);
 }
 
 .gene-card.suppressed {
   opacity: 0.55;
-}
-
-.gene-card h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1rem;
-}
-
-.gene-card .stats {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  font-size: 0.875rem;
-  opacity: 0.8;
 }
 
 .gene-card .status-row {
@@ -74,5 +33,5 @@
   padding: 2rem;
   color: var(--text);
   opacity: 0.6;
-  min-height: 114px;
+  min-height: 110px;
 }

@@ -1,7 +1,7 @@
 import { useBuildStore } from '../store';
 import './ResultingGenes.css';
 
-export function ResultingGenes() {
+export const ResultingGenes = () => {
   const genesById = useBuildStore(s => s.genesById);
   const selectedXeno = useBuildStore(s => s.selectedXeno);
   const selectedGermline = useBuildStore(s => s.selectedGermline);
@@ -71,8 +71,8 @@ export function ResultingGenes() {
             >
               <h3>{gene.name}</h3>
               <div className="stats">
-                <span>Efficiency: {gene.efficiency}</span>
                 <span>Complexity: {gene.complexity}</span>
+                <span>Efficiency: {gene.efficiency}</span>
               </div>
               {statusLabels.length > 0 && (
                 <div className="status-row">

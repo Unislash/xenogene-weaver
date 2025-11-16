@@ -24,8 +24,8 @@ export function XenogermPlanner() {
   return (
     <div className="xenogerm-planner">
       <h1>RimWorld Xenogerm Planner</h1>
-      <GermlineSelector />
       <SavedXenogerms />
+      <GermlineSelector />
       <Stats />
       <ResultingGenes />
       <AvailableGenes />

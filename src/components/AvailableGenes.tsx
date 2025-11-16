@@ -3,7 +3,7 @@ import { Gene } from '../types';
 import { genesConflict } from '../utils/geneConflicts';
 import './AvailableGenes.css';
 
-export function AvailableGenes() {
+export const AvailableGenes = () => {
   const genesById = useBuildStore(s => s.genesById);
   const selectedXeno = useBuildStore(s => s.selectedXeno);
   const selectedGermline = useBuildStore(s => s.selectedGermline);
@@ -71,6 +71,7 @@ export function AvailableGenes() {
             : isConflictedSelected;
           const classNames = [
             'gene-card',
+            'clickable',
             isGermline && 'germline',
             isSelected && 'selected',
             showSuppressed && 'suppressed',
@@ -97,8 +98,8 @@ export function AvailableGenes() {
               <div>
                 <h3>{gene.name}</h3>
                 <div className="stats">
-                  <span>Efficiency: {gene.efficiency}</span>
                   <span>Complexity: {gene.complexity}</span>
+                  <span>Efficiency: {gene.efficiency}</span>
                 </div>
                 {status && (
                   <div className={`status-label ${status}`}>

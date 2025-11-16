@@ -1,14 +1,14 @@
 :root {
-  --bg-app: #0B0E12;
-  --bg-grid: #121417;
-  --tile-default: #1E2227;
-  --germline-selected: #2F2A66;
-  --suppressed-overlay: rgba(70,61,122,0.6);
-  --accent-outline: #6C63FF;
-  --text: #E6E8EB;
+  --bg-app: #14191c;
+  --bg-grid: #2b2b2d;
+  --tile-default-bg: #414042;
+  --tile-selected-bg: #656669;
+  --germline-selected: #404e52;
+  --text: #fff;
   --warning: #FFB02E;
   --error: #FF5D5D;
   --good: #42D392;
+  --accent-glow: inset 0 0 1px #adadad83, inset 0 0 5px #909a9a;
 }
 
 * {
@@ -36,7 +36,8 @@ header {
 }
 
 main {
-  background-color: var(--bg-grid);
-  border-radius: 8px;
-  padding: 2rem;
+  background-color: var(--bg-app);
+  border: 1px solid #606a78;
+  border-radius: 1px;
+  padding: 1rem;
 }

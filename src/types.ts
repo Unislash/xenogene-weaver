@@ -5,7 +5,7 @@ export interface Gene {
   complexity: number;
   conflicts?: string[];
   imgSrc?: string;
-  capsules?: string[];
+  capsules?: string;
   sourceXenos?: string[];
 }
 

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useBuildStore } from '../store';
 import './SavedXenogerms.css';
 
-export function SavedXenogerms() {
+export const SavedXenogerms = () => {
   const savedMap = useBuildStore(s => s.savedXenogerms);
   const currentSavedId = useBuildStore(s => s.currentSavedXenogermId);
   const setSavedName = useBuildStore(s => s.setSavedXenogermName);
@@ -65,25 +65,22 @@ export function SavedXenogerms() {
           type="text"
           value={nameInput}
           placeholder={
-            selectedCount === 0
-              ? 'Select genes to save a xenogerm'
-              : 'Name this xenogerm to save it'
+            selectedCount === 0 ? 'Name this xenogerm to save it' : ''
           }
           onChange={e => handleNameChange(e.target.value)}
         />
-        {currentSavedId && (
-          <span className="name-hint">
-            Auto-saving {selectedCount} selected genes
-          </span>
-        )}
+        <span className="name-hint">
+          {currentSavedId ? `Auto-saving ${selectedCount} selected genes` : <>&nbsp;</> }
+        </span>
       </div>
       <div className="saved-list">
         {savedList.map(saved => (
           <div
             key={saved.id}
             className={`saved-chip ${currentSavedId === saved.id ? 'active' : ''}`}
+            onClick={() => handleSelectSaved(saved.id)}
           >
-            <button className="load" onClick={() => handleSelectSaved(saved.id)}>
+            <button className="text">
               <div className="meta">
                 <span className="name">{saved.name}</span>
                 <span className="count">{saved.genes.length} genes</span>

@@ -1,64 +1,15 @@
 .available-genes {
-  background: var(--bg-app);
+  background: var(--bg-grid);
   padding: 1.5rem;
-  border-radius: 8px;
   margin-bottom: 2rem;
 }
 
 .gene-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
   padding: 1rem 0;
-}
-
-.gene-card {
-  background: var(--tile-default);
-  border: 2px solid transparent;
-  border-radius: 6px;
-  padding: 1rem;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.2s ease;
-}
-
-.gene-card:hover:not(.germline) {
-  border-color: var(--accent-outline);
 }
 
 .gene-card.germline {
   background: var(--germline-selected);
-  cursor: default;
-}
-
-.gene-card.selected {
-  background: var(--accent-outline);
-  border-color: var(--accent-outline);
-  cursor: pointer;
-}
-
-.gene-card.germline.selected {
-  background: var(--germline-selected);
-  border-color: var(--accent-outline);
-  cursor: pointer;
-}
-
-.gene-card.suppressed,
-.gene-card.conflicted {
-  opacity: 0.65;
-}
-
-.gene-card h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1rem;
-}
-
-.gene-card .stats {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  font-size: 0.875rem;
-  opacity: 0.8;
 }
 
 .status-label {
@@ -68,12 +19,4 @@
   font-size: 0.75rem;
   text-transform: capitalize;
   opacity: 0.8;
-}
-
-.status-label.suppressed {
-  opacity: 0.6;
-}
-
-.status-label.override {
-  color: var(--accent-outline);
 }

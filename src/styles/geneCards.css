@@ -1,0 +1,59 @@
+.gene-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.gene-card {
+  background: var(--tile-default-bg);
+  border-radius: 1px;
+  padding: 1rem;
+  position: relative;
+  transition: all 0.1s ease;
+  box-shadow: inset 0 0 1px #e0e0e0b2, inset 0 0 2px #e0e0e078;
+}
+
+.gene-card {
+  cursor: default;
+}
+
+.gene-card.clickable {
+  cursor: pointer;
+}
+
+.gene-card.clickable:hover {
+  filter: brightness(1.3);
+}
+
+.gene-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.gene-card .stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.gene-card.germline {
+  background: var(--germline-selected);
+}
+
+.gene-card.xeno,
+.gene-card.selected {
+  background: var(--tile-selected-bg);
+}
+
+.gene-card.xeno.clickable:hover,
+.gene-card.selected.clickable:hover {
+  filter: brightness(1.2);
+}
+
+.gene-card.suppressed,
+.gene-card.conflicted {
+  opacity: 0.65;
+}

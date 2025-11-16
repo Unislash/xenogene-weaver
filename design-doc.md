@@ -146,7 +146,7 @@ rgba(70,61,122,0.6)
 
 Overlay for suppressed germlines
 
-`--accent-outline`
+`--tile-selected-bg`
 
 #6C63FF
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useBuildStore } from '../store';
 import './GermlineSelector.css';
 
-export function GermlineSelector() {
+export const GermlineSelector = () => {
   const germlinesById = useBuildStore(s => s.germlinesById);
   const selectedGermline = useBuildStore(s => s.selectedGermline);
   const selectGermline = useBuildStore(s => s.selectGermline);
