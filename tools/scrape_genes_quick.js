@@ -104,6 +104,11 @@ function slugify(name) {
         return sourceNames;
     };
 
+    // Some conflict names have references in brackets, e.g. "Artistic [A]"
+    const cleanConflictName = (name) => {
+        return name.replace(/\[.*?\]/g, "").trim();
+    };
+
     const parseConflicts = (cell) => {
         const rawHtml = cell.html();
         if (!rawHtml) return [];
@@ -117,6 +122,7 @@ function slugify(name) {
         return normalized
             .split(/\n+/)
             .map((segment) => cheerio.load(segment).text().trim())
+            .map((text) => cleanConflictName(text))
             .filter(Boolean)
             .filter((str) => str !== "-");
     };
@@ -151,7 +157,7 @@ function slugify(name) {
                     capsulesCol = column;
                 } else if (fuzzySearch("xenotypes", $(th))) {
                     sourceXenoCol = column;
-                } else if (fuzzySearch("exclude", $(th))) {
+                } else if (fuzzySearch("exclude", $(th)) || fuzzySearch("skill", $(th))) {
                     conflictsCol = column;
                 }
             });

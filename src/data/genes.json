@@ -1334,7 +1334,9 @@
         "Waster",
         "Starjack"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Animals"
+      ],
       "imgSrc": "64px-Gene_AwfulAnimals.png"
     },
     {
@@ -1346,7 +1348,9 @@
       "sourceXenos": [
         "Hussar"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Artistic"
+      ],
       "imgSrc": "64px-Gene_AwfulArtistic.png"
     },
     {
@@ -1355,7 +1359,9 @@
       "description": "The carrier's aptitude in Construction is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Construction.\n\nConstruction: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Construction",
       "efficiency": 2,
       "complexity": 1,
-      "conflicts": [],
+      "conflicts": [
+        "Construction"
+      ],
       "imgSrc": "64px-Gene_AwfulConstruction.png"
     },
     {
@@ -1364,7 +1370,9 @@
       "description": "The carrier's aptitude in Cooking is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Cooking.\n\nCooking: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Cooking",
       "efficiency": 2,
       "complexity": 1,
-      "conflicts": [],
+      "conflicts": [
+        "Cooking"
+      ],
       "imgSrc": "64px-Gene_AwfulCooking.png"
     },
     {
@@ -1373,7 +1381,9 @@
       "description": "The carrier's aptitude in Crafting is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Crafting.\n\nCrafting: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Crafting",
       "efficiency": 2,
       "complexity": 1,
-      "conflicts": [],
+      "conflicts": [
+        "Crafting"
+      ],
       "imgSrc": "64px-Gene_AwfulCrafting.png"
     },
     {
@@ -1382,7 +1392,9 @@
       "description": "The carrier's aptitude in Medical is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Medical.\n\nMedical: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Medical",
       "efficiency": 2,
       "complexity": 1,
-      "conflicts": [],
+      "conflicts": [
+        "Medical"
+      ],
       "imgSrc": "64px-Gene_AwfulMedical.png"
     },
     {
@@ -1394,7 +1406,9 @@
       "sourceXenos": [
         "Starjack"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Melee"
+      ],
       "imgSrc": "64px-Gene_AwfulMelee.png"
     },
     {
@@ -1408,7 +1422,9 @@
         "Highmate",
         "Starjack"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Mining"
+      ],
       "imgSrc": "64px-Gene_AwfulMining.png"
     },
     {
@@ -1417,7 +1433,9 @@
       "description": "The carrier's aptitude in Intellectual is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Intellectual.\n\nIntellectual: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Intellectual",
       "efficiency": 2,
       "complexity": 1,
-      "conflicts": [],
+      "conflicts": [
+        "Intellectual"
+      ],
       "imgSrc": "64px-Gene_AwfulIntellectual.png"
     },
     {
@@ -1430,7 +1448,9 @@
         "Hussar",
         "Highmate"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Plants"
+      ],
       "imgSrc": "64px-Gene_AwfulPlants.png"
     },
     {
@@ -1439,7 +1459,9 @@
       "description": "The carrier's aptitude in Shooting is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Shooting.\n\nShooting: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Shooting",
       "efficiency": 2,
       "complexity": 1,
-      "conflicts": [],
+      "conflicts": [
+        "Shooting"
+      ],
       "imgSrc": "64px-Gene_AwfulShooting.png"
     },
     {
@@ -1452,7 +1474,9 @@
         "Genie",
         "Hussar"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Social"
+      ],
       "imgSrc": "64px-Gene_AwfulSocial.png"
     },
     {
@@ -1465,7 +1489,9 @@
         "Genie",
         "Impid"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Animals"
+      ],
       "imgSrc": "64px-Gene_PoorAnimals.png"
     },
     {
@@ -1477,7 +1503,9 @@
       "sourceXenos": [
         "Waster"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Artistic"
+      ],
       "imgSrc": "64px-Gene_PoorArtistic.png"
     },
     {
@@ -1486,7 +1514,9 @@
       "description": "The carrier's aptitude in Construction is reduced by 4. Aptitude acts like an offset on skill level.\n\nConstruction: −4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": 1,
       "complexity": 1,
-      "conflicts": [],
+      "conflicts": [
+        "Construction"
+      ],
       "imgSrc": "64px-Gene_PoorConstruction.png"
     },
     {
@@ -1499,7 +1529,9 @@
         "Pigskin",
         "Waster"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Cooking"
+      ],
       "imgSrc": "64px-Gene_PoorCooking.png"
     },
     {
@@ -1508,7 +1540,9 @@
       "description": "The carrier's aptitude in Crafting is reduced by 4. Aptitude acts like an offset on skill level.\n\nCrafting: −4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": 1,
       "complexity": 1,
-      "conflicts": [],
+      "conflicts": [
+        "Crafting"
+      ],
       "imgSrc": "64px-Gene_PoorCrafting.png"
     },
     {
@@ -1517,7 +1551,9 @@
       "description": "The carrier's aptitude in Medical is reduced by 4. Aptitude acts like an offset on skill level.\n\nMedical: −4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": 1,
       "complexity": 1,
-      "conflicts": [],
+      "conflicts": [
+        "Medical"
+      ],
       "imgSrc": "64px-Gene_PoorMedical.png"
     },
     {
@@ -1526,7 +1562,9 @@
       "description": "The carrier's aptitude in Melee is reduced by 4. Aptitude acts like an offset on skill level.\n\nMelee: −4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": 1,
       "complexity": 1,
-      "conflicts": [],
+      "conflicts": [
+        "Melee"
+      ],
       "imgSrc": "64px-Gene_PoorMelee.png"
     },
     {
@@ -1535,7 +1573,9 @@
       "description": "The carrier's aptitude in Mining is reduced by 4. Aptitude acts like an offset on skill level.\n\nMining: −4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": 1,
       "complexity": 1,
-      "conflicts": [],
+      "conflicts": [
+        "Mining"
+      ],
       "imgSrc": "64px-Gene_PoorMining.png"
     },
     {
@@ -1547,7 +1587,9 @@
       "sourceXenos": [
         "Neanderthal"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Intellectual"
+      ],
       "imgSrc": "64px-Gene_PoorIntellectual.png"
     },
     {
@@ -1560,7 +1602,9 @@
         "Genie",
         "Impid"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Plants"
+      ],
       "imgSrc": "64px-Gene_PoorPlants.png"
     },
     {
@@ -1572,7 +1616,9 @@
       "sourceXenos": [
         "Neanderthal"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Shooting"
+      ],
       "imgSrc": "64px-Gene_PoorShooting.png"
     },
     {
@@ -1584,7 +1630,9 @@
       "sourceXenos": [
         "Neanderthal"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Social"
+      ],
       "imgSrc": "64px-Gene_PoorSocial.png"
     },
     {
@@ -1593,7 +1641,9 @@
       "description": "The carrier's aptitude in Animals is increased by 4. Aptitude acts like an offset on skill level.\n\nAnimals: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
-      "conflicts": [],
+      "conflicts": [
+        "Animals"
+      ],
       "imgSrc": "64px-Gene_StrongAnimals.png"
     },
     {
@@ -1602,7 +1652,9 @@
       "description": "The carrier's aptitude in Artistic is increased by 4. Aptitude acts like an offset on skill level.\n\nArtistic: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
-      "conflicts": [],
+      "conflicts": [
+        "Artistic"
+      ],
       "imgSrc": "64px-Gene_StrongArtistic.png"
     },
     {
@@ -1611,7 +1663,9 @@
       "description": "The carrier's aptitude in Construction is increased by 4. Aptitude acts like an offset on skill level.\n\nConstruction: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
-      "conflicts": [],
+      "conflicts": [
+        "Construction"
+      ],
       "imgSrc": "64px-Gene_StrongConstruction.png"
     },
     {
@@ -1620,7 +1674,9 @@
       "description": "The carrier's aptitude in Cooking is increased by 4. Aptitude acts like an offset on skill level.\n\nCooking: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
-      "conflicts": [],
+      "conflicts": [
+        "Cooking"
+      ],
       "imgSrc": "64px-Gene_StrongCooking.png"
     },
     {
@@ -1629,7 +1685,9 @@
       "description": "The carrier's aptitude in Crafting is increased by 4. Aptitude acts like an offset on skill level.\n\nCrafting: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
-      "conflicts": [],
+      "conflicts": [
+        "Crafting"
+      ],
       "imgSrc": "64px-Gene_StrongCrafting.png"
     },
     {
@@ -1638,7 +1696,9 @@
       "description": "The carrier's aptitude in Medical is increased by 4. Aptitude acts like an offset on skill level.\n\nMedical: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
-      "conflicts": [],
+      "conflicts": [
+        "Medical"
+      ],
       "imgSrc": "64px-Gene_StrongMedical.png"
     },
     {
@@ -1650,7 +1710,9 @@
       "sourceXenos": [
         "Sanguophage"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Melee"
+      ],
       "imgSrc": "64px-Gene_StrongMelee.png"
     },
     {
@@ -1659,7 +1721,9 @@
       "description": "The carrier's aptitude in Mining is increased by 4. Aptitude acts like an offset on skill level.\n\nMining: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
-      "conflicts": [],
+      "conflicts": [
+        "Mining"
+      ],
       "imgSrc": "64px-Gene_StrongMining.png"
     },
     {
@@ -1671,7 +1735,9 @@
       "sourceXenos": [
         "Sanguophage"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Intellectual"
+      ],
       "imgSrc": "64px-Gene_StrongIntellectual.png"
     },
     {
@@ -1680,7 +1746,9 @@
       "description": "The carrier's aptitude in Plants is increased by 4. Aptitude acts like an offset on skill level.\n\nPlants: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
-      "conflicts": [],
+      "conflicts": [
+        "Plants"
+      ],
       "imgSrc": "64px-Gene_StrongPlants.png"
     },
     {
@@ -1689,7 +1757,9 @@
       "description": "The carrier's aptitude in Shooting is increased by 4. Aptitude acts like an offset on skill level.\n\nShooting: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
-      "conflicts": [],
+      "conflicts": [
+        "Shooting"
+      ],
       "imgSrc": "64px-Gene_StrongShooting.png"
     },
     {
@@ -1701,7 +1771,9 @@
       "sourceXenos": [
         "Sanguophage"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Social"
+      ],
       "imgSrc": "64px-Gene_StrongSocial.png"
     },
     {
@@ -1713,7 +1785,9 @@
       "sourceXenos": [
         "Yttakin"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Animals"
+      ],
       "imgSrc": "64px-Gene_GreatAnimals.png"
     },
     {
@@ -1722,7 +1796,9 @@
       "description": "The carrier's aptitude in Artistic is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Artistic.\n\nArtistic: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Artistic",
       "efficiency": -3,
       "complexity": 2,
-      "conflicts": [],
+      "conflicts": [
+        "Artistic"
+      ],
       "imgSrc": "64px-Gene_GreatArtistic.png"
     },
     {
@@ -1734,7 +1810,9 @@
       "sourceXenos": [
         "Starjack"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Construction"
+      ],
       "imgSrc": "64px-Gene_GreatConstruction.png"
     },
     {
@@ -1743,7 +1821,9 @@
       "description": "The carrier's aptitude in Cooking is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Cooking.\n\nCooking: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Cooking",
       "efficiency": -3,
       "complexity": 2,
-      "conflicts": [],
+      "conflicts": [
+        "Cooking"
+      ],
       "imgSrc": "64px-Gene_GreatCooking.png"
     },
     {
@@ -1755,7 +1835,9 @@
       "sourceXenos": [
         "Genie"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Crafting"
+      ],
       "imgSrc": "64px-Gene_GreatCrafting.png"
     },
     {
@@ -1764,7 +1846,9 @@
       "description": "The carrier's aptitude in Medical is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Medical.\n\nMedical: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Medical",
       "efficiency": -3,
       "complexity": 2,
-      "conflicts": [],
+      "conflicts": [
+        "Medical"
+      ],
       "imgSrc": "64px-Gene_GreatMedical.png"
     },
     {
@@ -1776,7 +1860,9 @@
       "sourceXenos": [
         "Hussar"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Melee"
+      ],
       "imgSrc": "64px-Gene_GreatMelee.png"
     },
     {
@@ -1788,7 +1874,9 @@
       "sourceXenos": [
         "Dirtmole"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Mining"
+      ],
       "imgSrc": "64px-Gene_GreatMining.png"
     },
     {
@@ -1800,7 +1888,9 @@
       "sourceXenos": [
         "Genie"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Intellectual"
+      ],
       "imgSrc": "64px-Gene_GreatIntellectual.png"
     },
     {
@@ -1809,7 +1899,9 @@
       "description": "The carrier's aptitude in Plants is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Plants.\n\nPlants: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Plants",
       "efficiency": -3,
       "complexity": 2,
-      "conflicts": [],
+      "conflicts": [
+        "Plants"
+      ],
       "imgSrc": "64px-Gene_GreatPlants.png"
     },
     {
@@ -1821,7 +1913,9 @@
       "sourceXenos": [
         "Hussar"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Shooting"
+      ],
       "imgSrc": "64px-Gene_GreatShooting.png"
     },
     {
@@ -1833,7 +1927,9 @@
       "sourceXenos": [
         "Highmate"
       ],
-      "conflicts": [],
+      "conflicts": [
+        "Social"
+      ],
       "imgSrc": "64px-Gene_GreatSocial.png"
     },
     {
