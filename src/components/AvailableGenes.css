@@ -11,12 +11,3 @@
 .gene-card.germline {
   background: var(--germline-selected);
 }
-
-.status-label {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  font-size: 0.75rem;
-  text-transform: capitalize;
-  opacity: 0.8;
-}

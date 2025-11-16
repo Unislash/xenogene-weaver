@@ -1,4 +1,5 @@
 import { useBuildStore } from '../store';
+import { getGeneImage } from '../images';
 import './ResultingGenes.css';
 
 export const ResultingGenes = () => {
@@ -48,6 +49,7 @@ export const ResultingGenes = () => {
           const isXeno = type === 'xeno';
           const classNames = [
             'gene-card',
+            gene.capsules && 'archite',
             type,
             (suppressed || conflicted) && 'suppressed',
             isXeno && 'clickable',
@@ -62,6 +64,7 @@ export const ResultingGenes = () => {
           if (override) {
             statusLabels.push({ key: 'override', text: 'Override' });
           }
+          const imageSrc = getGeneImage(gene.imgSrc);
 
           return (
             <div
@@ -69,13 +72,18 @@ export const ResultingGenes = () => {
               className={classNames}
               onClick={isXeno ? () => toggleXenoGene(gene.id) : undefined}
             >
+              {imageSrc && (
+                <div className="gene-thumb">
+                  <img src={imageSrc} alt={gene.name} loading="lazy" />
+                </div>
+              )}
               <h3>{gene.name}</h3>
               <div className="stats">
                 <span>Complexity: {gene.complexity}</span>
                 <span>Efficiency: {gene.efficiency}</span>
               </div>
               {statusLabels.length > 0 && (
-                <div className="status-row">
+                <div className="status-label">
                   {statusLabels.map(({ key, text }) => (
                     <span key={key} className={`status ${key}`}>
                       {text}

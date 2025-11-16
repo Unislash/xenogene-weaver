@@ -1,6 +1,7 @@
 import { useBuildStore } from '../store';
 import { Gene } from '../types';
 import { genesConflict } from '../utils/geneConflicts';
+import { getGeneImage } from '../images';
 import './AvailableGenes.css';
 
 export const AvailableGenes = () => {
@@ -74,6 +75,7 @@ export const AvailableGenes = () => {
             'clickable',
             isGermline && 'germline',
             isSelected && 'selected',
+            gene.capsules && 'archite',
             showSuppressed && 'suppressed',
             !isSelected && isConflicted && 'conflicted',
           ]
@@ -86,15 +88,18 @@ export const AvailableGenes = () => {
             isOverride,
             showConflictedHint: !isSelected && isConflicted,
           });
+          const imageSrc = getGeneImage(gene.imgSrc);
           return (
             <div
               key={gene.id}
               className={classNames}
               onClick={() => toggleXenoGene(gene.id)}
             >
-              <div>
-                {/* image placeholder */}
-              </div>
+              {imageSrc && (
+                <div className="gene-thumb">
+                  <img src={imageSrc} alt={gene.name} loading="lazy" />
+                </div>
+              )}
               <div>
                 <h3>{gene.name}</h3>
                 <div className="stats">
@@ -107,7 +112,7 @@ export const AvailableGenes = () => {
                       override: 'Override',
                       suppressed: 'Suppressed',
                       germline: 'Germline',
-                      selected: 'Selected',
+                      selected: '',
                     }[status] ?? status}
                   </div>
                 )}

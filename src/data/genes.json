@@ -104,7 +104,7 @@
         "ToxicEnvironmentResistance",
         "VacuumResistance"
       ],
-      "imgSrc": "64px-OdysseyIcon.png"
+      "imgSrc": "64px-Gene_Breathless.png"
     },
     {
       "id": "fire_spew",
@@ -728,7 +728,7 @@
       "conflicts": [
         "VacuumResistance"
       ],
-      "imgSrc": "64px-OdysseyIcon.png"
+      "imgSrc": "64px-Gene_VacuumResistance.png"
     },
     {
       "id": "dead_calm",
@@ -1321,7 +1321,7 @@
         "Starjack"
       ],
       "conflicts": [],
-      "imgSrc": "64px-OdysseyIcon.png"
+      "imgSrc": "64px-Gene_LowGravityAdapted.png"
     },
     {
       "id": "awful_animals",

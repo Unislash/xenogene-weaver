@@ -36,6 +36,13 @@ const config: Configuration = {
         use: [rspack.CssExtractRspackPlugin.loader, 'css-loader'],
         type: 'javascript/auto',
       },
+      {
+        test: /\.(png|jpe?g|gif|webp|svg)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][hash][ext][query]',
+        },
+      },
     ]
   },
   resolve: {

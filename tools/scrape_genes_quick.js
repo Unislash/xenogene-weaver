@@ -178,7 +178,7 @@ function slugify(name) {
                 const nameCell = tds.eq(0);
                 const name = nameCell.text().trim();
 
-                const imgSrc = nameCell.find("img").attr("src") || "";
+                const imgSrc = nameCell.find("a.image img").attr("src") || "";
 
                 const description =
                     descriptionCol !== null
