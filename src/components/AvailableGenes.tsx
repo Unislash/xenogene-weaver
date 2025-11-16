@@ -21,12 +21,11 @@ export function AvailableGenes() {
 
   const warningGenes = useBuildStore(s => s.warningGenes);
 
-  const getGeneStatus = (gene: Gene) => {
+  const getStatusLabel = (gene: Gene) => {
     if (warningGenes.has(gene.id)) return 'warning';
     if (isGermlineMember(gene.id)) return 'germline';
     if (selectedXeno.has(gene.id)) return 'selected';
     if (suppressedGenes.has(gene.id)) return 'suppressed';
-    // conflict with selected xenogenes
     if (gene.conflicts?.some(id => selectedXeno.has(id))) return 'conflicted';
     return '';
   };
@@ -36,12 +35,28 @@ export function AvailableGenes() {
       <h2>Available Genes</h2>
       <div className="gene-grid">
         {genes.map(gene => {
-          const status = getGeneStatus(gene);
+          const isSelected = selectedXeno.has(gene.id);
+          const isGermline = isGermlineMember(gene.id);
+          const isSuppressed = suppressedGenes.has(gene.id);
+          const isWarning = warningGenes.has(gene.id);
+          const isConflicted =
+            gene.conflicts?.some(id => selectedXeno.has(id)) ?? false;
+          const classNames = [
+            'gene-card',
+            isWarning && 'warning',
+            isGermline && 'germline',
+            isSelected && 'selected',
+            isSuppressed && 'suppressed',
+            isConflicted && 'conflicted',
+          ]
+            .filter(Boolean)
+            .join(' ');
+          const status = getStatusLabel(gene);
           return (
             <div
               key={gene.id}
-              className={`gene-card ${status}`}
-                onClick={() => toggleXenoGene(gene.id)}
+              className={classNames}
+              onClick={() => toggleXenoGene(gene.id)}
             >
               <div>
                 {/* <img src={images.find(img => img.name == gene.imgSrc).src} alt={gene.name} /> */}

@@ -22,7 +22,7 @@
   transition: all 0.2s ease;
 }
 
-.gene-card:hover:not(.germline):not(.selected):not(.conflicted) {
+.gene-card:hover:not(.conflicted):not(.germline) {
   border-color: var(--accent-outline);
 }
 
@@ -31,9 +31,12 @@
   cursor: default;
 }
 
+.gene-card.germline:not(.selected) {
+  border-color: transparent;
+}
+
 .gene-card.germline-member {
   background: #1c2d32;
-  cursor: default;
 }
 
 .gene-card.warning {
@@ -51,7 +54,14 @@
 
 .gene-card.selected {
   background: var(--accent-outline);
-  cursor: default;
+  border-color: var(--accent-outline);
+  cursor: pointer;
+}
+
+.gene-card.germline.selected {
+  background: var(--germline-selected);
+  border-color: var(--accent-outline);
+  cursor: pointer;
 }
 
 .gene-card.conflicted {

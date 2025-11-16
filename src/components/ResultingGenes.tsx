@@ -29,18 +29,18 @@ export function ResultingGenes() {
         {activeGenes.map(({ id, type }) => {
           const gene = genesById[id];
           if (!gene) return null;
+          const isXeno = type === 'xeno';
           return (
-            <div key={gene.id} className={`gene-card ${type}`}>
+            <div
+              key={gene.id}
+              className={`gene-card ${type} ${isXeno ? 'clickable' : ''}`}
+              onClick={isXeno ? () => toggleXenoGene(gene.id) : undefined}
+            >
               <h3>{gene.name}</h3>
               <div className="stats">
                 <span>Efficiency: {gene.efficiency}</span>
                 <span>Complexity: {gene.complexity}</span>
               </div>
-              {type === 'xeno' && (
-                <button className="remove-button" onClick={() => toggleXenoGene(gene.id)}>
-                  Remove
-                </button>
-              )}
             </div>
           );
         })}
