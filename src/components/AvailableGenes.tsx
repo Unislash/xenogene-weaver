@@ -1,6 +1,6 @@
 import { useBuildStore } from '../store';
 import { Gene } from '../types';
-import { images } from '../images';
+import { genesConflict } from '../utils/geneConflicts';
 import './AvailableGenes.css';
 
 export function AvailableGenes() {
@@ -9,6 +9,8 @@ export function AvailableGenes() {
   const selectedGermline = useBuildStore(s => s.selectedGermline);
   const germlinesById = useBuildStore(s => s.germlinesById);
   const suppressedGenes = useBuildStore(s => s.suppressedGenes);
+  const conflictedGenes = useBuildStore(s => s.conflictedGenes);
+  const overrideGenes = useBuildStore(s => s.overrideGenes);
   const toggleXenoGene = useBuildStore(s => s.toggleXenoGene);
 
   const genes = Object.values(genesById);
@@ -19,14 +21,35 @@ export function AvailableGenes() {
     return g?.genes.includes(geneId) ?? false;
   };
 
-  const warningGenes = useBuildStore(s => s.warningGenes);
+  const conflictsWithSelected = (gene: Gene) => {
+    for (const selectedId of selectedXeno) {
+      if (selectedId === gene.id) continue;
+      const selectedGene = genesById[selectedId];
+      if (genesConflict(gene, selectedGene)) return true;
+    }
+    return false;
+  };
 
-  const getStatusLabel = (gene: Gene) => {
-    if (warningGenes.has(gene.id)) return 'warning';
-    if (isGermlineMember(gene.id)) return 'germline';
-    if (selectedXeno.has(gene.id)) return 'selected';
-    if (suppressedGenes.has(gene.id)) return 'suppressed';
-    if (gene.conflicts?.some(id => selectedXeno.has(id))) return 'conflicted';
+  const getStatusLabel = (
+    {
+      isSelected,
+      isGermline,
+      showSuppressed,
+      isOverride,
+      showConflictedHint,
+    }: {
+      isSelected: boolean;
+      isGermline: boolean;
+      showSuppressed: boolean;
+      isOverride: boolean;
+      showConflictedHint: boolean;
+    }
+  ) => {
+    if (isOverride) return 'override';
+    if (showSuppressed) return 'suppressed';
+    if (isGermline) return 'germline';
+    if (isSelected) return 'selected';
+    if (showConflictedHint) return 'suppressed';
     return '';
   };
 
@@ -38,20 +61,30 @@ export function AvailableGenes() {
           const isSelected = selectedXeno.has(gene.id);
           const isGermline = isGermlineMember(gene.id);
           const isSuppressed = suppressedGenes.has(gene.id);
-          const isWarning = warningGenes.has(gene.id);
-          const isConflicted =
-            gene.conflicts?.some(id => selectedXeno.has(id)) ?? false;
+          const isConflictedSelected = isSelected && conflictedGenes.has(gene.id);
+          const isConflicted = isSelected
+            ? isConflictedSelected
+            : conflictsWithSelected(gene);
+          const isOverride = overrideGenes.has(gene.id);
+          const showSuppressed = isGermline
+            ? isSuppressed
+            : isConflictedSelected;
           const classNames = [
             'gene-card',
-            isWarning && 'warning',
             isGermline && 'germline',
             isSelected && 'selected',
-            isSuppressed && 'suppressed',
-            isConflicted && 'conflicted',
+            showSuppressed && 'suppressed',
+            !isSelected && isConflicted && 'conflicted',
           ]
             .filter(Boolean)
             .join(' ');
-          const status = getStatusLabel(gene);
+          const status = getStatusLabel({
+            isSelected,
+            isGermline,
+            showSuppressed,
+            isOverride,
+            showConflictedHint: !isSelected && isConflicted,
+          });
           return (
             <div
               key={gene.id}
@@ -59,15 +92,24 @@ export function AvailableGenes() {
               onClick={() => toggleXenoGene(gene.id)}
             >
               <div>
-                {/* <img src={images.find(img => img.name == gene.imgSrc).src} alt={gene.name} /> */}
+                {/* image placeholder */}
               </div>
               <div>
                 <h3>{gene.name}</h3>
                 <div className="stats">
-                    <span>Efficiency: {gene.efficiency}</span>
-                    <span>Complexity: {gene.complexity}</span>
+                  <span>Efficiency: {gene.efficiency}</span>
+                  <span>Complexity: {gene.complexity}</span>
                 </div>
-                <div className="status-label">{status}</div>
+                {status && (
+                  <div className={`status-label ${status}`}>
+                    {{
+                      override: 'Override',
+                      suppressed: 'Suppressed',
+                      germline: 'Germline',
+                      selected: 'Selected',
+                    }[status] ?? status}
+                  </div>
+                )}
               </div>
             </div>
           );

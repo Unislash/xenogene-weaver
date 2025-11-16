@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { BuildState, BuildActions, Gene, Germline } from './types';
+import { genesConflict } from './utils/geneConflicts';
 
 export const useBuildStore = create<BuildState & BuildActions>((set, get) => ({
   genesById: {},
@@ -7,7 +8,8 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => ({
   selectedGermline: null,
   selectedXeno: new Set<string>(),
   suppressedGenes: new Set<string>(),
-  warningGenes: new Set<string>(),
+  conflictedGenes: new Set<string>(),
+  overrideGenes: new Set<string>(),
   totals: {
     efficiency: 0,
     complexity: 0,
@@ -39,66 +41,103 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => ({
   toggleXenoGene: (geneId: string) => {
     const state = get();
     const newSelected = new Set(state.selectedXeno);
+    const wasSelected = newSelected.has(geneId);
 
-    if (newSelected.has(geneId)) {
+    if (wasSelected) {
       newSelected.delete(geneId);
     } else {
-      const gene = state.genesById[geneId];
-      const currentGermline = state.selectedGermline
-        ? state.germlinesById[state.selectedGermline]
-        : null;
-
-      // Determine conflicts *only* with other selected xeno genes. Conflicts with germline are allowed
-      const conflictedWithXeno = gene.conflicts?.filter(conflictId => state.selectedXeno.has(conflictId)) ?? [];
-
-      if (conflictedWithXeno.length > 0) {
-        // Remove the conflicting xenogene(s) and add warning highlight
-        for (const id of conflictedWithXeno) newSelected.delete(id);
-        newSelected.add(geneId);
-        const newWarnings = new Set(state.warningGenes);
-        for (const id of conflictedWithXeno) newWarnings.add(id);
-        set({ warningGenes: newWarnings });
-
-        // Clear warnings after short timeout
-        setTimeout(() => {
-          const s = get();
-          const cleared = new Set(s.warningGenes);
-          for (const id of conflictedWithXeno) cleared.delete(id);
-          set({ warningGenes: cleared });
-        }, 1500);
-      } else {
-        // No conflict with other xeno genes, selection allowed even if it conflicts with germline
-        newSelected.add(geneId);
-      }
+      newSelected.add(geneId);
     }
 
-    const newSuppressed = get().calculateSuppressedGenes();
-    set({ selectedXeno: newSelected, suppressedGenes: newSuppressed });
+    const newSuppressed = get().calculateSuppressedGenes(newSelected);
+    const newConflicted = get().calculateConflictedGenes(newSelected);
+    if (!wasSelected) {
+      newConflicted.delete(geneId);
+    }
+    const newOverrides = (() => {
+      const overrides = new Set<string>();
+      const snapshot = get();
+      const suppressedGermline = newSuppressed;
+
+      const conflictsSuppressed = (geneId: string) => {
+        const gene = snapshot.genesById[geneId];
+        if (!gene?.conflicts?.length) return false;
+        for (const suppressedId of suppressedGermline) {
+          const suppressedGene = snapshot.genesById[suppressedId];
+          if (genesConflict(gene, suppressedGene)) return true;
+        }
+        return false;
+      };
+
+      for (const id of newSelected) {
+        if (newConflicted.has(id)) continue;
+        const gene = snapshot.genesById[id];
+        if (!gene?.conflicts?.length) continue;
+
+        if (conflictsSuppressed(id)) {
+          overrides.add(id);
+          continue;
+        }
+
+        for (const conflictedId of newConflicted) {
+          const other = snapshot.genesById[conflictedId];
+          if (genesConflict(gene, other)) {
+            overrides.add(id);
+            break;
+          }
+        }
+      }
+
+      return overrides;
+    })();
+    set({
+      selectedXeno: newSelected,
+      suppressedGenes: newSuppressed,
+      conflictedGenes: newConflicted,
+      overrideGenes: newOverrides,
+    });
     get().calculateTotals();
   },
 
-  clearWarningGenes: () => {
-    set({ warningGenes: new Set<string>() });
-  },
-
-  calculateSuppressedGenes: () => {
+  calculateSuppressedGenes: (selectedOverride?: Set<string>) => {
     const state = get();
     const newSuppressed = new Set<string>();
     const currentGermline = state.selectedGermline
       ? state.germlinesById[state.selectedGermline]
       : null;
+    const selected = selectedOverride ?? state.selectedXeno;
 
     if (!currentGermline) return newSuppressed;
 
-    for (const xenoId of state.selectedXeno) {
+    for (const xenoId of selected) {
       const xenoGene = state.genesById[xenoId];
-      if (!xenoGene?.conflicts) continue;
-      for (const conflictId of xenoGene.conflicts) {
-        if (currentGermline.genes.includes(conflictId)) newSuppressed.add(conflictId);
+      if (!xenoGene) continue;
+      for (const germlineGeneId of currentGermline.genes) {
+        const germlineGene = state.genesById[germlineGeneId];
+        if (genesConflict(xenoGene, germlineGene)) newSuppressed.add(germlineGeneId);
       }
     }
 
     return newSuppressed;
+  },
+
+  calculateConflictedGenes: (selectedOverride?: Set<string>) => {
+    const state = get();
+    const selected = Array.from(selectedOverride ?? state.selectedXeno);
+    const conflicted = new Set<string>();
+    for (let i = 0; i < selected.length; i++) {
+      const geneA = state.genesById[selected[i]];
+      if (!geneA?.conflicts?.length) continue;
+      for (let j = i + 1; j < selected.length; j++) {
+        const geneB = state.genesById[selected[j]];
+        if (!geneB?.conflicts?.length) continue;
+        if (genesConflict(geneA, geneB)) {
+          conflicted.add(selected[i]);
+          conflicted.add(selected[j]);
+        }
+      }
+    }
+    return conflicted;
   },
 
   calculateTotals: () => {
@@ -115,7 +154,10 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => ({
       }
     }
 
-    for (const geneId of state.selectedXeno) activeGenes.add(geneId);
+    for (const geneId of state.selectedXeno) {
+      if (state.conflictedGenes.has(geneId)) continue;
+      activeGenes.add(geneId);
+    }
 
     const totals = [...activeGenes].reduce(
       (acc, geneId) => {
@@ -137,6 +179,8 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => ({
       selectedGermline: null,
       selectedXeno: new Set(),
       suppressedGenes: new Set(),
+      conflictedGenes: new Set(),
+      overrideGenes: new Set(),
       totals: { efficiency: 0, complexity: 0 },
       compatibleXenogerm: true,
     });

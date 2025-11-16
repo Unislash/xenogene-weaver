@@ -20,7 +20,8 @@ export interface BuildState {
   selectedGermline: string | null;
   selectedXeno: Set<string>;
   suppressedGenes: Set<string>;
-  warningGenes: Set<string>;
+  conflictedGenes: Set<string>;
+  overrideGenes: Set<string>;
   totals: {
     efficiency: number;
     complexity: number;
@@ -34,7 +35,7 @@ export type BuildActions = {
   selectGermline: (germlineId: string | null) => void;
   toggleXenoGene: (geneId: string) => void;
   calculateTotals: () => void;
-  calculateSuppressedGenes: () => Set<string>;
-  clearWarningGenes: () => void;
+  calculateSuppressedGenes: (selectedOverride?: Set<string>) => Set<string>;
+  calculateConflictedGenes: (selectedOverride?: Set<string>) => Set<string>;
   reset: () => void;
 };

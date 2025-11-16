@@ -101,7 +101,8 @@
       "complexity": 3,
       "capsules": "1",
       "conflicts": [
-        "ToxicEnvironmentResistance\n<p>VacuumResistance\n</p>"
+        "ToxicEnvironmentResistance",
+        "VacuumResistance"
       ],
       "imgSrc": "64px-OdysseyIcon.png"
     },
@@ -114,6 +115,7 @@
       "sourceXenos": [
         "Impid"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_Firespew.png"
     },
     {
@@ -122,6 +124,7 @@
       "description": "Carriers grow glands in the neck that generate and store a fire-retardant foam. They can spew this foam over an area to extinguish fires.\n\nAdds ability:  Foam spray\nSpray thick fire-retardant foam from glands in the neck up through the mouth. The foam will cover a small area and extinguish any fire it touches.\nSpits firefoam in a 3x3 area around the target, up to 4 tiles away. This leaves firefoam filth on the ground, extinguishing fires and preventing new ones from igniting.\nTarget: Pawn or Location\nWarmup Time: 60 ticks (1 sec)\nCooldown: 30,000 ticks (12 in-game hours) for all 3 charges. Cooldown will not begin until all charges have been expended.\nCharges: 3\nAI Can Use: False.",
       "efficiency": -2,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-Gene_FoamSpray.png"
     },
     {
@@ -133,6 +136,7 @@
       "sourceXenos": [
         "Yttakin"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_AnimalWarcall.png"
     },
     {
@@ -141,6 +145,7 @@
       "description": "Carriers grow glands in the neck that generate and store a sticky acid substance, along with acid-tolerant tissues in the mouth. They can spew this acid over an area, where it will stick to enemies and burn them.\n\nAdds ability:  Acid spray\nSpray a sticky acid substance from glands in the neck up through the mouth and all over the target area. The acid will stick to targets and burn them.\nSpits a fast-moving acid projectile in a 3x3 area around the target. This does 30 damage to buildings and items, and creates a harmless \"spent acid\" filth on each affected tile. Creatures in the affected area suffer a 30 damage burn (possibly spread over multiple body parts), but suffer no persistent damage over time. The attack has an AP of 80%[Armor type?] and a stopping power of 1.\nTarget: Pawn or Location\nRange: 8.9 tiles\nWarmup Time: 30 ticks (0.5 secs)\nCooldown: 30,000 ticks (12 in-game hours)\nCharges: 1\nAI Can Use: True.\nMarket value of genepacks containing this gene: ×150%",
       "efficiency": -2,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-Gene_AcidSpray.png"
     },
     {
@@ -152,6 +157,7 @@
       "sourceXenos": [
         "Sanguophage"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_Hemogenic.png"
     },
     {
@@ -163,6 +169,7 @@
       "sourceXenos": [
         "Sanguophage"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_HemogenDrain.png"
     },
     {
@@ -174,6 +181,7 @@
       "sourceXenos": [
         "Sanguophage"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_Coagulate.png"
     },
     {
@@ -185,6 +193,7 @@
       "sourceXenos": [
         "Sanguophage"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_Bloodfeeder.png"
     },
     {
@@ -196,6 +205,7 @@
       "sourceXenos": [
         "Sanguophage"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_LongJumpLegs.png"
     },
     {
@@ -207,6 +217,7 @@
       "sourceXenos": [
         "Sanguophage"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_PiercingSpine.png"
     },
     {
@@ -218,6 +229,7 @@
       "sourceXenos": [
         "Sanguophage"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_Deathrest.png"
     },
     {
@@ -1322,6 +1334,7 @@
         "Waster",
         "Starjack"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_AwfulAnimals.png"
     },
     {
@@ -1333,6 +1346,7 @@
       "sourceXenos": [
         "Hussar"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_AwfulArtistic.png"
     },
     {
@@ -1341,6 +1355,7 @@
       "description": "The carrier's aptitude in Construction is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Construction.\n\nConstruction: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Construction",
       "efficiency": 2,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-Gene_AwfulConstruction.png"
     },
     {
@@ -1349,6 +1364,7 @@
       "description": "The carrier's aptitude in Cooking is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Cooking.\n\nCooking: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Cooking",
       "efficiency": 2,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-Gene_AwfulCooking.png"
     },
     {
@@ -1357,6 +1373,7 @@
       "description": "The carrier's aptitude in Crafting is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Crafting.\n\nCrafting: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Crafting",
       "efficiency": 2,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-Gene_AwfulCrafting.png"
     },
     {
@@ -1365,6 +1382,7 @@
       "description": "The carrier's aptitude in Medical is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Medical.\n\nMedical: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Medical",
       "efficiency": 2,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-Gene_AwfulMedical.png"
     },
     {
@@ -1376,6 +1394,7 @@
       "sourceXenos": [
         "Starjack"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_AwfulMelee.png"
     },
     {
@@ -1389,6 +1408,7 @@
         "Highmate",
         "Starjack"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_AwfulMining.png"
     },
     {
@@ -1397,6 +1417,7 @@
       "description": "The carrier's aptitude in Intellectual is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Intellectual.\n\nIntellectual: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Intellectual",
       "efficiency": 2,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-Gene_AwfulIntellectual.png"
     },
     {
@@ -1409,6 +1430,7 @@
         "Hussar",
         "Highmate"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_AwfulPlants.png"
     },
     {
@@ -1417,6 +1439,7 @@
       "description": "The carrier's aptitude in Shooting is reduced by 8. Aptitude acts like an offset on skill level. Additionally, all passion is removed from Shooting.\n\nShooting: −8. Note: Experience gain and decay applies as if this offset did not exist.\nRemoves all passions for Shooting",
       "efficiency": 2,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-Gene_AwfulShooting.png"
     },
     {
@@ -1429,6 +1452,7 @@
         "Genie",
         "Hussar"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_AwfulSocial.png"
     },
     {
@@ -1441,6 +1465,7 @@
         "Genie",
         "Impid"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_PoorAnimals.png"
     },
     {
@@ -1452,6 +1477,7 @@
       "sourceXenos": [
         "Waster"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_PoorArtistic.png"
     },
     {
@@ -1460,6 +1486,7 @@
       "description": "The carrier's aptitude in Construction is reduced by 4. Aptitude acts like an offset on skill level.\n\nConstruction: −4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": 1,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-Gene_PoorConstruction.png"
     },
     {
@@ -1472,6 +1499,7 @@
         "Pigskin",
         "Waster"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_PoorCooking.png"
     },
     {
@@ -1480,6 +1508,7 @@
       "description": "The carrier's aptitude in Crafting is reduced by 4. Aptitude acts like an offset on skill level.\n\nCrafting: −4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": 1,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-Gene_PoorCrafting.png"
     },
     {
@@ -1488,6 +1517,7 @@
       "description": "The carrier's aptitude in Medical is reduced by 4. Aptitude acts like an offset on skill level.\n\nMedical: −4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": 1,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-Gene_PoorMedical.png"
     },
     {
@@ -1496,6 +1526,7 @@
       "description": "The carrier's aptitude in Melee is reduced by 4. Aptitude acts like an offset on skill level.\n\nMelee: −4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": 1,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-Gene_PoorMelee.png"
     },
     {
@@ -1504,6 +1535,7 @@
       "description": "The carrier's aptitude in Mining is reduced by 4. Aptitude acts like an offset on skill level.\n\nMining: −4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": 1,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-Gene_PoorMining.png"
     },
     {
@@ -1515,6 +1547,7 @@
       "sourceXenos": [
         "Neanderthal"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_PoorIntellectual.png"
     },
     {
@@ -1527,6 +1560,7 @@
         "Genie",
         "Impid"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_PoorPlants.png"
     },
     {
@@ -1538,6 +1572,7 @@
       "sourceXenos": [
         "Neanderthal"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_PoorShooting.png"
     },
     {
@@ -1549,6 +1584,7 @@
       "sourceXenos": [
         "Neanderthal"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_PoorSocial.png"
     },
     {
@@ -1557,6 +1593,7 @@
       "description": "The carrier's aptitude in Animals is increased by 4. Aptitude acts like an offset on skill level.\n\nAnimals: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-Gene_StrongAnimals.png"
     },
     {
@@ -1565,6 +1602,7 @@
       "description": "The carrier's aptitude in Artistic is increased by 4. Aptitude acts like an offset on skill level.\n\nArtistic: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-Gene_StrongArtistic.png"
     },
     {
@@ -1573,6 +1611,7 @@
       "description": "The carrier's aptitude in Construction is increased by 4. Aptitude acts like an offset on skill level.\n\nConstruction: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-Gene_StrongConstruction.png"
     },
     {
@@ -1581,6 +1620,7 @@
       "description": "The carrier's aptitude in Cooking is increased by 4. Aptitude acts like an offset on skill level.\n\nCooking: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-Gene_StrongCooking.png"
     },
     {
@@ -1589,6 +1629,7 @@
       "description": "The carrier's aptitude in Crafting is increased by 4. Aptitude acts like an offset on skill level.\n\nCrafting: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-Gene_StrongCrafting.png"
     },
     {
@@ -1597,6 +1638,7 @@
       "description": "The carrier's aptitude in Medical is increased by 4. Aptitude acts like an offset on skill level.\n\nMedical: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-Gene_StrongMedical.png"
     },
     {
@@ -1608,6 +1650,7 @@
       "sourceXenos": [
         "Sanguophage"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_StrongMelee.png"
     },
     {
@@ -1616,6 +1659,7 @@
       "description": "The carrier's aptitude in Mining is increased by 4. Aptitude acts like an offset on skill level.\n\nMining: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-Gene_StrongMining.png"
     },
     {
@@ -1627,6 +1671,7 @@
       "sourceXenos": [
         "Sanguophage"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_StrongIntellectual.png"
     },
     {
@@ -1635,6 +1680,7 @@
       "description": "The carrier's aptitude in Plants is increased by 4. Aptitude acts like an offset on skill level.\n\nPlants: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-Gene_StrongPlants.png"
     },
     {
@@ -1643,6 +1689,7 @@
       "description": "The carrier's aptitude in Shooting is increased by 4. Aptitude acts like an offset on skill level.\n\nShooting: +4. Note: Experience gain and decay applies as if this offset did not exist.",
       "efficiency": -1,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-Gene_StrongShooting.png"
     },
     {
@@ -1654,6 +1701,7 @@
       "sourceXenos": [
         "Sanguophage"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_StrongSocial.png"
     },
     {
@@ -1665,6 +1713,7 @@
       "sourceXenos": [
         "Yttakin"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_GreatAnimals.png"
     },
     {
@@ -1673,6 +1722,7 @@
       "description": "The carrier's aptitude in Artistic is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Artistic.\n\nArtistic: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Artistic",
       "efficiency": -3,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-Gene_GreatArtistic.png"
     },
     {
@@ -1684,6 +1734,7 @@
       "sourceXenos": [
         "Starjack"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_GreatConstruction.png"
     },
     {
@@ -1692,6 +1743,7 @@
       "description": "The carrier's aptitude in Cooking is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Cooking.\n\nCooking: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Cooking",
       "efficiency": -3,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-Gene_GreatCooking.png"
     },
     {
@@ -1703,6 +1755,7 @@
       "sourceXenos": [
         "Genie"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_GreatCrafting.png"
     },
     {
@@ -1711,6 +1764,7 @@
       "description": "The carrier's aptitude in Medical is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Medical.\n\nMedical: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Medical",
       "efficiency": -3,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-Gene_GreatMedical.png"
     },
     {
@@ -1722,6 +1776,7 @@
       "sourceXenos": [
         "Hussar"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_GreatMelee.png"
     },
     {
@@ -1733,6 +1788,7 @@
       "sourceXenos": [
         "Dirtmole"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_GreatMining.png"
     },
     {
@@ -1744,6 +1800,7 @@
       "sourceXenos": [
         "Genie"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_GreatIntellectual.png"
     },
     {
@@ -1752,6 +1809,7 @@
       "description": "The carrier's aptitude in Plants is increased by 8. Aptitude acts like an offset on skill level. Additionally, one level of passion is added to Plants.\n\nPlants: +8. Note: Experience gain and decay applies as if this offset did not exist.\nAdds one additional passion for Plants",
       "efficiency": -3,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-Gene_GreatPlants.png"
     },
     {
@@ -1763,6 +1821,7 @@
       "sourceXenos": [
         "Hussar"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_GreatShooting.png"
     },
     {
@@ -1774,6 +1833,7 @@
       "sourceXenos": [
         "Highmate"
       ],
+      "conflicts": [],
       "imgSrc": "64px-Gene_GreatSocial.png"
     },
     {
@@ -1782,6 +1842,7 @@
       "description": "Carriers are only half as likely to become addicted to Alcohol.\n\nAlcohol addiction factor: ×50%\nAlcohol tolerance gain: ×50%",
       "efficiency": -1,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-AddictionResistant_Alcohol.png"
     },
     {
@@ -1790,6 +1851,7 @@
       "description": "Carriers are only half as likely to become addicted to Smokeleaf.\n\nSmokeleaf addiction factor: ×50%\nSmokeleaf tolerance gain: ×50%",
       "efficiency": -1,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-AddictionResistant_Smokeleaf.png"
     },
     {
@@ -1798,6 +1860,7 @@
       "description": "Carriers are only half as likely to become addicted to Psychite.\n\nPsychite addiction factor: ×50%\nPsychite tolerance gain: ×50%\nOverdose chance: ×50% [Random or All]",
       "efficiency": -2,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-AddictionResistant_Psychite.png"
     },
     {
@@ -1806,6 +1869,7 @@
       "description": "Carriers are only half as likely to become addicted to Go-juice.\n\nGo-juice addiction factor: ×50%\nOverdose chance: ×50% [Random or All]",
       "efficiency": -2,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-AddictionResistant_Go_Juice.png"
     },
     {
@@ -1814,6 +1878,7 @@
       "description": "Carriers are only half as likely to become addicted to Wake-up.\n\nWake-up addiction factor: ×50%\nOverdose chance: ×50% [Only this drug?] [Random or All?]",
       "efficiency": -2,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-AddictionResistant_Wake_Up.png"
     },
     {
@@ -1822,6 +1887,7 @@
       "description": "Carriers of this gene never get addicted to Alcohol.\n\nAlcohol addiction factor: x0%\nTolerance build-up for Alcohol: -100%",
       "efficiency": -3,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-AddictionImmune_Alcohol.png"
     },
     {
@@ -1830,6 +1896,7 @@
       "description": "Carriers of this gene never get addicted to Smokeleaf.\n\nSmokeleaf addiction factor: x0%\nTolerance build-up for Smokeleaf: -100%",
       "efficiency": -3,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-AddictionImmune_Smokeleaf.png"
     },
     {
@@ -1838,6 +1905,7 @@
       "description": "Carriers of this gene never get addicted to Psychite.\n\nPsychite addiction factor: x0%\nTolerance build-up for Psychite: ×0%\nCumulative overdose severity and random, per-dose overdose chance from Psychite based drugs eliminated.",
       "efficiency": -5,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-AddictionImmune_Psychite.png"
     },
     {
@@ -1846,6 +1914,7 @@
       "description": "Carriers of this gene never get addicted to Go-juice.\n\nGo-juice addiction factor: x0%\nCumulative overdose severity and random, per-dose overdose chance from Go-juice eliminated.",
       "efficiency": -5,
       "complexity": 2,
+      "conflicts": [],
       "imgSrc": "64px-AddictionImmune_Go_Juice.png"
     },
     {
@@ -1857,6 +1926,7 @@
       "sourceXenos": [
         "Waster"
       ],
+      "conflicts": [],
       "imgSrc": "64px-AddictionImmune_Wake_Up.png"
     },
     {
@@ -1865,6 +1935,7 @@
       "description": "Carriers of this gene need to ingest alcohol on a regular basis to survive. After 5 days without alcohol, carriers will suffer from drug deficiency. After 30 days, they will fall into a coma. After 60 days, they will die.\n\nTeetotalers will take the required drug without penalties, but ideoligion can still block taking them.\nChemical dependency severity increases by 0.2 per day. Reduced to 0% upon taking beer.\nMood debuff starting with -4 at Severity 1.0 gradually scaling up to -20 at severity 5.85\nSeverity 1 (5 days): Consciousness 70% max, Moving 80% max, Manipulation 50% max,\nSeverity 6 (30 days): Consciousness 10% max (Unconsciousness)\nSeverity 12 (60 days): Consciousness 0% max (Death)\nAlcohol addiction factor: x0%\nTeetotalers can take the required drug without penalties. However, ideoligions against drug use will apply the −15 Used drug moodlet.\nChildren under 13 do not get any of the ill effects from not using these drugs. The timer for penalties only starts on their 13th birthday.",
       "efficiency": 3,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-ChemicalDependency_Alcohol.png"
     },
     {
@@ -1873,6 +1944,7 @@
       "description": "Carriers of this gene need to ingest Smokeleaf on a regular basis to survive. After 5 days without smokeleaf, carriers will suffer from smokeleaf deficiency. After 30 days, they will fall into a coma. After 60 days, they will die.\n\nTeetotalers will take the required drug without penalties, but ideoligion can still block taking them.\nChemical dependency severity increases by 0.2 per day. Reduced to 0% upon taking a smokeleaf joint.\nMood debuff starting with -4 at Severity 1.0 gradually scaling up to -20 at severity 5.85\nSeverity 1 (5 days): Consciousness 70% max, Moving 80% max, Manipulation 50% max,\nSeverity 6 (30 days): Consciousness 10% max (Unconsciousness)\nSeverity 12 (60 days): Consciousness 0% max (Death)\nSmokeleaf addiction factor: x0%\nTeetotalers can take the required drug without penalties. However, ideoligions against drug use will apply the −15 Used drug moodlet.\nChildren under 13 do not get any of the ill effects from not using these drugs. The timer for penalties only starts on their 13th birthday.",
       "efficiency": 3,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-ChemicalDependency_Smokeleaf.png"
     },
     {
@@ -1884,6 +1956,7 @@
       "sourceXenos": [
         "Waster"
       ],
+      "conflicts": [],
       "imgSrc": "64px-ChemicalDependency_Psychite.png"
     },
     {
@@ -1895,6 +1968,7 @@
       "sourceXenos": [
         "Hussar"
       ],
+      "conflicts": [],
       "imgSrc": "64px-ChemicalDependency_Go_Juice.png"
     },
     {
@@ -1903,6 +1977,7 @@
       "description": "Carriers of this gene need to ingest wake-up on a regular basis to survive. After 5 days without wake-up, carriers will suffer from wake-up deficiency. After 30 days, they will fall into a coma. After 60 days, they will die.\n \nChemical dependency severity increases by 0.2 per day. Reduced to 0 upon taking wake-up.\nMood debuff starting with -4 at Severity 1.0 gradually scaling up to -20 at severity 5.85\nSeverity 1 (5 days): Consciousness 70% max, Moving 80% max, Manipulation 50% max.\nSeverity 6 (30 days): Consciousness 10% max (Unconsciousness)\nSeverity 12 (60 days): Consciousness 0% max (Death)\nWake-up addiction factor: x0%\nTeetotalers can take the required drug without penalties. However, ideoligions against drug use will apply the −15 Used drug moodlet.\nChildren under 13 do not get any of the ill effects from not using these drugs. The timer for penalties only starts on their 13th birthday.",
       "efficiency": 4,
       "complexity": 1,
+      "conflicts": [],
       "imgSrc": "64px-ChemicalDependency_Wake_Up.png"
     }
   ]

@@ -13,6 +13,7 @@
 
 .gene-card {
   background: var(--tile-default);
+  border: 2px solid transparent;
   border-radius: 6px;
   padding: 1rem;
   position: relative;
@@ -35,6 +36,10 @@
   filter: brightness(1.05);
 }
 
+.gene-card.suppressed {
+  opacity: 0.55;
+}
+
 .gene-card h3 {
   margin: 0 0 0.5rem;
   font-size: 1rem;
@@ -46,6 +51,21 @@
   gap: 0.25rem;
   font-size: 0.875rem;
   opacity: 0.8;
+}
+
+.gene-card .status-row {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.gene-card .status {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+  color: var(--text);
 }
 
 .empty-state {

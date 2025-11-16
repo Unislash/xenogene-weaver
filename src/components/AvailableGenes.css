@@ -22,34 +22,13 @@
   transition: all 0.2s ease;
 }
 
-.gene-card:hover:not(.conflicted):not(.germline) {
+.gene-card:hover:not(.germline) {
   border-color: var(--accent-outline);
 }
 
 .gene-card.germline {
   background: var(--germline-selected);
   cursor: default;
-}
-
-.gene-card.germline:not(.selected) {
-  border-color: transparent;
-}
-
-.gene-card.germline-member {
-  background: #1c2d32;
-}
-
-.gene-card.warning {
-  animation: flash-warning 1.2s ease-in-out;
-  border-color: var(--warning);
-  box-shadow: 0 0 8px rgba(255,176,46,0.15);
-}
-
-@keyframes flash-warning {
-  0% { transform: translateY(0); }
-  30% { transform: translateY(-3px); }
-  60% { transform: translateY(0); }
-  100% { transform: translateY(0); }
 }
 
 .gene-card.selected {
@@ -64,9 +43,9 @@
   cursor: pointer;
 }
 
+.gene-card.suppressed,
 .gene-card.conflicted {
-  opacity: 0.5;
-  cursor: not-allowed;
+  opacity: 0.65;
 }
 
 .gene-card h3 {
@@ -89,4 +68,12 @@
   font-size: 0.75rem;
   text-transform: capitalize;
   opacity: 0.8;
+}
+
+.status-label.suppressed {
+  opacity: 0.6;
+}
+
+.status-label.override {
+  color: var(--accent-outline);
 }

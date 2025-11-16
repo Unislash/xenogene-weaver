@@ -104,6 +104,23 @@ function slugify(name) {
         return sourceNames;
     };
 
+    const parseConflicts = (cell) => {
+        const rawHtml = cell.html();
+        if (!rawHtml) return [];
+        const normalized = rawHtml
+            .replace(/<br\s*\/?>/gi, "\n")
+            .replace(/<\/*p>/gi, "\n")
+            .replace(/<li>/gi, "")
+            .replace(/<\/li>/gi, "\n")
+            .replace(/<\/*ul>/gi, "\n")
+            .replace(/<\/*ol>/gi, "\n");
+        return normalized
+            .split(/\n+/)
+            .map((segment) => cheerio.load(segment).text().trim())
+            .filter(Boolean)
+            .filter((str) => str !== "-");
+    };
+
     // Look for tables in the content area and collect rows that look like gene entries
     $(".mw-collapsible-content table").each((i, table) => {
         let skipTable = false;
@@ -180,14 +197,8 @@ function slugify(name) {
 
                 const conflicts =
                     conflictsCol !== null
-                        ? tds
-                              .eq(conflictsCol)
-                              .html()
-                              .split(/<br\s*\/?>/i)
-                              .map((s) => s.trim())
-                              .filter(Boolean)
-                              .filter((str) => str !== "-")
-                        : "";
+                        ? parseConflicts(tds.eq(conflictsCol))
+                        : [];
 
                 // Skip cosmetic gene tables
                 if (
