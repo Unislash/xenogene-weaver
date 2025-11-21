@@ -1,6 +1,6 @@
-# RimWorld Xenogerm Planner
+# RimWorld Xenogerm Weaver
 
-React + TypeScript project bundled with Rsbuild.
+Xenogene planner for Rimworld's Biology expansion. Select a germline, pick some genes, and see exactly how the genes will play out.
 
 ## Quick start
 
