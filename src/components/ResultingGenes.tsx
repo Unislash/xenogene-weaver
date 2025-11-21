@@ -7,16 +7,15 @@ export const ResultingGenes = () => {
   const selectedXeno = useBuildStore(s => s.selectedXeno);
   const selectedGermline = useBuildStore(s => s.selectedGermline);
   const germlinesById = useBuildStore(s => s.germlinesById);
-  const suppressedGenes = useBuildStore(s => s.suppressedGenes);
-  const conflictedGenes = useBuildStore(s => s.conflictedGenes);
+  const suppressedGermlineGenes = useBuildStore(s => s.suppressedGermlineGenes);
+  const conflictingXenoGenes = useBuildStore(s => s.conflictingXenoGenes);
   const overrideGenes = useBuildStore(s => s.overrideGenes);
   const toggleXenoGene = useBuildStore(s => s.toggleXenoGene);
 
   const activeGenes: Array<{
     id: string;
     type: 'germline' | 'xeno';
-    suppressed?: boolean;
-    conflicted?: boolean;
+    inactive?: boolean;
     override?: boolean;
   }> = [];
 
@@ -24,17 +23,18 @@ export const ResultingGenes = () => {
     const g = germlinesById[selectedGermline];
     if (g) {
       for (const id of g.genes) {
-        const isSuppressed = suppressedGenes.has(id);
-        activeGenes.push({ id, type: 'germline', suppressed: isSuppressed });
+        const isSuppressed = suppressedGermlineGenes.has(id);
+        activeGenes.push({ id, type: 'germline', inactive: isSuppressed });
       }
     }
   }
 
   for (const id of selectedXeno) {
+    const inactiveFromConflict = conflictingXenoGenes.has(id);
     activeGenes.push({
       id,
       type: 'xeno',
-      conflicted: conflictedGenes.has(id),
+      inactive: inactiveFromConflict,
       override: overrideGenes.has(id),
     });
   }
@@ -43,22 +43,23 @@ export const ResultingGenes = () => {
     <section className="resulting-genes">
       <h2>Resulting Xenogerm</h2>
       <div className="gene-grid">
-        {activeGenes.map(({ id, type, suppressed, conflicted, override }) => {
+        {activeGenes.map(({ id, type, inactive, override }) => {
           const gene = genesById[id];
           if (!gene) return null;
           const isXeno = type === 'xeno';
+          const isSuppressed = Boolean(inactive);
           const classNames = [
             'gene-card',
             gene.capsules && 'archite',
             type,
-            (suppressed || conflicted) && 'suppressed',
+            isSuppressed && 'suppressed',
             isXeno && 'clickable',
           ]
             .filter(Boolean)
             .join(' ');
 
           const statusLabels: Array<{ key: string; text: string }> = [];
-          if (suppressed || conflicted) {
+          if (isSuppressed) {
             statusLabels.push({ key: 'suppressed', text: 'Suppressed' });
           }
           if (override) {

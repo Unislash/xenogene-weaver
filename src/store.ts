@@ -50,8 +50,8 @@ const arraysEqual = (a: string[], b: string[]) =>
 export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
   const computeOverrides = (
     selected: Set<string>,
-    suppressed: Set<string>,
-    conflicted: Set<string>,
+    suppressedGermline: Set<string>,
+    conflictingXeno: Set<string>,
   ) => {
     const { genesById } = get();
     const overrides = new Set<string>();
@@ -59,7 +59,7 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
     const conflictsWithSuppressed = (geneId: string) => {
       const gene = genesById[geneId];
       if (!gene?.conflicts?.length) return false;
-      for (const suppressedId of suppressed) {
+      for (const suppressedId of suppressedGermline) {
         const suppressedGene = genesById[suppressedId];
         if (genesConflict(gene, suppressedGene)) return true;
       }
@@ -67,7 +67,7 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
     };
 
     for (const id of selected) {
-      if (conflicted.has(id)) continue;
+      if (conflictingXeno.has(id)) continue;
       const gene = genesById[id];
       if (!gene?.conflicts?.length) continue;
 
@@ -76,7 +76,7 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
         continue;
       }
 
-      for (const conflictedId of conflicted) {
+      for (const conflictedId of conflictingXeno) {
         const other = genesById[conflictedId];
         if (genesConflict(gene, other)) {
           overrides.add(id);
@@ -106,14 +106,14 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
     selected: Set<string>,
     options?: { addedGeneId?: string },
   ) => {
-    const suppressed = get().calculateSuppressedGenes(selected);
-    const conflicted = get().calculateConflictedGenes(selected);
-    if (options?.addedGeneId) conflicted.delete(options.addedGeneId);
-    const overrides = computeOverrides(selected, suppressed, conflicted);
+    const suppressed = get().calculateSuppressedGermlineGenes(selected);
+    const conflicting = get().calculateConflictingXenoGenes(selected);
+    if (options?.addedGeneId) conflicting.delete(options.addedGeneId);
+    const overrides = computeOverrides(selected, suppressed, conflicting);
     set({
       selectedXeno: selected,
-      suppressedGenes: suppressed,
-      conflictedGenes: conflicted,
+      suppressedGermlineGenes: suppressed,
+      conflictingXenoGenes: conflicting,
       overrideGenes: overrides,
     });
     syncCurrentSavedXenogerm(selected);
@@ -125,8 +125,8 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
     germlinesById: {},
     selectedGermline: null,
     selectedXeno: new Set<string>(),
-    suppressedGenes: new Set<string>(),
-    conflictedGenes: new Set<string>(),
+    suppressedGermlineGenes: new Set<string>(),
+    conflictingXenoGenes: new Set<string>(),
     overrideGenes: new Set<string>(),
     savedXenogerms: loadSavedXenogerms(),
     currentSavedXenogermId: null,
@@ -150,13 +150,13 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
 
     selectGermline: (germlineId: string | null) => {
       set({ selectedGermline: germlineId });
-      const suppressed = get().calculateSuppressedGenes();
+      const suppressed = get().calculateSuppressedGermlineGenes();
       const overrides = computeOverrides(
         get().selectedXeno,
         suppressed,
-        get().conflictedGenes,
+        get().conflictingXenoGenes,
       );
-      set({ suppressedGenes: suppressed, overrideGenes: overrides });
+      set({ suppressedGermlineGenes: suppressed, overrideGenes: overrides });
       get().calculateTotals();
     },
 
@@ -172,7 +172,7 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
       );
     },
 
-    calculateSuppressedGenes: (selectedOverride?: Set<string>) => {
+    calculateSuppressedGermlineGenes: (selectedOverride?: Set<string>) => {
       const state = get();
       const newSuppressed = new Set<string>();
       const currentGermline = state.selectedGermline
@@ -196,10 +196,10 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
       return newSuppressed;
     },
 
-    calculateConflictedGenes: (selectedOverride?: Set<string>) => {
+    calculateConflictingXenoGenes: (selectedOverride?: Set<string>) => {
       const state = get();
       const selected = Array.from(selectedOverride ?? state.selectedXeno);
-      const conflicted = new Set<string>();
+      const conflicting = new Set<string>();
       for (let i = 0; i < selected.length; i++) {
         const geneA = state.genesById[selected[i]];
         if (!geneA?.conflicts?.length) continue;
@@ -207,12 +207,12 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
           const geneB = state.genesById[selected[j]];
           if (!geneB?.conflicts?.length) continue;
           if (genesConflict(geneA, geneB)) {
-            conflicted.add(selected[i]);
-            conflicted.add(selected[j]);
+            conflicting.add(selected[i]);
+            conflicting.add(selected[j]);
           }
         }
       }
-      return conflicted;
+      return conflicting;
     },
 
     calculateTotals: () => {
@@ -225,12 +225,12 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
 
       if (currentGermline) {
         for (const geneId of currentGermline.genes) {
-          if (!state.suppressedGenes.has(geneId)) activeGenes.add(geneId);
+          if (!state.suppressedGermlineGenes.has(geneId)) activeGenes.add(geneId);
         }
       }
 
       for (const geneId of state.selectedXeno) {
-        if (state.conflictedGenes.has(geneId)) continue;
+        if (state.conflictingXenoGenes.has(geneId)) continue;
         activeGenes.add(geneId);
       }
 
@@ -293,13 +293,13 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
       const saved = state.savedXenogerms[id];
       if (!saved) return;
       const newSelected = new Set(saved.genes);
-      const suppressed = state.calculateSuppressedGenes(newSelected);
-      const conflicted = state.calculateConflictedGenes(newSelected);
-      const overrides = computeOverrides(newSelected, suppressed, conflicted);
+      const suppressed = state.calculateSuppressedGermlineGenes(newSelected);
+      const conflicting = state.calculateConflictingXenoGenes(newSelected);
+      const overrides = computeOverrides(newSelected, suppressed, conflicting);
       set({
         selectedXeno: newSelected,
-        suppressedGenes: suppressed,
-        conflictedGenes: conflicted,
+        suppressedGermlineGenes: suppressed,
+        conflictingXenoGenes: conflicting,
         overrideGenes: overrides,
         currentSavedXenogermId: id,
       });
@@ -315,8 +315,8 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
       set({
         selectedGermline: null,
         selectedXeno: new Set(),
-        suppressedGenes: new Set(),
-        conflictedGenes: new Set(),
+        suppressedGermlineGenes: new Set(),
+        conflictingXenoGenes: new Set(),
         overrideGenes: new Set(),
         currentSavedXenogermId: null,
         totals: { efficiency: 0, complexity: 0 },

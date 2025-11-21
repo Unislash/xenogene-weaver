@@ -84,8 +84,7 @@
   filter: brightness(1.2);
 }
 
-.gene-card.suppressed,
-.gene-card.conflicted {
+.gene-card.suppressed {
   opacity: 0.50;
   filter: grayscale(70%);
 }
