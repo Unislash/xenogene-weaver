@@ -27,6 +27,6 @@ export default defineConfig({
     filename: {
       js: '[name].js',
     },
-    assetPrefix: './',
+    assetPrefix: '/xenogene-weaver/',
   },
 });
