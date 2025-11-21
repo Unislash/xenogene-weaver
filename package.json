@@ -3,13 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "rspack serve",
+    "dev": "rsbuild dev",
     "scrape:genes": "node tools/scrape_genes_quick.js",
-    "build": "rspack build",
+    "build": "rsbuild build",
     "test": "vitest"
   },
   "dependencies": {
-    "@rspack/core": "^1.6.0",
     "cheerio": "^1.1.2",
     "node-fetch": "2",
     "react": "^19.2.0",
@@ -17,12 +16,11 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
-    "@rspack/cli": "^1.6.0",
+    "@rsbuild/core": "^1.0.0",
+    "@rsbuild/plugin-react": "^1.0.0",
     "@types/node": "^20.0.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "css-loader": "^7.1.2",
-    "style-loader": "^4.0.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.6"
   },

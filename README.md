@@ -1,28 +1,17 @@
-# TypeScript + Yarn Starter
+# RimWorld Xenogerm Planner
 
-This repository has been configured with Yarn and TypeScript.
+React + TypeScript project bundled with Rsbuild.
 
-What was added:
-
-- `package.json` with scripts: `build`, `start`, `dev`, `clean`
-- `tsconfig.json` targeting ES2020 and output to `dist/`
-- `src/index.ts` minimal example
-- `.gitignore`
-
-Quick start:
+## Quick start
 
 1. Install dependencies:
 
    yarn install
 
-2. Build:
-
-   yarn build
-
-3. Run:
-
-   yarn start
-
-For development without building:
+2. Run the dev server:
 
    yarn dev
+
+3. Create a production build:
+
+   yarn build
