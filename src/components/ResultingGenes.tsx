@@ -97,7 +97,7 @@ export const ResultingGenes = () => {
         })}
         {activeGenes.length === 0 && (
           <div className="empty-state">
-            No genes selected. Select a germline and/or add xenogenes to create your xenogerm.
+            No genes selected. Select a germline and/or add xenogenes to begin.
           </div>
         )}
       </div>

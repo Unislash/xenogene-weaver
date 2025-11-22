@@ -1,14 +1,22 @@
 .xenogerm-planner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem 2rem;
 }
 
 .xenogerm-planner h1 {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: .5rem;
   color: var(--text);
   font-size: 2rem;
+}
+
+.xenogerm-planner .tagline {
+  text-align: center;
+  margin-bottom: .5rem;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: normal;
 }
 
 section h2 {
