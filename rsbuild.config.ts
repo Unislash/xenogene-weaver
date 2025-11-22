@@ -15,6 +15,7 @@ export default defineConfig({
   },
   html: {
     template: './index.html',
+    favicon: './favicon-32x32.png',
   },
   server: {
     port: 3000,
