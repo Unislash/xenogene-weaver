@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react';
 import { useBuildStore } from '../store';
 import { Gene } from '../types';
 import { genesConflict } from '../utils/geneConflicts';
@@ -13,8 +14,14 @@ export const AvailableGenes = () => {
   const conflictingXenoGenes = useBuildStore(s => s.conflictingXenoGenes);
   const overrideGenes = useBuildStore(s => s.overrideGenes);
   const toggleXenoGene = useBuildStore(s => s.toggleXenoGene);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const genes = Object.values(genesById);
+  const filteredGenes = useMemo(() => {
+    const query = searchTerm.trim().toLowerCase();
+    if (!query) return genes;
+    return genes.filter(gene => gene.name.toLowerCase().includes(query));
+  }, [genes, searchTerm]);
 
   const isGermlineMember = (geneId: string) => {
     if (!selectedGermline) return false;
@@ -54,9 +61,18 @@ export const AvailableGenes = () => {
 
   return (
     <section className="available-genes">
-      <h2>Available Genes</h2>
+      <div className="available-genes__header">
+        <h2>Available Genes</h2>
+        <input
+          type="search"
+          className="available-genes__search"
+          placeholder="Search genes"
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+        />
+      </div>
       <div className="gene-grid">
-        {genes.map(gene => {
+        {filteredGenes.map(gene => {
           const isSelected = selectedXeno.has(gene.id);
           const isGermline = isGermlineMember(gene.id);
           const germlineSuppressed = suppressedGermlineGenes.has(gene.id);
