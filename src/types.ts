@@ -32,6 +32,7 @@ export interface BuildState {
   currentSavedXenogermId: string | null;
   totals: {
     efficiency: number;
+    xenogermEfficiency: number;
     complexity: number;
   };
   compatibleXenogerm: boolean;

@@ -142,6 +142,7 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
     currentSavedXenogermId: null,
     totals: {
       efficiency: 0,
+      xenogermEfficiency: 0,
       complexity: 0,
     },
     compatibleXenogerm: true,
@@ -243,6 +244,7 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
         : null;
 
       const activeGenes = new Set<string>();
+      const activeXenogermGenes = new Set<string>();
 
       // Add germline genes that are not suppressed
       if (currentGermline) {
@@ -255,22 +257,30 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
       for (const geneId of state.selectedXeno) {
         if (state.conflictingXenoGenes.has(geneId)) continue;
         activeGenes.add(geneId);
+        activeXenogermGenes.add(geneId);
       }
 
-      // Sum up totals
-      const totals = [...activeGenes].reduce(
-        (acc, geneId) => {
-          const gene = state.genesById[geneId];
-          if (!gene) return acc;
-          return {
-            efficiency: acc.efficiency + gene.efficiency,
-            complexity: acc.complexity + gene.complexity,
-          };
-        },
-        { efficiency: 0, complexity: 0 },
-      );
+      const sumTotals = (genes: Set<string>) =>
+        [...genes].reduce(
+          (acc, geneId) => {
+            const gene = state.genesById[geneId];
+            if (!gene) return acc;
+            return {
+              efficiency: acc.efficiency + gene.efficiency,
+              complexity: acc.complexity + gene.complexity,
+            };
+          },
+          { efficiency: 0, complexity: 0 },
+        );
 
-      set({ totals, compatibleXenogerm: totals.efficiency >= -5 });
+      // Sum up totals
+      const totals = sumTotals(activeGenes);
+      const xenogermTotals = sumTotals(activeXenogermGenes);
+
+      set({
+        totals: { ...totals, xenogermEfficiency: xenogermTotals.efficiency },
+        compatibleXenogerm: totals.efficiency >= -5,
+      });
     },
 
     // Save or update the current xenogerm selection under a given name to local storage
@@ -347,7 +357,7 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
         conflictingXenoGenes: new Set(),
         overrideGenes: new Set(),
         currentSavedXenogermId: null,
-        totals: { efficiency: 0, complexity: 0 },
+        totals: { efficiency: 0, xenogermEfficiency: 0, complexity: 0 },
         compatibleXenogerm: true,
       });
     },
