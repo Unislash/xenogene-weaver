@@ -1,5 +1,6 @@
 import { useBuildStore } from '../store';
 import { getGeneImage } from '../images';
+import { useUndoRedoHotkeys } from '../hooks/useUndoRedoShortcuts';
 import './ResultingGenes.css';
 
 export const ResultingGenes = () => {
@@ -11,6 +12,12 @@ export const ResultingGenes = () => {
   const conflictingXenoGenesGroups = useBuildStore(s => s.conflictingXenoGenesGroups);
   const overrideGenes = useBuildStore(s => s.overrideGenes);
   const toggleXenoGene = useBuildStore(s => s.toggleXenoGene);
+  const undo = useBuildStore(s => s.undoGeneSelection);
+  const redo = useBuildStore(s => s.redoGeneSelection);
+  const canUndo = useBuildStore(s => s.canUndo);
+  const canRedo = useBuildStore(s => s.canRedo);
+
+  useUndoRedoHotkeys();
 
   const suppressedSet = new Set<string>();
   for (const suppressed of suppressedGermlineGenesByXeno.values()) {
@@ -51,7 +58,17 @@ export const ResultingGenes = () => {
 
   return (
     <section className="resulting-genes">
-      <h2>Resulting Xenogerm</h2>
+      <div className="resulting-genes__header">
+        <h2>Resulting Xenogerm</h2>
+        <div className="resulting-genes__actions">
+          <button onClick={undo} disabled={!canUndo}>
+            Undo
+          </button>
+          <button onClick={redo} disabled={!canRedo}>
+            Redo
+          </button>
+        </div>
+      </div>
       <div className="gene-grid">
         {activeGenes.map(({ id, type, inactive, override }) => {
           const gene = genesById[id];

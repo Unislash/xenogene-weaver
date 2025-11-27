@@ -4,6 +4,38 @@
   margin-bottom: 2rem;
 }
 
+.resulting-genes__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.resulting-genes__actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.resulting-genes__actions button {
+  border: 1px solid #606a78;
+  background: #1f252b;
+  color: var(--text);
+  padding: 0.35rem 0.75rem;
+  border-radius: 2px;
+  cursor: pointer;
+  min-width: 70px;
+}
+
+.resulting-genes__actions button:hover:enabled {
+  background: var(--tile-selected-bg);
+}
+
+.resulting-genes__actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .empty-state {
   grid-column: 1 / -1;
   text-align: center;

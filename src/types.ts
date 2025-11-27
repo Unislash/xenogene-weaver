@@ -30,6 +30,12 @@ export interface BuildState {
   overrideGenes: Set<string>;
   savedXenogerms: Record<string, SavedXenogerm>;
   currentSavedXenogermId: string | null;
+  selectionHistory: {
+    past: string[][];
+    future: string[][];
+  };
+  canUndo: boolean;
+  canRedo: boolean;
   totals: {
     efficiency: number;
     xenogermEfficiency: number;
@@ -48,5 +54,7 @@ export type BuildActions = {
   deleteSavedXenogerm: (id: string) => void;
   loadSavedXenogerm: (id: string) => void;
   startNewSavedXenogerm: () => void;
+  undoGeneSelection: () => void;
+  redoGeneSelection: () => void;
   reset: () => void;
 };

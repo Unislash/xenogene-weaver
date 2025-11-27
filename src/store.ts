@@ -48,6 +48,11 @@ const generateSavedId = (name: string) => {
 const arraysEqual = (a: string[], b: string[]) =>
   a.length === b.length && a.every((val, idx) => val === b[idx]);
 
+const MAX_HISTORY = 50;
+const selectionToArray = (selection: Set<string>) => Array.from(selection);
+const selectionsMatch = (a: Set<string>, b: Set<string>) =>
+  arraysEqual(selectionToArray(a), selectionToArray(b));
+
 export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
   
   /**
@@ -125,6 +130,27 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
     }
 
     return overrides;
+  };
+
+  // Abstracted method to update undo/redo history state.
+  // Is the low-level setter that writes both stacks (past and future) and keeps canUndo/canRedo in sync
+  const updateHistoryState = (past: string[][], future: string[][]) => {
+    set({
+      selectionHistory: { past, future },
+      canUndo: past.length > 0,
+      canRedo: future.length > 0,
+    });
+  };
+
+  // Helper method that decides when a change should be recorded (e.g., only when the selection actually
+  // changed, deduping against the last entry, trimming to max length) and then calls updateHistoryState.
+  const recordSelectionHistory = (previousSelection: Set<string>) => {
+    const previousArray = selectionToArray(previousSelection);
+    const { selectionHistory } = get();
+    const lastPast = selectionHistory.past[selectionHistory.past.length - 1];
+    if (lastPast && arraysEqual(lastPast, previousArray)) return;
+    const trimmedPast = [...selectionHistory.past, previousArray].slice(-MAX_HISTORY);
+    updateHistoryState(trimmedPast, []);
   };
 
   // Update the currently loaded saved xenogerm with the new selection
@@ -262,6 +288,9 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
     overrideGenes: new Set<string>(),
     savedXenogerms: loadSavedXenogerms(),
     currentSavedXenogermId: null,
+    selectionHistory: { past: [], future: [] },
+    canUndo: false,
+    canRedo: false,
     totals: {
       efficiency: 0,
       xenogermEfficiency: 0,
@@ -297,6 +326,8 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
       const wasSelected = newSelected.has(geneId);
       if (wasSelected) newSelected.delete(geneId);
       else newSelected.add(geneId);
+      if (selectionsMatch(state.selectedXeno, newSelected)) return;
+      recordSelectionHistory(state.selectedXeno);
       // Keep suppressed/conflicting/override state in sync with the new selection
       applySelectionState(
         newSelected,
@@ -407,23 +438,46 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
       const saved = state.savedXenogerms[id];
       if (!saved) return;
       const newSelected = new Set(saved.genes);
-      const suppressedByXeno = calculateSuppressedGermlineGenes(newSelected);
-      const conflictGroups = calculateConflictingXenoGenes(newSelected);
-      const overrides = computeOverrides(newSelected, suppressedByXeno, conflictGroups);
-      set({
-        selectedXeno: newSelected,
-        suppressedGermlineGenesByXeno: suppressedByXeno,
-        conflictingXenoGenesGroups: conflictGroups,
-        overrideGenes: overrides,
-        currentSavedXenogermId: id,
-      });
-      get().calculateTotals();
+      if (!selectionsMatch(state.selectedXeno, newSelected)) {
+        recordSelectionHistory(state.selectedXeno);
+      }
+      set({ currentSavedXenogermId: id });
+      applySelectionState(newSelected);
     },
 
     // Start a new unsaved xenogerm selection
     startNewSavedXenogerm: () => {
+      const state = get();
+      const emptySelection = new Set<string>();
+      if (!selectionsMatch(state.selectedXeno, emptySelection)) {
+        recordSelectionHistory(state.selectedXeno);
+      }
       set({ currentSavedXenogermId: null });
-      applySelectionState(new Set());
+      applySelectionState(emptySelection);
+    },
+
+    undoGeneSelection: () => {
+      const state = get();
+      const { past, future } = state.selectionHistory;
+      if (past.length === 0) return;
+      const previous = past[past.length - 1];
+      const updatedPast = past.slice(0, -1);
+      const currentArray = selectionToArray(state.selectedXeno);
+      const updatedFuture = [currentArray, ...future];
+      updateHistoryState(updatedPast, updatedFuture);
+      applySelectionState(new Set(previous));
+    },
+
+    redoGeneSelection: () => {
+      const state = get();
+      const { past, future } = state.selectionHistory;
+      if (future.length === 0) return;
+      const next = future[0];
+      const remainingFuture = future.slice(1);
+      const currentArray = selectionToArray(state.selectedXeno);
+      const updatedPast = [...past, currentArray].slice(-MAX_HISTORY);
+      updateHistoryState(updatedPast, remainingFuture);
+      applySelectionState(new Set(next));
     },
 
     reset: () => {
@@ -434,6 +488,9 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
         conflictingXenoGenesGroups: [],
         overrideGenes: new Set(),
         currentSavedXenogermId: null,
+        selectionHistory: { past: [], future: [] },
+        canUndo: false,
+        canRedo: false,
         totals: { efficiency: 0, xenogermEfficiency: 0, complexity: 0 },
         compatibleXenogerm: true,
       });
