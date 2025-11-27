@@ -3,7 +3,7 @@ import { getGeneImage } from '../images';
 import './ResultingGenes.css';
 
 export const ResultingGenes = () => {
-  const genesById = useBuildStore(s => s.genesById);
+  const genesById = useBuildStore(s => s.allGenesById);
   const selectedXeno = useBuildStore(s => s.selectedXeno);
   const selectedGermline = useBuildStore(s => s.selectedGermline);
   const germlinesById = useBuildStore(s => s.germlinesById);

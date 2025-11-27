@@ -50,44 +50,74 @@ const arraysEqual = (a: string[], b: string[]) =>
 
 export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
   
-  // Computes which selected xenogerm genes should be marked as overrides
+  /**
+   * Computes which selected xenogerm genes should be marked as overrides
+   * Overrides are those selected xenogerms that either suppress a germline gene,
+   * or are the winner between selected xeno genes that conflict.
+   * 
+   * Winners between conflicting xeno genes are determined by those that have greater
+   * efficiency; ties go to the later-selected gene (based on Set iteration order)
+   * 
+   * Does not modify state directly; returns the new Set of override gene IDs
+   */
   const computeOverrides = (
     selected: Set<string>,
     suppressedGermline: Set<string>,
     conflictingXeno: Set<string>,
   ) => {
-    const { genesById } = get();
     const overrides = new Set<string>();
 
-    // Determine whether a gene clashes with any suppressed germline gene
-    const conflictsWithSuppressed = (geneId: string) => {
-      const gene = genesById[geneId];
-      if (!gene?.conflicts?.length) return false;
-      for (const suppressedId of suppressedGermline) {
-        const suppressedGene = genesById[suppressedId];
-        if (genesConflict(gene, suppressedGene)) return true;
-      }
-      return false;
-    };
+    const state = get();
+    const { allGenesById } = state;
 
-    for (const id of selected) {
-      if (conflictingXeno.has(id)) continue;
-      const gene = genesById[id];
-      if (!gene?.conflicts?.length) continue;
+    // First, add any selected xeno genes that suppress germline genes
+    // TODO: implement this logic
 
-      // Xenogerm genes that conflict with suppressed germline genes are overrides
-      if (conflictsWithSuppressed(id)) {
-        overrides.add(id);
-        continue;
-      }
+    // Next, determine winners among conflicting xeno genes
+    const conflictingGroups: string[][] = [];
+    const processed = new Set<string>();
 
-      // Selected xenogerm genes that conflict with other selected xenogerm genes are overrides
-      for (const conflictedId of conflictingXeno) {
-        const other = genesById[conflictedId];
-        if (genesConflict(gene, other)) {
-          overrides.add(id);
-          break;
+    for (const geneId of conflictingXeno) {
+      if (processed.has(geneId)) continue;
+      const group = [geneId];
+      processed.add(geneId);
+      const geneA = allGenesById[geneId];
+      if (!geneA || !geneA.conflicts) continue;
+
+      for (const otherId of conflictingXeno) {
+        if (otherId === geneId || processed.has(otherId)) continue;
+        const geneB = allGenesById[otherId];
+        if (!geneB) continue;
+        if (genesConflict(geneA, geneB)) {
+          group.push(otherId);
+          processed.add(otherId);
         }
+      }
+
+      conflictingGroups.push(group);
+    }
+
+    // For each group of conflicting genes, determine the winner
+    for (const group of conflictingGroups) {
+      let winnerId: string | null = null;
+      let winnerEfficiency = -Infinity;
+
+      for (const geneId of group) {
+        const gene = allGenesById[geneId];
+        if (!gene) continue;
+        if (
+          gene.efficiency > winnerEfficiency ||
+          (gene.efficiency === winnerEfficiency &&
+            (!winnerId || Array.from(selected).indexOf(geneId) >
+              Array.from(selected).indexOf(winnerId)))
+        ) {
+          winnerId = geneId;
+          winnerEfficiency = gene.efficiency;
+        }
+      }
+
+      if (winnerId) {
+        overrides.add(winnerId);
       }
     }
 
@@ -109,14 +139,83 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
     set({ savedXenogerms });
   };
 
-  // Applies a new selected xenogerm set and updates dependent state
+  /**
+   * Helper method that calculates which germline genes are suppressed based on given selection of xeno genes
+   * Note: Suppressed genes are specifically germline genes that conflict with any selected xenogerm gene
+   * 
+   * Does not modify state directly; returns the new Set of suppressed gene IDs
+   */
+  const calculateSuppressedGermlineGenes = (selectedXenoGeneIds: Set<string>) => {
+    const state = get();
+    const newSuppressed = new Set<string>();
+    const currentGermline = state.selectedGermline
+      ? state.germlinesById[state.selectedGermline]
+      : null;
+
+    if (!currentGermline) return newSuppressed;
+
+    for (const xenoId of selectedXenoGeneIds) {
+      const xenoGene = state.allGenesById[xenoId];
+      if (!xenoGene) continue;
+      for (const germlineGeneId of currentGermline.genes) {
+        const germlineGene = state.allGenesById[germlineGeneId];
+        if (genesConflict(xenoGene, germlineGene)) {
+          newSuppressed.add(germlineGeneId);
+        }
+      }
+    }
+
+    return newSuppressed;
+  };
+
+  /**
+   * Helper method that calculates which xenogerm genes are conflicting based on given selection of xeno genes
+   * Note: Conflicting genes are selected xenogerm genes that conflict with other selected xenogerm genes
+   * 
+   * Does not modify state directly; returns the new Set of suppressed gene IDs
+   */
+  const calculateConflictingXenoGenes = (
+    selectedXenoGeneIds: Set<string>
+  ): Set<string> => {
+    const { allGenesById } = get();
+
+    // Map selected IDs to gene objects and filter out anything
+    // that doesn't exist or has no possible conflicts
+    const selectedGenes: Gene[] = Array.from(selectedXenoGeneIds)
+      .map((id) => allGenesById[id] as Gene | undefined)
+      .filter(
+        (gene): gene is Gene =>
+          Boolean(gene && gene.conflicts && gene.conflicts.length > 0)
+      );
+
+    const conflicting = new Set<string>();
+
+    for (let i = 0; i < selectedGenes.length; i++) {
+      const geneA = selectedGenes[i];
+
+      for (let j = i + 1; j < selectedGenes.length; j++) {
+        const geneB = selectedGenes[j];
+
+        if (genesConflict(geneA, geneB)) {
+          conflicting.add(geneA.id);
+          conflicting.add(geneB.id);
+        }
+      }
+    }
+
+    return conflicting;
+  };
+
+  /**
+   * This is an abstraction method that is used in many actions. It takes the given "selected" xenogerm set
+   * and updates the state accordingly.
+   * Note: this is what actually sets the state when xenogerms are toggled or a germline is selected
+   */
   const applySelectionState = (
     selected: Set<string>,
-    options?: { addedGeneId?: string },
   ) => {
-    const suppressed = get().calculateSuppressedGermlineGenes(selected);
-    const conflicting = get().calculateConflictingXenoGenes(selected);
-    if (options?.addedGeneId) conflicting.delete(options.addedGeneId);
+    const suppressed = calculateSuppressedGermlineGenes(selected);
+    const conflicting = calculateConflictingXenoGenes(selected);
     const overrides = computeOverrides(selected, suppressed, conflicting);
     set({
       selectedXeno: selected,
@@ -131,7 +230,7 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
   // Initial state
   return {
     /* State */
-    genesById: {},
+    allGenesById: {},
     germlinesById: {},
     selectedGermline: null,
     selectedXeno: new Set<string>(),
@@ -150,8 +249,8 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
     /* Actions */
     // Load given genes into the store
     loadGenes: (genes: Gene[]) => {
-      const genesById = Object.fromEntries(genes.map(gene => [gene.id, gene]));
-      set({ genesById });
+      const allGenesById = Object.fromEntries(genes.map(gene => [gene.id, gene]));
+      set({ allGenesById: allGenesById });
     },
 
     // Load given germlines into the store
@@ -165,14 +264,7 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
     // Select a germline by ID (or null to deselect)
     selectGermline: (germlineId: string | null) => {
       set({ selectedGermline: germlineId });
-      const suppressed = get().calculateSuppressedGermlineGenes();
-      const overrides = computeOverrides(
-        get().selectedXeno,
-        suppressed,
-        get().conflictingXenoGenes,
-      );
-      set({ suppressedGermlineGenes: suppressed, overrideGenes: overrides });
-      get().calculateTotals();
+      applySelectionState(new Set(get().selectedXeno));
     },
 
     // Toggle selection of a xenogerm gene by ID
@@ -185,55 +277,7 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
       // Keep suppressed/conflicting/override state in sync with the new selection
       applySelectionState(
         newSelected,
-        wasSelected ? undefined : { addedGeneId: geneId },
       );
-    },
-
-    // Recalculates which germline genes are suppressed based on current selection
-    // Suppressed genes are specifically germline genes that conflict with any selected xenogerm gene
-    calculateSuppressedGermlineGenes: (selectedOverride?: Set<string>) => {
-      const state = get();
-      const newSuppressed = new Set<string>();
-      const currentGermline = state.selectedGermline
-        ? state.germlinesById[state.selectedGermline]
-        : null;
-      const selected = selectedOverride ?? state.selectedXeno;
-
-      if (!currentGermline) return newSuppressed;
-
-      for (const xenoId of selected) {
-        const xenoGene = state.genesById[xenoId];
-        if (!xenoGene) continue;
-        for (const germlineGeneId of currentGermline.genes) {
-          const germlineGene = state.genesById[germlineGeneId];
-          if (genesConflict(xenoGene, germlineGene)) {
-            newSuppressed.add(germlineGeneId);
-          }
-        }
-      }
-
-      return newSuppressed;
-    },
-
-    // Recalculates which xenogerm genes are conflicting based on current selection
-    // Conflicting genes are those that conflict with other selected xenogerm genes
-    calculateConflictingXenoGenes: (selectedOverride?: Set<string>) => {
-      const state = get();
-      const selected = Array.from(selectedOverride ?? state.selectedXeno);
-      const conflicting = new Set<string>();
-      for (let i = 0; i < selected.length; i++) {
-        const geneA = state.genesById[selected[i]];
-        if (!geneA?.conflicts?.length) continue;
-        for (let j = i + 1; j < selected.length; j++) {
-          const geneB = state.genesById[selected[j]];
-          if (!geneB?.conflicts?.length) continue;
-          if (genesConflict(geneA, geneB)) {
-            conflicting.add(selected[i]);
-            conflicting.add(selected[j]);
-          }
-        }
-      }
-      return conflicting;
     },
 
     // Sums up totals (not counting suppressed genes) and determines compatibility of the xenogerm
@@ -263,7 +307,7 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
       const sumTotals = (genes: Set<string>) =>
         [...genes].reduce(
           (acc, geneId) => {
-            const gene = state.genesById[geneId];
+            const gene = state.allGenesById[geneId];
             if (!gene) return acc;
             return {
               efficiency: acc.efficiency + gene.efficiency,
@@ -330,8 +374,8 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
       const saved = state.savedXenogerms[id];
       if (!saved) return;
       const newSelected = new Set(saved.genes);
-      const suppressed = state.calculateSuppressedGermlineGenes(newSelected);
-      const conflicting = state.calculateConflictingXenoGenes(newSelected);
+      const suppressed = calculateSuppressedGermlineGenes(newSelected);
+      const conflicting = calculateConflictingXenoGenes(newSelected);
       const overrides = computeOverrides(newSelected, suppressed, conflicting);
       set({
         selectedXeno: newSelected,
