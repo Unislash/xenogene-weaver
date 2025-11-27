@@ -7,10 +7,20 @@ export const ResultingGenes = () => {
   const selectedXeno = useBuildStore(s => s.selectedXeno);
   const selectedGermline = useBuildStore(s => s.selectedGermline);
   const germlinesById = useBuildStore(s => s.germlinesById);
-  const suppressedGermlineGenes = useBuildStore(s => s.suppressedGermlineGenes);
-  const conflictingXenoGenes = useBuildStore(s => s.conflictingXenoGenes);
+  const suppressedGermlineGenesByXeno = useBuildStore(s => s.suppressedGermlineGenesByXeno);
+  const conflictingXenoGenesGroups = useBuildStore(s => s.conflictingXenoGenesGroups);
   const overrideGenes = useBuildStore(s => s.overrideGenes);
   const toggleXenoGene = useBuildStore(s => s.toggleXenoGene);
+
+  const suppressedSet = new Set<string>();
+  for (const suppressed of suppressedGermlineGenesByXeno.values()) {
+    for (const id of suppressed) suppressedSet.add(id);
+  }
+
+  const conflictingSet = new Set<string>();
+  for (const group of conflictingXenoGenesGroups) {
+    for (const id of group) conflictingSet.add(id);
+  }
 
   const activeGenes: Array<{
     id: string;
@@ -23,14 +33,14 @@ export const ResultingGenes = () => {
     const g = germlinesById[selectedGermline];
     if (g) {
       for (const id of g.genes) {
-        const isSuppressed = suppressedGermlineGenes.has(id);
+        const isSuppressed = suppressedSet.has(id);
         activeGenes.push({ id, type: 'germline', inactive: isSuppressed });
       }
     }
   }
 
   for (const id of selectedXeno) {
-    const inactiveFromConflict = conflictingXenoGenes.has(id);
+    const inactiveFromConflict = conflictingSet.has(id) && !overrideGenes.has(id);
     activeGenes.push({
       id,
       type: 'xeno',
@@ -69,7 +79,7 @@ export const ResultingGenes = () => {
 
           return (
             <div
-              key={gene.id}
+              key={`${gene.id}-${type}`}
               className={classNames}
               onClick={isXeno ? () => toggleXenoGene(gene.id) : undefined}
             >

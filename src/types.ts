@@ -25,8 +25,8 @@ export interface BuildState {
   germlinesById: Record<string, Germline>;
   selectedGermline: string | null;
   selectedXeno: Set<string>;
-  suppressedGermlineGenes: Set<string>;
-  conflictingXenoGenes: Set<string>;
+  suppressedGermlineGenesByXeno: Map<string, Set<string>>;
+  conflictingXenoGenesGroups: Array<Set<string>>;
   overrideGenes: Set<string>;
   savedXenogerms: Record<string, SavedXenogerm>;
   currentSavedXenogermId: string | null;

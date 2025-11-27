@@ -10,8 +10,8 @@ export const AvailableGenes = () => {
   const selectedXeno = useBuildStore(s => s.selectedXeno);
   const selectedGermline = useBuildStore(s => s.selectedGermline);
   const germlinesById = useBuildStore(s => s.germlinesById);
-  const suppressedGermlineGenes = useBuildStore(s => s.suppressedGermlineGenes);
-  const conflictingXenoGenes = useBuildStore(s => s.conflictingXenoGenes);
+  const suppressedGermlineGenesByXeno = useBuildStore(s => s.suppressedGermlineGenesByXeno);
+  const conflictingXenoGenesGroups = useBuildStore(s => s.conflictingXenoGenesGroups);
   const overrideGenes = useBuildStore(s => s.overrideGenes);
   const toggleXenoGene = useBuildStore(s => s.toggleXenoGene);
   const [searchTerm, setSearchTerm] = useState('');
@@ -22,6 +22,22 @@ export const AvailableGenes = () => {
     if (!query) return genes;
     return genes.filter(gene => gene.name.toLowerCase().includes(query));
   }, [genes, searchTerm]);
+
+  const suppressedSet = useMemo(() => {
+    const combined = new Set<string>();
+    for (const suppressed of suppressedGermlineGenesByXeno.values()) {
+      for (const id of suppressed) combined.add(id);
+    }
+    return combined;
+  }, [suppressedGermlineGenesByXeno]);
+
+  const conflictingSet = useMemo(() => {
+    const combined = new Set<string>();
+    for (const group of conflictingXenoGenesGroups) {
+      for (const id of group) combined.add(id);
+    }
+    return combined;
+  }, [conflictingXenoGenesGroups]);
 
   const isGermlineMember = (geneId: string) => {
     if (!selectedGermline) return false;
@@ -39,23 +55,20 @@ export const AvailableGenes = () => {
   };
 
   const getStatusLabel = ({
-    isSelected,
     isGermline,
     isSuppressed,
     isOverride,
-    hasConflictWarning,
+    isConflicted,
   }: {
-    isSelected: boolean;
     isGermline: boolean;
     isSuppressed: boolean;
     isOverride: boolean;
-    hasConflictWarning: boolean;
+    isConflicted: boolean;
   }) => {
     if (isOverride) return 'override';
     if (isSuppressed) return 'suppressed';
     if (isGermline) return 'germline';
-    if (isSelected) return 'selected';
-    if (hasConflictWarning) return 'suppressed';
+    if (isConflicted) return 'conflicts';
     return '';
   };
 
@@ -75,28 +88,24 @@ export const AvailableGenes = () => {
         {filteredGenes.map(gene => {
           const isSelected = selectedXeno.has(gene.id);
           const isGermline = isGermlineMember(gene.id);
-          const germlineSuppressed = suppressedGermlineGenes.has(gene.id);
-          const conflictSuppressed = isSelected && conflictingXenoGenes.has(gene.id);
-          const isSuppressed = isGermline ? germlineSuppressed : conflictSuppressed;
-          const hasConflictWarning = !isSelected && conflictsWithSelectedGene(gene);
+          const isSuppressed = conflictingSet.has(gene.id) && !overrideGenes.has(gene.id);
+          const isConflicted = !isSelected && (conflictsWithSelectedGene(gene) || isGermline && suppressedSet.has(gene.id));
           const isOverride = overrideGenes.has(gene.id);
-          const visuallySuppressed = isSuppressed || hasConflictWarning;
           const classNames = [
             'gene-card',
             'clickable',
-            isGermline && 'germline',
             isSelected && 'selected',
             gene.capsules && 'archite',
-            visuallySuppressed && 'suppressed',
+            isSuppressed && 'suppressed',
           ]
             .filter(Boolean)
             .join(' ');
           const status = getStatusLabel({
             isSelected,
             isGermline,
-            isSuppressed: visuallySuppressed,
+            isSuppressed,
             isOverride,
-            hasConflictWarning,
+            isConflicted,
           });
           const imageSrc = getGeneImage(gene.imgSrc);
           return (
