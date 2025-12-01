@@ -18,7 +18,7 @@ export default defineConfig({
     favicon: './favicon-32x32.png',
   },
   server: {
-    port: 3000,
+    port: 3001,
     historyApiFallback: true,
   },
   output: {
