@@ -12,7 +12,11 @@
   gap: 0.5rem;
 }
 
-.stat-item label {
+.stat-item.info {
+  cursor: help;
+}
+
+.stat-item .label {
   font-weight: bold;
 }
 
@@ -30,4 +34,5 @@
 
 .status {
   font-weight: bold;
+  cursor: help;
 }
