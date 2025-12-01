@@ -57,7 +57,25 @@ Derivative works must not misrepresent themselves as the original project.
 
 You may not impose further technological or legal restrictions that limit the rights granted under this license.
 
-8. No Warranty
+8. Exclusion of Third-Party Content
+8.1 Separate Ownership
+
+This repository includes an extracted dataset created from content on the RimWorld Wiki (https://rimworldwiki.com/wiki/Genes).
+
+These third-party assets are not licensed under this HNCL license.
+They remain the exclusive property of their respective copyright holders.
+
+8.2 No Relicensing of Third-Party Assets
+
+You may not:
+- Reuse, redistribute, or modify third-party assets except where allowed by the original rights holder;
+- Treat any third-party content as if it were licensed under this HNCL license.
+
+8.3 Identification of Third-Party Assets
+
+Where possible, third-party assets are stored in separate directories and/or marked in documentation. You are responsible for ensuring your use complies with the rights holder’s policies (e.g., modding/fan-content allowances).
+
+9. No Warranty
 
 This software is provided “as is,” without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement.
 

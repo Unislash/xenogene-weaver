@@ -1,4 +1,4 @@
-RimWorld Wiki content used in `src/data/genes.json`
+RimWorld Wiki content used in `src/images/*`
 
 This repository includes a small, automatically-extracted dataset created from content on the RimWorld Wiki (https://rimworldwiki.com/wiki/Genes).
 

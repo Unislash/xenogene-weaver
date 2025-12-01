@@ -15,3 +15,15 @@ Xenogene planner for Rimworld's Biology expansion. Select a germline, pick some 
 3. Create a production build:
 
    yarn build
+
+## Artwork and Attribution
+
+This project includes some interface icons and graphical elements that
+originate from the video game **RimWorld**, © Ludeon Studios.
+
+These assets:
+- are the sole property of Ludeon Studios,
+- are included here under RimWorld’s modding and fan-content policies,
+- are **not** licensed under this project’s software license, and
+- may not be extracted, reused, or redistributed except as permitted by
+  Ludeon Studios.
