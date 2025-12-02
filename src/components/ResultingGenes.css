@@ -56,6 +56,32 @@
   cursor: grabbing;
 }
 
+.resulting-genes .gene-card.reordered {
+  animation: reorder-pop 260ms ease, reorder-glow 420ms ease;
+  z-index: 3;
+}
+
+@keyframes reorder-pop {
+  0% {
+    transform: translateY(-4px) scale(1.01);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.05);
+  }
+  100% {
+    transform: translateY(-6px) scale(1.02);
+  }
+}
+
+@keyframes reorder-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(66, 211, 146, 0.45);
+  }
+  100% {
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35), 0 0 0 2px rgba(66, 211, 146, 0.35);
+  }
+}
+
 @keyframes drag-hover {
   from {
     transform: translateY(-8px) scale(1.02);
