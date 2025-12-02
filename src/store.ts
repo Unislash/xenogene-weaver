@@ -386,7 +386,11 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
       const xenogermTotals = sumTotals(activeXenogermGenes);
 
       set({
-        totals: { ...totals, xenogermEfficiency: xenogermTotals.efficiency },
+        totals: {
+          efficiency: totals.efficiency,
+          xenogermEfficiency: xenogermTotals.efficiency,
+          complexity: xenogermTotals.complexity, // Complexity only reflects selected xenogerm genes
+        },
         compatibleXenogerm: totals.efficiency >= -5,
       });
     },
