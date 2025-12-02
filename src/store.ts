@@ -480,6 +480,23 @@ export const useBuildStore = create<BuildState & BuildActions>((set, get) => {
       applySelectionState(new Set(next));
     },
 
+    reorderSelectedXeno: (id: string, beforeId: string | null) => {
+      const state = get();
+      if (!state.selectedXeno.has(id)) return;
+      const currentOrder = Array.from(state.selectedXeno);
+      const without = currentOrder.filter(geneId => geneId !== id);
+      const insertIndex =
+        beforeId && without.includes(beforeId) ? without.indexOf(beforeId) : without.length;
+      const newOrder = [
+        ...without.slice(0, insertIndex),
+        id,
+        ...without.slice(insertIndex),
+      ];
+      if (arraysEqual(currentOrder, newOrder)) return;
+      recordSelectionHistory(state.selectedXeno);
+      applySelectionState(new Set(newOrder));
+    },
+
     reset: () => {
       set({
         selectedGermline: null,

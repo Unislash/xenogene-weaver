@@ -36,6 +36,37 @@
   cursor: not-allowed;
 }
 
+.resulting-genes .gene-card.drop-target::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 6px;
+  bottom: 6px;
+  width: 4px;
+  background: var(--good);
+  box-shadow: 0 0 6px rgba(66, 211, 146, 0.6);
+  border-radius: 6px;
+}
+
+.result-drop-zone {
+  width: 6px;
+  min-height: 140px;
+  position: relative;
+}
+
+.result-drop-zone.active::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 6px;
+  bottom: 6px;
+  width: 4px;
+  background: var(--good);
+  box-shadow: 0 0 6px rgba(66, 211, 146, 0.6);
+  border-radius: 6px;
+}
+
 .empty-state {
   grid-column: 1 / -1;
   text-align: center;

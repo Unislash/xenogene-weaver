@@ -56,5 +56,6 @@ export type BuildActions = {
   startNewSavedXenogerm: () => void;
   undoGeneSelection: () => void;
   redoGeneSelection: () => void;
+  reorderSelectedXeno: (id: string, beforeId: string | null) => void;
   reset: () => void;
 };

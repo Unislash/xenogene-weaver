@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from 'react';
 import { useBuildStore } from '../store';
 import { getGeneImage } from '../images';
 import { useUndoRedoHotkeys } from '../hooks/useUndoRedoShortcuts';
@@ -12,49 +13,90 @@ export const ResultingGenes = () => {
   const conflictingXenoGenesGroups = useBuildStore(s => s.conflictingXenoGenesGroups);
   const overrideGenes = useBuildStore(s => s.overrideGenes);
   const toggleXenoGene = useBuildStore(s => s.toggleXenoGene);
+  const reorderSelectedXeno = useBuildStore(s => s.reorderSelectedXeno);
   const undo = useBuildStore(s => s.undoGeneSelection);
   const redo = useBuildStore(s => s.redoGeneSelection);
   const canUndo = useBuildStore(s => s.canUndo);
   const canRedo = useBuildStore(s => s.canRedo);
+  const [draggingId, setDraggingId] = useState<string | null>(null);
+  const [dropBeforeId, setDropBeforeId] = useState<string | null>(null);
 
   useUndoRedoHotkeys();
 
-  const suppressedSet = new Set<string>();
-  for (const suppressed of suppressedGermlineGenesByXeno.values()) {
-    for (const id of suppressed) suppressedSet.add(id);
-  }
+  const suppressedSet = useMemo(() => {
+    const combined = new Set<string>();
+    for (const suppressed of suppressedGermlineGenesByXeno.values()) {
+      for (const id of suppressed) combined.add(id);
+    }
+    return combined;
+  }, [suppressedGermlineGenesByXeno]);
 
-  const conflictingSet = new Set<string>();
-  for (const group of conflictingXenoGenesGroups) {
-    for (const id of group) conflictingSet.add(id);
-  }
+  const conflictingSet = useMemo(() => {
+    const combined = new Set<string>();
+    for (const group of conflictingXenoGenesGroups) {
+      for (const id of group) combined.add(id);
+    }
+    return combined;
+  }, [conflictingXenoGenesGroups]);
 
-  const activeGenes: Array<{
-    id: string;
-    type: 'germline' | 'xeno';
-    inactive?: boolean;
-    override?: boolean;
-  }> = [];
-
-  if (selectedGermline) {
-    const g = germlinesById[selectedGermline];
-    if (g) {
-      for (const id of g.genes) {
-        const isSuppressed = suppressedSet.has(id);
-        activeGenes.push({ id, type: 'germline', inactive: isSuppressed });
+  const germlineEntries = useMemo(() => {
+    const entries: Array<{
+      id: string;
+      type: 'germline';
+      inactive?: boolean;
+    }> = [];
+    if (selectedGermline) {
+      const g = germlinesById[selectedGermline];
+      if (g) {
+        for (const id of g.genes) {
+          const isSuppressed = suppressedSet.has(id);
+          entries.push({ id, type: 'germline', inactive: isSuppressed });
+        }
       }
     }
-  }
+    return entries;
+  }, [selectedGermline, germlinesById, suppressedSet]);
 
-  for (const id of selectedXeno) {
-    const inactiveFromConflict = conflictingSet.has(id) && !overrideGenes.has(id);
-    activeGenes.push({
-      id,
-      type: 'xeno',
-      inactive: inactiveFromConflict,
-      override: overrideGenes.has(id),
-    });
-  }
+  const xenoEntries = useMemo(() => {
+    const entries: Array<{
+      id: string;
+      type: 'xeno';
+      inactive?: boolean;
+      override?: boolean;
+    }> = [];
+    for (const id of selectedXeno) {
+      const inactiveFromConflict = conflictingSet.has(id) && !overrideGenes.has(id);
+      entries.push({
+        id,
+        type: 'xeno',
+        inactive: inactiveFromConflict,
+        override: overrideGenes.has(id),
+      });
+    }
+    return entries;
+  }, [selectedXeno, conflictingSet, overrideGenes]);
+
+  const allEntries = useMemo(
+    () => [...germlineEntries, ...xenoEntries],
+    [germlineEntries, xenoEntries],
+  );
+
+  useEffect(() => {
+    if (!draggingId) return;
+    const handleMouseUp = () => {
+      reorderSelectedXeno(draggingId, dropBeforeId);
+      setDraggingId(null);
+      setDropBeforeId(null);
+    };
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => window.removeEventListener('mouseup', handleMouseUp);
+  }, [draggingId, dropBeforeId, reorderSelectedXeno, selectedXeno]);
+
+  const beginDrag = (geneId: string, event: React.MouseEvent) => {
+    event.preventDefault();
+    setDraggingId(geneId);
+    setDropBeforeId(geneId);
+  };
 
   return (
     <section className="resulting-genes">
@@ -70,17 +112,18 @@ export const ResultingGenes = () => {
         </div>
       </div>
       <div className="gene-grid">
-        {activeGenes.map(({ id, type, inactive, override }) => {
-          const gene = genesById[id];
+        {allEntries.map(entry => {
+          const gene = genesById[entry.id];
           if (!gene) return null;
-          const isXeno = type === 'xeno';
-          const isSuppressed = Boolean(inactive);
+          const isXeno = entry.type === 'xeno';
+          const isSuppressed = Boolean(entry.inactive);
           const classNames = [
             'gene-card',
             gene.capsules && 'archite',
-            type,
+            entry.type,
             isSuppressed && 'suppressed',
             isXeno && 'clickable',
+            draggingId && dropBeforeId === entry.id ? 'drop-target' : '',
           ]
             .filter(Boolean)
             .join(' ');
@@ -89,16 +132,20 @@ export const ResultingGenes = () => {
           if (isSuppressed) {
             statusLabels.push({ key: 'suppressed', text: 'Suppressed' });
           }
-          if (override) {
+          if (entry.override) {
             statusLabels.push({ key: 'override', text: 'Override' });
           }
           const imageSrc = getGeneImage(gene.imgSrc);
 
           return (
             <div
-              key={`${gene.id}-${type}`}
+              key={`${gene.id}-${entry.type}`}
               className={classNames}
               onClick={isXeno ? () => toggleXenoGene(gene.id) : undefined}
+              onContextMenu={isXeno ? e => beginDrag(gene.id, e) : undefined}
+              onMouseEnter={() => {
+                if (draggingId && isXeno) setDropBeforeId(gene.id);
+              }}
             >
               {imageSrc && (
                 <div className="gene-thumb">
@@ -122,7 +169,13 @@ export const ResultingGenes = () => {
             </div>
           );
         })}
-        {activeGenes.length === 0 && (
+        {draggingId && (
+          <div
+            className={`result-drop-zone ${dropBeforeId === null ? 'active' : ''}`}
+            onMouseEnter={() => setDropBeforeId(null)}
+          />
+        )}
+        {allEntries.length === 0 && (
           <div className="empty-state">
             No genes selected. Select a germline and/or add xenogenes to begin.
           </div>
