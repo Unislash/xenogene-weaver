@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useBuildStore } from '../store';
 import { getGeneImage } from '../images';
 import { useUndoRedoHotkeys } from '../hooks/useUndoRedoShortcuts';
@@ -21,6 +21,25 @@ export const ResultingGenes = () => {
   const [draggingId, setDraggingId] = useState<string | null>(null);
   const [dropBeforeId, setDropBeforeId] = useState<string | null>(null);
   const suppressNextContextMenu = useRef(false);
+  const skipNextClickToggle = useRef(false);
+
+  const completeReorder = useCallback(
+    (targetBeforeId?: string | null) => {
+      if (!draggingId) return;
+      const effectiveBeforeId =
+        typeof targetBeforeId === 'undefined' ? dropBeforeId : targetBeforeId;
+      if (effectiveBeforeId !== draggingId) {
+        reorderSelectedXeno(draggingId, effectiveBeforeId);
+      }
+      setDraggingId(null);
+      setDropBeforeId(null);
+      suppressNextContextMenu.current = true;
+      setTimeout(() => {
+        suppressNextContextMenu.current = false;
+      }, 0);
+    },
+    [draggingId, dropBeforeId, reorderSelectedXeno],
+  );
 
   useUndoRedoHotkeys();
 
@@ -85,19 +104,11 @@ export const ResultingGenes = () => {
   useEffect(() => {
     if (!draggingId) return;
     const handleMouseUp = () => {
-      if (dropBeforeId !== draggingId) {
-        reorderSelectedXeno(draggingId, dropBeforeId);
-      }
-      setDraggingId(null);
-      setDropBeforeId(null);
-      suppressNextContextMenu.current = true;
-      setTimeout(() => {
-        suppressNextContextMenu.current = false;
-      }, 0);
+      completeReorder();
     };
     window.addEventListener('mouseup', handleMouseUp);
     return () => window.removeEventListener('mouseup', handleMouseUp);
-  }, [draggingId, dropBeforeId, reorderSelectedXeno, selectedXeno]);
+  }, [draggingId, completeReorder]);
 
   const beginDrag = (geneId: string, event: React.MouseEvent) => {
     event.preventDefault();
@@ -155,7 +166,30 @@ export const ResultingGenes = () => {
             <div
               key={`${gene.id}-${entry.type}`}
               className={classNames}
-              onClick={isXeno ? () => toggleXenoGene(gene.id) : undefined}
+              onMouseDown={e => {
+                if (draggingId && isXeno && e.button === 0) {
+                  // Lock in this tile as the drop target before mouseup fires
+                  e.preventDefault();
+                  setDropBeforeId(gene.id);
+                  skipNextClickToggle.current = true;
+                }
+              }}
+              onClick={
+                isXeno
+                  ? e => {
+                      if (draggingId) {
+                        e.preventDefault();
+                        return;
+                      }
+                      if (skipNextClickToggle.current) {
+                        e.preventDefault();
+                        skipNextClickToggle.current = false;
+                        return;
+                      }
+                      toggleXenoGene(gene.id);
+                    }
+                  : undefined
+              }
               onContextMenu={
                 isXeno
                   ? e => {
