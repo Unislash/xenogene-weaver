@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useBuildStore } from '../store';
 import { getGeneImage } from '../images';
 import { useUndoRedoHotkeys } from '../hooks/useUndoRedoShortcuts';
@@ -20,6 +20,7 @@ export const ResultingGenes = () => {
   const canRedo = useBuildStore(s => s.canRedo);
   const [draggingId, setDraggingId] = useState<string | null>(null);
   const [dropBeforeId, setDropBeforeId] = useState<string | null>(null);
+  const suppressNextContextMenu = useRef(false);
 
   useUndoRedoHotkeys();
 
@@ -84,9 +85,15 @@ export const ResultingGenes = () => {
   useEffect(() => {
     if (!draggingId) return;
     const handleMouseUp = () => {
-      reorderSelectedXeno(draggingId, dropBeforeId);
+      if (dropBeforeId !== draggingId) {
+        reorderSelectedXeno(draggingId, dropBeforeId);
+      }
       setDraggingId(null);
       setDropBeforeId(null);
+      suppressNextContextMenu.current = true;
+      setTimeout(() => {
+        suppressNextContextMenu.current = false;
+      }, 0);
     };
     window.addEventListener('mouseup', handleMouseUp);
     return () => window.removeEventListener('mouseup', handleMouseUp);
@@ -99,7 +106,13 @@ export const ResultingGenes = () => {
   };
 
   return (
-    <section className="resulting-genes">
+    <section
+      className="resulting-genes"
+      onContextMenu={e => {
+        // Suppress browser menu within the panel to keep right-click reordering smooth
+        e.preventDefault();
+      }}
+    >
       <div className="resulting-genes__header">
         <h2>Resulting Xenogerm</h2>
         <div className="resulting-genes__actions">
@@ -124,6 +137,7 @@ export const ResultingGenes = () => {
             isSuppressed && 'suppressed',
             isXeno && 'clickable',
             draggingId && dropBeforeId === entry.id ? 'drop-target' : '',
+            draggingId === entry.id ? 'dragging' : '',
           ]
             .filter(Boolean)
             .join(' ');
@@ -142,7 +156,17 @@ export const ResultingGenes = () => {
               key={`${gene.id}-${entry.type}`}
               className={classNames}
               onClick={isXeno ? () => toggleXenoGene(gene.id) : undefined}
-              onContextMenu={isXeno ? e => beginDrag(gene.id, e) : undefined}
+              onContextMenu={
+                isXeno
+                  ? e => {
+                      if (suppressNextContextMenu.current || draggingId) {
+                        e.preventDefault();
+                        return;
+                      }
+                      beginDrag(gene.id, e);
+                    }
+                  : undefined
+              }
               onMouseEnter={() => {
                 if (draggingId && isXeno) setDropBeforeId(gene.id);
               }}

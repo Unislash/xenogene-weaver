@@ -39,7 +39,7 @@
 .resulting-genes .gene-card.drop-target::before {
   content: '';
   position: absolute;
-  left: -6px;
+  left: -10px;
   top: 6px;
   bottom: 6px;
   width: 4px;
@@ -48,6 +48,24 @@
   border-radius: 6px;
 }
 
+.resulting-genes .gene-card.dragging {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(66, 211, 146, 0.35);
+  z-index: 2;
+  animation: drag-hover 0.9s ease-in-out infinite alternate;
+  cursor: grabbing;
+}
+
+@keyframes drag-hover {
+  from {
+    transform: translateY(-8px) scale(1.02);
+  }
+  to {
+    transform: translateY(-14px) scale(1.02);
+  }
+}
+
+/* Indicator for right-most fencepost */
 .result-drop-zone {
   width: 6px;
   min-height: 140px;
@@ -57,8 +75,7 @@
 .result-drop-zone.active::before {
   content: '';
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  left: -10px;
   top: 6px;
   bottom: 6px;
   width: 4px;
