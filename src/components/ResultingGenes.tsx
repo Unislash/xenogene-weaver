@@ -3,6 +3,7 @@ import { useBuildStore } from '../store';
 import { getGeneImage } from '../images';
 import { useUndoRedoHotkeys } from '../hooks/useUndoRedoShortcuts';
 import { useReorderAnimation } from '../hooks/useReorderAnimation';
+import { UndoRedo } from './ResultingGenesActions';
 import './ResultingGenes.css';
 
 export const ResultingGenes = () => {
@@ -15,10 +16,6 @@ export const ResultingGenes = () => {
   const overrideGenes = useBuildStore(s => s.overrideGenes);
   const toggleXenoGene = useBuildStore(s => s.toggleXenoGene);
   const reorderSelectedXeno = useBuildStore(s => s.reorderSelectedXeno);
-  const undo = useBuildStore(s => s.undoGeneSelection);
-  const redo = useBuildStore(s => s.redoGeneSelection);
-  const canUndo = useBuildStore(s => s.canUndo);
-  const canRedo = useBuildStore(s => s.canRedo);
 
   const suppressedSet = useMemo(() => {
     const combined = new Set<string>();
@@ -104,14 +101,7 @@ export const ResultingGenes = () => {
     >
       <div className="resulting-genes__header">
         <h2>Resulting Xenogerm</h2>
-        <div className="resulting-genes__actions">
-          <button onClick={undo} disabled={!canUndo}>
-            Undo
-          </button>
-          <button onClick={redo} disabled={!canRedo}>
-            Redo
-          </button>
-        </div>
+        <UndoRedo />
       </div>
       <div className="gene-grid">
         {allEntries.map(entry => {
