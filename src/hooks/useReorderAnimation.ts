@@ -23,7 +23,7 @@ type HookResult = {
   draggingId: string | null;
   dropBeforeId: string | null;
   justDroppedId: string | null;
-  setDropBeforeId: (id: string | null) => void;
+  dropIndicator: { id: string | null; side: 'before' | 'after' };
   cardRefs: MutableRefObject<Record<string, HTMLDivElement | null>>;
   handlePanelContextMenu: (e: MouseEvent) => void;
   handleGeneMouseDown: (geneId: string, isXeno: boolean, e: MouseEvent) => void;
@@ -40,6 +40,10 @@ export const useReorderAnimation = ({
   const [draggingId, setDraggingId] = useState<string | null>(null);
   const [dropBeforeId, setDropBeforeId] = useState<string | null>(null);
   const [justDroppedId, setJustDroppedId] = useState<string | null>(null);
+  const [dropIndicator, setDropIndicator] = useState<{ id: string | null; side: 'before' | 'after' }>({
+    id: null,
+    side: 'before',
+  });
   const dropPulseTimeout = useRef<number | null>(null);
   const suppressNextContextMenu = useRef(false);
   const skipNextClickToggle = useRef(false);
@@ -62,8 +66,7 @@ export const useReorderAnimation = ({
     (targetBeforeId?: string | null) => {
       if (!draggingId) return;
 
-      const effectiveBeforeId =
-        typeof targetBeforeId === 'undefined' ? dropBeforeId : targetBeforeId;
+      const effectiveBeforeId = typeof targetBeforeId === 'undefined' ? dropBeforeId : targetBeforeId;
 
       if (effectiveBeforeId !== draggingId) {
         // Snapshot positions before the DOM reorders so FLIP has a baseline.
@@ -84,6 +87,7 @@ export const useReorderAnimation = ({
 
       setDraggingId(null);
       setDropBeforeId(null);
+      setDropIndicator({ id: null, side: 'before' });
       suppressNextContextMenu.current = true;
       setTimeout(() => {
         suppressNextContextMenu.current = false;
@@ -183,17 +187,35 @@ export const useReorderAnimation = ({
     e.preventDefault();
   }, []);
 
+  const updateDropTarget = useCallback(
+    (geneId: string) => {
+      if (!draggingId) return;
+      const xenoOrder = allEntries.filter(entry => entry.type === 'xeno').map(entry => entry.id);
+      const draggingIndex = xenoOrder.indexOf(draggingId);
+      const targetIndex = xenoOrder.indexOf(geneId);
+      if (draggingIndex !== -1 && targetIndex !== -1 && targetIndex > draggingIndex) {
+        const afterTarget = xenoOrder[targetIndex + 1] ?? null;
+        setDropBeforeId(afterTarget);
+        setDropIndicator({ id: geneId, side: 'after' });
+      } else {
+        setDropBeforeId(geneId);
+        setDropIndicator({ id: geneId, side: 'before' });
+      }
+    },
+    [allEntries, draggingId],
+  );
+
   const handleGeneMouseDown = useCallback(
     (geneId: string, isXeno: boolean, e: MouseEvent) => {
       if (!isXeno) return;
       if (draggingId && e.button === 0) {
         // Lock in this tile as the drop target before mouseup fires
         e.preventDefault();
-        setDropBeforeId(geneId);
+        updateDropTarget(geneId);
         skipNextClickToggle.current = true;
       }
     },
-    [draggingId, setDropBeforeId],
+    [draggingId, updateDropTarget],
   );
 
   const handleGeneClick = useCallback(
@@ -223,22 +245,23 @@ export const useReorderAnimation = ({
       e.preventDefault();
       setDraggingId(geneId);
       setDropBeforeId(geneId);
+      setDropIndicator({ id: geneId, side: 'before' });
     },
     [draggingId, setDraggingId, setDropBeforeId, suppressNextContextMenu],
   );
 
   const handleGeneMouseEnter = useCallback(
     (geneId: string, isXeno: boolean) => {
-      if (draggingId && isXeno) setDropBeforeId(geneId);
+      if (draggingId && isXeno) updateDropTarget(geneId);
     },
-    [draggingId, setDropBeforeId],
+    [draggingId, updateDropTarget],
   );
 
   return {
     draggingId,
     dropBeforeId,
     justDroppedId,
-    setDropBeforeId,
+    dropIndicator,
     cardRefs,
     handlePanelContextMenu,
     handleGeneMouseDown,

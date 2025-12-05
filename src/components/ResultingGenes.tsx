@@ -81,7 +81,7 @@ export const ResultingGenes = () => {
     draggingId,
     dropBeforeId,
     justDroppedId,
-    setDropBeforeId,
+    dropIndicator,
     cardRefs,
     handlePanelContextMenu,
     handleGeneMouseDown,
@@ -116,7 +116,9 @@ export const ResultingGenes = () => {
             entry.type,
             isSuppressed && 'suppressed',
             isXeno && 'clickable',
-            draggingId && dropBeforeId === entry.id ? 'drop-target' : '',
+            draggingId && dropIndicator.id === entry.id
+              ? `drop-target ${dropIndicator.side === 'after' ? 'drop-target-after' : ''}`
+              : '',
             draggingId === entry.id ? 'dragging' : '',
             justDroppedId === entry.id ? 'reordered' : '',
           ]
@@ -166,12 +168,6 @@ export const ResultingGenes = () => {
             </div>
           );
         })}
-        {draggingId && (
-          <div
-            className={`result-drop-zone ${dropBeforeId === null ? 'active' : ''}`}
-            onMouseEnter={() => setDropBeforeId(null)}
-          />
-        )}
         {allEntries.length === 0 && (
           <div className="empty-state">
             No genes selected. Select a germline and/or add xenogenes to begin.

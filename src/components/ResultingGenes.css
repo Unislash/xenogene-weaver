@@ -48,6 +48,11 @@
   border-radius: 6px;
 }
 
+.resulting-genes .gene-card.drop-target.drop-target-after::before {
+  left: auto;
+  right: -10px;
+}
+
 .resulting-genes .gene-card.dragging {
   transform: translateY(-10px) scale(1.02);
   box-shadow: 0 14px 24px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(66, 211, 146, 0.35);
@@ -89,25 +94,6 @@
   to {
     transform: translateY(-14px) scale(1.02);
   }
-}
-
-/* Indicator for right-most fencepost */
-.result-drop-zone {
-  width: 6px;
-  min-height: 140px;
-  position: relative;
-}
-
-.result-drop-zone.active::before {
-  content: '';
-  position: absolute;
-  left: -10px;
-  top: 6px;
-  bottom: 6px;
-  width: 4px;
-  background: var(--good);
-  box-shadow: 0 0 6px rgba(66, 211, 146, 0.6);
-  border-radius: 6px;
 }
 
 .empty-state {
