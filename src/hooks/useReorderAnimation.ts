@@ -45,6 +45,7 @@ export const useReorderAnimation = ({
   const dropPulseTimeout = useRef<number | null>(null);
   const suppressNextContextMenu = useRef(false);
   const skipNextClickToggle = useRef(false);
+  const shouldAnimatePositions = useRef(false);
 
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const lastPositions = useRef<Record<string, DOMRect>>({});
@@ -79,6 +80,7 @@ export const useReorderAnimation = ({
           lastPositions.current = snapshot;
         }
 
+        shouldAnimatePositions.current = true;
         reorderSelectedXeno(draggingId, effectiveBeforeId);
         triggerDropPulse(draggingId);
       }
@@ -142,7 +144,7 @@ export const useReorderAnimation = ({
       newPositions[entryKey] = rect;
 
       const prev = prevSnapshot[entryKey];
-      if (!prev) continue;
+      if (!prev || !shouldAnimatePositions.current) continue;
 
       const dx = prev.left - rect.left;
       const dy = prev.top - rect.top;
@@ -169,6 +171,7 @@ export const useReorderAnimation = ({
 
     if (Object.keys(newPositions).length > 0) {
       lastPositions.current = newPositions;
+      shouldAnimatePositions.current = false;
     }
   }, [allEntries, draggingId]);
 
