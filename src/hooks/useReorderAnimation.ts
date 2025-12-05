@@ -2,6 +2,7 @@ import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
   type MouseEvent,
@@ -21,9 +22,9 @@ type Params = {
 
 type HookResult = {
   draggingId: string | null;
-  dropBeforeId: string | null;
   justDroppedId: string | null;
   dropIndicatorId: string | null;
+  reorderPathIds: Set<string>;
   cardRefs: MutableRefObject<Record<string, HTMLDivElement | null>>;
   handlePanelContextMenu: (e: MouseEvent) => void;
   handleGeneMouseDown: (geneId: string, isXeno: boolean, e: MouseEvent) => void;
@@ -180,6 +181,26 @@ export const useReorderAnimation = ({
     [],
   );
 
+  const xenoIds = useMemo(
+    () => allEntries.filter(entry => entry.type === 'xeno').map(entry => entry.id),
+    [allEntries],
+  );
+
+  const reorderPathIds = useMemo(() => {
+    const set = new Set<string>();
+    if (!draggingId || !dropIndicatorId) return set;
+    const draggingIndex = xenoIds.indexOf(draggingId);
+    const targetIndex = xenoIds.indexOf(dropIndicatorId);
+    if (draggingIndex === -1 || targetIndex === -1) return set;
+    const step = draggingIndex < targetIndex ? 1 : -1;
+    for (let i = draggingIndex + step; i !== targetIndex + step; i += step) {
+      const geneId = xenoIds[i];
+      if (!geneId || geneId === draggingId) continue;
+      set.add(geneId);
+    }
+    return set;
+  }, [draggingId, dropIndicatorId, xenoIds]);
+
   const handlePanelContextMenu = useCallback((e: MouseEvent) => {
     e.preventDefault();
   }, []);
@@ -187,11 +208,10 @@ export const useReorderAnimation = ({
   const updateDropTarget = useCallback(
     (geneId: string) => {
       if (!draggingId) return;
-      const xenoOrder = allEntries.filter(entry => entry.type === 'xeno').map(entry => entry.id);
-      const draggingIndex = xenoOrder.indexOf(draggingId);
-      const targetIndex = xenoOrder.indexOf(geneId);
+      const draggingIndex = xenoIds.indexOf(draggingId);
+      const targetIndex = xenoIds.indexOf(geneId);
       if (draggingIndex !== -1 && targetIndex !== -1 && targetIndex > draggingIndex) {
-        const afterTarget = xenoOrder[targetIndex + 1] ?? null;
+        const afterTarget = xenoIds[targetIndex + 1] ?? null;
         setDropBeforeId(afterTarget);
         setDropIndicatorId(geneId);
       } else {
@@ -199,7 +219,7 @@ export const useReorderAnimation = ({
         setDropIndicatorId(geneId);
       }
     },
-    [allEntries, draggingId],
+    [draggingId, xenoIds],
   );
 
   const handleGeneMouseDown = useCallback(
@@ -256,9 +276,9 @@ export const useReorderAnimation = ({
 
   return {
     draggingId,
-    dropBeforeId,
     justDroppedId,
     dropIndicatorId,
+    reorderPathIds,
     cardRefs,
     handlePanelContextMenu,
     handleGeneMouseDown,

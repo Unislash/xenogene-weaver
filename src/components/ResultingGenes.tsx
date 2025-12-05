@@ -79,9 +79,9 @@ export const ResultingGenes = () => {
 
   const {
     draggingId,
-    dropBeforeId,
     justDroppedId,
     dropIndicatorId,
+    reorderPathIds,
     cardRefs,
     handlePanelContextMenu,
     handleGeneMouseDown,
@@ -93,6 +93,7 @@ export const ResultingGenes = () => {
     toggleXenoGene,
     reorderSelectedXeno,
   });
+
 
   return (
     <section
@@ -110,6 +111,7 @@ export const ResultingGenes = () => {
           const isXeno = entry.type === 'xeno';
           const isSuppressed = Boolean(entry.inactive);
           const entryKey = `${gene.id}-${entry.type}`;
+          const inReorderPath = isXeno && draggingId && reorderPathIds.has(entry.id);
           const classNames = [
             'gene-card',
             gene.capsules && 'archite',
@@ -117,6 +119,7 @@ export const ResultingGenes = () => {
             isSuppressed && 'suppressed',
             isXeno && 'clickable',
             draggingId && dropIndicatorId === entry.id ? 'drop-target' : '',
+            inReorderPath ? 'reorder-path' : '',
             draggingId === entry.id ? 'dragging' : '',
             justDroppedId === entry.id ? 'reordered' : '',
           ]

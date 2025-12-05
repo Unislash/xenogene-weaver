@@ -42,16 +42,13 @@
 }
 
 .resulting-genes .gene-card.drop-target::before {
-  content: '';
-  position: absolute;
-  top: 6px;
-  bottom: 6px;
-  left: -8px;
-  right: -8px;
-  border-radius: 10px;
-  border: 1px solid rgba(66, 211, 146, 0.45);
-  box-shadow: inset 0 0 0 1px rgba(66, 211, 146, 0.35), 0 0 12px rgba(66, 211, 146, 0.35);
-  pointer-events: none;
+  display: none;
+}
+
+.resulting-genes .gene-card.reorder-path {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 10px 16px rgba(0, 0, 0, 0.35);
+  animation: reorder-wiggle 260ms ease-in-out infinite alternate;
 }
 
 .resulting-genes .gene-card.dragging {
@@ -94,6 +91,15 @@
   }
   to {
     transform: translateY(-14px) scale(1.02);
+  }
+}
+
+@keyframes reorder-wiggle {
+  from {
+    transform: translateY(-4px) scale(1.01) rotate(-0.4deg);
+  }
+  to {
+    transform: translateY(-4px) scale(1.01) rotate(0.4deg);
   }
 }
 
