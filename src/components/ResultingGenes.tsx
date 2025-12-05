@@ -18,12 +18,14 @@ export const ResultingGenes = () => {
   const redo = useBuildStore(s => s.redoGeneSelection);
   const canUndo = useBuildStore(s => s.canUndo);
   const canRedo = useBuildStore(s => s.canRedo);
+
   const [draggingId, setDraggingId] = useState<string | null>(null);
   const [dropBeforeId, setDropBeforeId] = useState<string | null>(null);
   const suppressNextContextMenu = useRef(false);
   const skipNextClickToggle = useRef(false);
   const [justDroppedId, setJustDroppedId] = useState<string | null>(null);
   const dropPulseTimeout = useRef<number | null>(null);
+
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const lastPositions = useRef<Record<string, DOMRect>>({});
 
@@ -37,27 +39,6 @@ export const ResultingGenes = () => {
       dropPulseTimeout.current = null;
     }, 400);
   }, []);
-
-  const completeReorder = useCallback(
-    (targetBeforeId?: string | null) => {
-      if (!draggingId) return;
-      const effectiveBeforeId =
-        typeof targetBeforeId === 'undefined' ? dropBeforeId : targetBeforeId;
-      if (effectiveBeforeId !== draggingId) {
-        reorderSelectedXeno(draggingId, effectiveBeforeId);
-        triggerDropPulse(draggingId);
-      }
-      setDraggingId(null);
-      setDropBeforeId(null);
-      suppressNextContextMenu.current = true;
-      setTimeout(() => {
-        suppressNextContextMenu.current = false;
-      }, 0);
-    },
-    [draggingId, dropBeforeId, reorderSelectedXeno, triggerDropPulse],
-  );
-
-  useUndoRedoHotkeys();
 
   const suppressedSet = useMemo(() => {
     const combined = new Set<string>();
@@ -117,6 +98,42 @@ export const ResultingGenes = () => {
     [germlineEntries, xenoEntries],
   );
 
+  useUndoRedoHotkeys();
+
+  const completeReorder = useCallback(
+    (targetBeforeId?: string | null) => {
+      if (!draggingId) return;
+
+      const effectiveBeforeId =
+        typeof targetBeforeId === 'undefined' ? dropBeforeId : targetBeforeId;
+
+      if (effectiveBeforeId !== draggingId) {
+        // Snapshot positions before the DOM reorders so FLIP has a baseline.
+        const snapshot: Record<string, DOMRect> = {};
+        for (const entry of allEntries) {
+          const key = `${entry.id}-${entry.type}`;
+          const el = cardRefs.current[key];
+          if (!el) continue;
+          snapshot[key] = el.getBoundingClientRect();
+        }
+        if (Object.keys(snapshot).length > 0) {
+          lastPositions.current = snapshot;
+        }
+
+        reorderSelectedXeno(draggingId, effectiveBeforeId);
+        triggerDropPulse(draggingId);
+      }
+
+      setDraggingId(null);
+      setDropBeforeId(null);
+      suppressNextContextMenu.current = true;
+      setTimeout(() => {
+        suppressNextContextMenu.current = false;
+      }, 0);
+    },
+    [allEntries, draggingId, dropBeforeId, reorderSelectedXeno, triggerDropPulse],
+  );
+
   useEffect(() => {
     if (!draggingId) return;
     const handleMouseUp = () => {
@@ -136,44 +153,60 @@ export const ResultingGenes = () => {
     // Skip measuring while dragging; it introduces temporary placeholders that skew the positions.
     if (draggingId) return;
 
-    const newPositions: Record<string, DOMRect> = {};
     const entryKeys = allEntries.map(entry => `${entry.id}-${entry.type}`);
-    const canAnimate = entryKeys.every(key => Boolean(lastPositions.current[key]));
+    const prevSnapshot = lastPositions.current;
+
+    const newPositions: Record<string, DOMRect> = {};
+
+    // If we have no prior snapshot, capture the current layout as the baseline and bail.
+    if (Object.keys(prevSnapshot).length === 0) {
+      for (const entryKey of entryKeys) {
+        const el = cardRefs.current[entryKey];
+        if (!el) continue;
+        newPositions[entryKey] = el.getBoundingClientRect();
+      }
+      if (Object.keys(newPositions).length > 0) {
+        lastPositions.current = newPositions;
+      }
+      return;
+    }
 
     for (const entryKey of entryKeys) {
       const el = cardRefs.current[entryKey];
       if (!el) continue;
+
       const rect = el.getBoundingClientRect();
       newPositions[entryKey] = rect;
 
-      if (!canAnimate) continue;
+      const prev = prevSnapshot[entryKey];
+      if (!prev) continue;
 
-      const prev = lastPositions.current[entryKey];
-      if (prev) {
-        const dx = prev.left - rect.left;
-        const dy = prev.top - rect.top;
-        if (dx !== 0 || dy !== 0) {
-          el.style.transition = 'transform 0s';
-          el.style.transform = `translate(${dx}px, ${dy}px)`;
-          requestAnimationFrame(() => {
-            el.style.transition = 'transform 260ms ease';
-            el.style.transform = 'translate(0, 0)';
-            window.setTimeout(() => {
-              // Clean inline styles after animation completes
-              if (
-                el.style.transform === 'translate(0px, 0px)' ||
-                el.style.transform === 'translate(0, 0)'
-              ) {
-                el.style.transition = '';
-                el.style.transform = '';
-              }
-            }, 300);
-          });
-        }
-      }
+      const dx = prev.left - rect.left;
+      const dy = prev.top - rect.top;
+      if (dx === 0 && dy === 0) continue;
+
+      el.style.transition = 'transform 0s';
+      el.style.transform = `translate(${dx}px, ${dy}px)`;
+
+      requestAnimationFrame(() => {
+        el.style.transition = 'transform 260ms ease';
+        el.style.transform = 'translate(0, 0)';
+
+        window.setTimeout(() => {
+          if (
+            el.style.transform === 'translate(0px, 0px)' ||
+            el.style.transform === 'translate(0, 0)'
+          ) {
+            el.style.transition = '';
+            el.style.transform = '';
+          }
+        }, 300);
+      });
     }
 
-    lastPositions.current = newPositions;
+    if (Object.keys(newPositions).length > 0) {
+      lastPositions.current = newPositions;
+    }
   }, [allEntries, draggingId]);
 
   useEffect(
@@ -315,4 +348,4 @@ export const ResultingGenes = () => {
       </div>
     </section>
   );
-}
+};
