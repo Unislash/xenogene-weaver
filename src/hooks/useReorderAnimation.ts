@@ -1,8 +1,11 @@
 import {
-  MutableRefObject,
   useCallback,
+  useEffect,
   useLayoutEffect,
   useRef,
+  useState,
+  type MouseEvent,
+  type MutableRefObject,
 } from 'react';
 
 type Entry = {
@@ -12,32 +15,48 @@ type Entry = {
 
 type Params = {
   allEntries: Entry[];
-  draggingId: string | null;
-  dropBeforeId: string | null;
-  setDraggingId: (id: string | null) => void;
-  setDropBeforeId: (id: string | null) => void;
+  toggleXenoGene: (id: string) => void;
   reorderSelectedXeno: (id: string, beforeId: string | null) => void;
-  triggerDropPulse: (id: string) => void;
-  suppressNextContextMenu: MutableRefObject<boolean>;
 };
 
 type HookResult = {
-  completeReorder: (targetBeforeId?: string | null) => void;
+  draggingId: string | null;
+  dropBeforeId: string | null;
+  justDroppedId: string | null;
+  setDropBeforeId: (id: string | null) => void;
   cardRefs: MutableRefObject<Record<string, HTMLDivElement | null>>;
+  handlePanelContextMenu: (e: MouseEvent) => void;
+  handleGeneMouseDown: (geneId: string, isXeno: boolean, e: MouseEvent) => void;
+  handleGeneClick: (geneId: string, isXeno: boolean, e: MouseEvent) => void;
+  handleGeneContextMenu: (geneId: string, isXeno: boolean, e: MouseEvent) => void;
+  handleGeneMouseEnter: (geneId: string, isXeno: boolean) => void;
 };
 
 export const useReorderAnimation = ({
   allEntries,
-  draggingId,
-  dropBeforeId,
-  setDraggingId,
-  setDropBeforeId,
+  toggleXenoGene,
   reorderSelectedXeno,
-  triggerDropPulse,
-  suppressNextContextMenu,
 }: Params): HookResult => {
+  const [draggingId, setDraggingId] = useState<string | null>(null);
+  const [dropBeforeId, setDropBeforeId] = useState<string | null>(null);
+  const [justDroppedId, setJustDroppedId] = useState<string | null>(null);
+  const dropPulseTimeout = useRef<number | null>(null);
+  const suppressNextContextMenu = useRef(false);
+  const skipNextClickToggle = useRef(false);
+
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const lastPositions = useRef<Record<string, DOMRect>>({});
+
+  const triggerDropPulse = useCallback((id: string) => {
+    setJustDroppedId(id);
+    if (dropPulseTimeout.current !== null) {
+      window.clearTimeout(dropPulseTimeout.current);
+    }
+    dropPulseTimeout.current = window.setTimeout(() => {
+      setJustDroppedId(null);
+      dropPulseTimeout.current = null;
+    }, 400);
+  }, []);
 
   const completeReorder = useCallback(
     (targetBeforeId?: string | null) => {
@@ -75,12 +94,21 @@ export const useReorderAnimation = ({
       draggingId,
       dropBeforeId,
       reorderSelectedXeno,
-      setDraggingId,
       setDropBeforeId,
-      triggerDropPulse,
+      setDraggingId,
       suppressNextContextMenu,
+      triggerDropPulse,
     ],
   );
+
+  useEffect(() => {
+    if (!draggingId) return;
+    const handleMouseUp = () => {
+      completeReorder();
+    };
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => window.removeEventListener('mouseup', handleMouseUp);
+  }, [draggingId, completeReorder]);
 
   useLayoutEffect(() => {
     // Skip measuring while dragging; it introduces temporary placeholders that skew the positions.
@@ -142,5 +170,80 @@ export const useReorderAnimation = ({
     }
   }, [allEntries, draggingId]);
 
-  return { completeReorder, cardRefs };
+  useEffect(
+    () => () => {
+      if (dropPulseTimeout.current !== null) {
+        window.clearTimeout(dropPulseTimeout.current);
+      }
+    },
+    [],
+  );
+
+  const handlePanelContextMenu = useCallback((e: MouseEvent) => {
+    e.preventDefault();
+  }, []);
+
+  const handleGeneMouseDown = useCallback(
+    (geneId: string, isXeno: boolean, e: MouseEvent) => {
+      if (!isXeno) return;
+      if (draggingId && e.button === 0) {
+        // Lock in this tile as the drop target before mouseup fires
+        e.preventDefault();
+        setDropBeforeId(geneId);
+        skipNextClickToggle.current = true;
+      }
+    },
+    [draggingId, setDropBeforeId],
+  );
+
+  const handleGeneClick = useCallback(
+    (geneId: string, isXeno: boolean, e: MouseEvent) => {
+      if (!isXeno) return;
+      if (draggingId) {
+        e.preventDefault();
+        return;
+      }
+      if (skipNextClickToggle.current) {
+        e.preventDefault();
+        skipNextClickToggle.current = false;
+        return;
+      }
+      toggleXenoGene(geneId);
+    },
+    [draggingId, toggleXenoGene],
+  );
+
+  const handleGeneContextMenu = useCallback(
+    (geneId: string, isXeno: boolean, e: MouseEvent) => {
+      if (!isXeno) return;
+      if (suppressNextContextMenu.current || draggingId) {
+        e.preventDefault();
+        return;
+      }
+      e.preventDefault();
+      setDraggingId(geneId);
+      setDropBeforeId(geneId);
+    },
+    [draggingId, setDraggingId, setDropBeforeId, suppressNextContextMenu],
+  );
+
+  const handleGeneMouseEnter = useCallback(
+    (geneId: string, isXeno: boolean) => {
+      if (draggingId && isXeno) setDropBeforeId(geneId);
+    },
+    [draggingId, setDropBeforeId],
+  );
+
+  return {
+    draggingId,
+    dropBeforeId,
+    justDroppedId,
+    setDropBeforeId,
+    cardRefs,
+    handlePanelContextMenu,
+    handleGeneMouseDown,
+    handleGeneClick,
+    handleGeneContextMenu,
+    handleGeneMouseEnter,
+  };
 };
