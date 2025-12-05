@@ -23,7 +23,7 @@ type HookResult = {
   draggingId: string | null;
   dropBeforeId: string | null;
   justDroppedId: string | null;
-  dropIndicator: { id: string | null; side: 'before' | 'after' };
+  dropIndicatorId: string | null;
   cardRefs: MutableRefObject<Record<string, HTMLDivElement | null>>;
   handlePanelContextMenu: (e: MouseEvent) => void;
   handleGeneMouseDown: (geneId: string, isXeno: boolean, e: MouseEvent) => void;
@@ -40,10 +40,7 @@ export const useReorderAnimation = ({
   const [draggingId, setDraggingId] = useState<string | null>(null);
   const [dropBeforeId, setDropBeforeId] = useState<string | null>(null);
   const [justDroppedId, setJustDroppedId] = useState<string | null>(null);
-  const [dropIndicator, setDropIndicator] = useState<{ id: string | null; side: 'before' | 'after' }>({
-    id: null,
-    side: 'before',
-  });
+  const [dropIndicatorId, setDropIndicatorId] = useState<string | null>(null);
   const dropPulseTimeout = useRef<number | null>(null);
   const suppressNextContextMenu = useRef(false);
   const skipNextClickToggle = useRef(false);
@@ -87,7 +84,7 @@ export const useReorderAnimation = ({
 
       setDraggingId(null);
       setDropBeforeId(null);
-      setDropIndicator({ id: null, side: 'before' });
+      setDropIndicatorId(null);
       suppressNextContextMenu.current = true;
       setTimeout(() => {
         suppressNextContextMenu.current = false;
@@ -196,10 +193,10 @@ export const useReorderAnimation = ({
       if (draggingIndex !== -1 && targetIndex !== -1 && targetIndex > draggingIndex) {
         const afterTarget = xenoOrder[targetIndex + 1] ?? null;
         setDropBeforeId(afterTarget);
-        setDropIndicator({ id: geneId, side: 'after' });
+        setDropIndicatorId(geneId);
       } else {
         setDropBeforeId(geneId);
-        setDropIndicator({ id: geneId, side: 'before' });
+        setDropIndicatorId(geneId);
       }
     },
     [allEntries, draggingId],
@@ -245,7 +242,7 @@ export const useReorderAnimation = ({
       e.preventDefault();
       setDraggingId(geneId);
       setDropBeforeId(geneId);
-      setDropIndicator({ id: geneId, side: 'before' });
+      setDropIndicatorId(geneId);
     },
     [draggingId, setDraggingId, setDropBeforeId, suppressNextContextMenu],
   );
@@ -261,7 +258,7 @@ export const useReorderAnimation = ({
     draggingId,
     dropBeforeId,
     justDroppedId,
-    dropIndicator,
+    dropIndicatorId,
     cardRefs,
     handlePanelContextMenu,
     handleGeneMouseDown,

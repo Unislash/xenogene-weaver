@@ -81,7 +81,7 @@ export const ResultingGenes = () => {
     draggingId,
     dropBeforeId,
     justDroppedId,
-    dropIndicator,
+    dropIndicatorId,
     cardRefs,
     handlePanelContextMenu,
     handleGeneMouseDown,
@@ -116,9 +116,7 @@ export const ResultingGenes = () => {
             entry.type,
             isSuppressed && 'suppressed',
             isXeno && 'clickable',
-            draggingId && dropIndicator.id === entry.id
-              ? `drop-target ${dropIndicator.side === 'after' ? 'drop-target-after' : ''}`
-              : '',
+            draggingId && dropIndicatorId === entry.id ? 'drop-target' : '',
             draggingId === entry.id ? 'dragging' : '',
             justDroppedId === entry.id ? 'reordered' : '',
           ]

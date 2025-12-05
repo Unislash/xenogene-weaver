@@ -36,21 +36,22 @@
   cursor: not-allowed;
 }
 
+.resulting-genes .gene-card.drop-target {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 10px 16px rgba(0, 0, 0, 0.35), 0 0 0 2px rgba(66, 211, 146, 0.25);
+}
+
 .resulting-genes .gene-card.drop-target::before {
   content: '';
   position: absolute;
-  left: -10px;
   top: 6px;
   bottom: 6px;
-  width: 4px;
-  background: var(--good);
-  box-shadow: 0 0 6px rgba(66, 211, 146, 0.6);
-  border-radius: 6px;
-}
-
-.resulting-genes .gene-card.drop-target.drop-target-after::before {
-  left: auto;
-  right: -10px;
+  left: -8px;
+  right: -8px;
+  border-radius: 10px;
+  border: 1px solid rgba(66, 211, 146, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(66, 211, 146, 0.35), 0 0 12px rgba(66, 211, 146, 0.35);
+  pointer-events: none;
 }
 
 .resulting-genes .gene-card.dragging {
